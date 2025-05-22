@@ -2724,6 +2724,419 @@
         "name": "Satvik Bhardwaj"
       },
       "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 2 (Keywords matched: ['procedure', 'foreclose'])\n- User data score: 1 (Keywords matched: ['outstanding'])\n- Small talk score: 0 (Keywords matched: [])\n- Both score: 6 (Keywords matched: [' and '])\n\nLLM Reasoning:\n1. The user is asking for their outstanding loan amount and status (user-specific data) and the procedure to foreclose their loan (policy/procedure information). This requires accessing both personal data and general company procedures.\n2. Agent type: both"
+    },
+    {
+      "query": "what  is my name?",
+      "response": "Your name is Satvik Bhardwaj.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['name'])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for their personal name. This falls under the category of user-specific details or personal account information.\n2. Agent type: user_data"
+    },
+    {
+      "query": "what is my outstanding amount ",
+      "response": "*   Your outstanding amount is 120000.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['outstanding'])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\nThe user is asking for a specific piece of personal account information, namely their outstanding amount. This directly matches the definition of the \"user_data\" category. The keyword matching also supports this classification.\n\nAgent type: user_data"
+    },
+    {
+      "query": "calculate my EMIs for per month ",
+      "response": "*   Your calculated monthly EMI is 823.67.\n*   This calculation is based on a loan amount of 150,000.0, an interest rate of 5.2%, and a loan tenure of 360 months.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "EMI",
+        "value": 823.67,
+        "details": {
+          "loan_amount": 150000.0,
+          "interest_rate": 5.2,
+          "loan_tenure_months": 360
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 2 (Keywords matched: ['emi', 'calculate'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is explicitly asking to \"calculate\" their \"EMIs\". This directly matches the definition of the 'calculation' category, which includes questions requiring financial calculations like EMI. The keyword matching also strongly supports this classification with keywords 'calculate' and 'emi'.\n2. Agent type: calculation"
+    },
+    {
+      "query": "if i want to foreclose my loan early thwn what will be my penalty amount and rate of interest",
+      "response": "Hello there! I can certainly help clarify the information I have regarding your early loan foreclosure.\n\nHere is the breakdown based on the data provided:\n\n*   **Early Foreclosure Penalty Amount**\n    *   Based on the calculation performed using a principal amount of 120000.0 and a delinquency period of 0, the penalty amount for early foreclosure is **0**.\n\n*   **Rate of Interest**\n    *   The specific rate of interest for your loan was not included in the information provided for this calculation. Therefore, I cannot give you the exact rate here.\n\n*   **Policy Information**\n    *   Detailed policy information regarding early foreclosure terms was not available in the data I received.\n\nI hope this helps clarify the penalty amount based on the calculation! For your specific interest rate and full policy details, please refer to your original loan agreement documents or contact our loan department directly.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "Penalty",
+        "value": 0,
+        "details": {
+          "delinquency_period": 0,
+          "principal": 120000.0
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 1 (Keywords matched: ['foreclose'])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 1 (Keywords matched: ['penalty'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 6 (Keywords matched: [' and '])\n\nLLM Reasoning:\nThe user is asking about the penalty amount and the rate of interest applicable if they foreclose their loan early. This involves understanding the company's policy regarding early loan foreclosure and calculating the associated penalty and potentially the interest rate used in that calculation. Since it requires both policy information (terms of early foreclosure) and a calculation (penalty amount), it falls under the \"combined\" category.\n\nAgent type: combined"
+    },
+    {
+      "query": "depending on the outstanding amount, how soon can I repay the emis, if i add pay additional 5000 dollars a month",
+      "response": "Hello! You're asking how quickly you can repay your loan by adding an extra $5,000 to your monthly payments. Based on the calculation for your specific loan details, you could potentially repay your loan significantly faster.\n\nHere is a breakdown based on the information provided:\n\n*   **Your Loan Details and Standard Repayment**\n    *   Your outstanding balance is **$120,000**.\n    *   The annual interest rate used in the calculation is 5.2%.\n    *   Your standard monthly payment is $823.67.\n    *   With the standard monthly payment, your estimated remaining loan tenure is approximately **232 months**.\n\n*   **Impact of Adding $5,000 Monthly**\n    *   By adding an additional **$5,000** per month, your new total monthly payment would be **$5,823.67** ($823.67 standard + $5,000 additional).\n    *   Based on this increased payment, your estimated remaining loan tenure would be reduced to approximately **22 months**.\n\n*   **Time Saved**\n    *   This means you could potentially repay your loan approximately **210 months** (or about 17 years and 6 months) sooner than with the standard payment.\n\nThis calculation is based on your current outstanding balance and the assumption of consistent additional payments.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "EMI",
+        "value": 823.67,
+        "details": {
+          "loan_amount": 150000.0,
+          "interest_rate": 5.2,
+          "loan_tenure_months": 360
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['outstanding'])\n- Calculation score: 1 (Keywords matched: ['emi'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 3 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking a question that requires knowing their specific outstanding loan amount (user data) and then performing a calculation to determine the new repayment timeline based on additional payments (calculation). This combination of user-specific data and a calculation falls under the \"combined\" category.\n2. Agent type: combined"
+    },
+    {
+      "query": "based on my outstanding amount please calculate my penalty to foreclose the loan",
+      "response": "Hello there! I can certainly help you understand the penalty amount for foreclosing your loan based on your outstanding amount.\n\nHere is the information regarding your foreclosure penalty:\n\n*   **Your Foreclosure Penalty:** Based on the details provided, the calculated penalty for foreclosing your loan is **0**.\n*   **Details Used in Calculation:** This result was determined using the following information specific to your loan:\n    *   Principal amount: 120000.0\n    *   Interest rate: 5.2%\n    *   Delinquency period: 0\n*   **Relevant Policy Information:** Our company policy regarding foreclosure penalties for individual borrowers is designed to be customer-friendly. For floating interest rate loans, such as yours, there is **no penalty** for foreclosure at any point during the loan tenure. This policy ensures you have the flexibility to close your loan early without incurring additional charges.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {
+        "type": "Foreclosure Penalty and Interest",
+        "value": 0,
+        "details": {
+          "principal": 120000.0,
+          "interest_rate": 5.2,
+          "delinquency_period": 0
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 1 (Keywords matched: ['foreclose'])\n- User data score: 1 (Keywords matched: ['outstanding'])\n- Calculation score: 3 (Keywords matched: ['penalty', 'calculate', 'foreclose'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 3 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for a calculation (\"calculate my penalty\") based on their specific account information (\"my outstanding amount\"). This requires accessing user-specific data and performing a calculation, fitting the definition of a 'combined' query.\n2. Agent type: combined"
+    },
+    {
+      "query": "hi",
+      "response": "Hello! \ud83d\udc4b Nice to hear from you. I'm here to help if you have any questions about company policies, your account, or need help with calculations. Just let me know!",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 1 (Keywords matched: ['hi'])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\nThe user query \"hi\" is a simple greeting. This falls under the category of general conversation or greetings.\n\nAgent type: small_talk"
+    },
+    {
+      "query": "tell me about myself",
+      "response": "*   Your name is Satvik Bhardwaj.\n*   You have a fixed-type loan with ID `loan001`.\n*   The original loan amount was $150,000, and the current outstanding balance is $120,000.\n*   Your interest rate is 5.2%.\n*   Your email address is user001@example.com and your phone number is 555-0101.\n*   Your address is 123 Elm St, Springfield, IL.\n*   Your preferred contact method is Email.\n*   Your last contact date was 2025-04-15.\n*   Your current delinquency period is 0, and your foreclosure status is Not Started.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for information specifically about themselves, which falls under the category of personal account information or user-specific details.\n2. Agent type: user_data"
+    },
+    {
+      "query": "i want to buy a tv",
+      "response": "Oh, buying a TV sounds like a fun project! While I can't help you with that specific purchase, I'm happy to assist with anything related to our company.\n\nFeel free to ask me about our policies, your account details, or any calculations you need help with! Just let me know what's on your mind. \ud83d\ude0a",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user query \"i want to buy a tv\" is a statement about a personal desire and is completely unrelated to the company's business (loans, policies, user data, calculations). It does not fit the definitions of policy, user_data, calculation, or combined. While not strictly a greeting or thanks, it falls under the umbrella of general conversation or statements outside the assistant's core function, making \"small_talk\" the most appropriate category among the given options.\n2. Agent type: small_talk"
+    },
+    {
+      "query": "how can i foreclose my loan",
+      "response": "Here is the policy information on how you can foreclose your loan:\n\n*   **Understand Foreclosure:** Foreclosure means paying off the **entire outstanding loan amount** before the original loan tenure ends. It is different from part-payment (Document 1, Document 2).\n*   **Eligibility:** You have the right to foreclose your loan after any minimum lock-in period has passed (Document 3). You are not eligible if you are undergoing bankruptcy/insolvency or have a pending moratorium/restructuring agreement (Document 3). Co-borrowers or legal heirs (with documentation) can also foreclose (Document 2).\n*   **Request a Quote:** You are entitled to receive a written foreclosure quote that clearly breaks down the principal, accrued interest, and any applicable charges (Document 1, Document 3). This quote should be provided within standard timelines (Document 3).\n*   **Make Full Payment:** You must pay the **entire amount** specified in the foreclosure quote to complete the foreclosure (Document 1, Document 2, Document 3). You cannot foreclose only a part of the loan (Document 2).\n*   **Receive Confirmation:** Upon successful foreclosure, the loan account is closed positively (Document 2). For housing loans, this includes lien release, issuance of a No Objection Certificate (NOC), and return of title documents (Document 4). Your CIBIL status will be updated (Document 2).\n*   **Important Considerations:**\n    *   You must receive assistance from the lender without undue delay (Document 3).\n    *   Foreclosure terms and applicable charges can vary depending on the type of loan (e.g., housing vs. business loans) (Document 4).\n    *   Foreclosing too early might slightly reduce your credit mix and history length (Document 2).\n    *   You cannot claim further tax benefits on the foreclosed loan (Document 2).\n    *   If the lender refuses foreclosure, you can escalate to the grievance redressal team or RBI Ombudsman (Document 2).",
+      "policy_documents": [
+        {
+          "page_content": "account.\nForeclosure, on the other hand, is the full and final settlement of the entire outstanding loan\namount before the originally agreed loan tenure.\n514.3 Purpose and Use Cases\nPrepayment is often used to reduce the interest burden without ending the loan.\nBorrowers may choose to make lump sum payments during bonus season, investment\nmaturity, or asset sales.\nThe intent is to save on interest by reducing the principal faster.\nForeclosure is pursued when the borrower wants to end the loan obligation entirely.\nCommon when refinancing with a better lender, selling an asset, or through a windfall\ngain.\nIt requires payment of the entire principal outstanding, accrued interest, and applicable\ncharges.",
+          "metadata": {
+            "page": 44,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Yes. It closes the loan account positively, but if done too early, it may reduce your credit mix and\nhistory length slightly.\n16. Can a co-borrower foreclose the loan?\nYes, with appropriate authorization and identity verification.\n17. What if the borrower is deceased\u2014can heirs foreclose the loan?\nYes. Legal heirs or co-borrowers can foreclose the loan after submitting the death certificate\nand succession/legal heir documents.\n18. Are there tax benefits to foreclosing a loan?\nOnce foreclosed, you cannot claim further tax benefits on interest or principal repayment under\nSections 80C and 24(b).\n19. What if the lender refuses foreclosure?\nBorrowers can escalate to the bank\u2019s grievance redressal team or approach the RBI\nOmbudsman.\n20. Can I foreclose only a part of the loan?\nNo. That would be part-payment, not foreclosure. Foreclosure involves full repayment.\n21. Does foreclosure affect my CIBIL score negatively?",
+          "metadata": {
+            "page": 72,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "foreclosure. This avoids premature closure and ensures legal clarity.\nBorrowers undergoing bankruptcy or insolvency proceedings are handled under separate\nlegal protocols. Such accounts require court or tribunal intervention before any foreclosure.\nAccounts with pending moratoriums or restructuring agreements are not eligible until those\nperiods end. The foreclosure timeline is resumed only after those conditions are met.\nAny exception to the foreclosure policy must receive formal approval from the compliance\nand legal teams. This prevents misuse or unauthorized deviations.\n52.10 Customer Rights and Empowerment\nBorrowers have the right to foreclose their loan after a minimum lock-in period, if applicable.\nThey must receive assistance from the lender without undue delay.\nCustomers are entitled to a foreclosure quote clearly breaking down principal, interest, and\ncharges. These quotes must be shared in writing within standard timelines.",
+          "metadata": {
+            "page": 7,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Foreclosure improves the borrower\u2019s credit profile and may offer mental relief from long-\nterm liabilities.\n6.13 Housing Loan Foreclosure\nHousing loans are the most commonly foreclosed voluntarily due to refinancing, asset sale,\nor prepayment using bonuses or investments.\nLien release, issuance of NOC, and title document return are crucial steps in housing loan\nforeclosure.\nHome loan foreclosure is governed by multiple regulations including SARFAESI, state land\nlaws, and housing finance company norms.\n6.14 Business Loan Foreclosure\nBusiness loans, whether secured or unsecured, may be foreclosed voluntarily or involuntarily\nbased on performance of the business.\nCollateral may include plant machinery, accounts receivable, or company property. Lenders\nassess asset liquidity before enforcing foreclosure.\nThe process may involve court-monitored restructuring before full foreclosure is\nimplemented.\n5",
+          "metadata": {
+            "page": 18,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "policy_reasoning": "Based on the retrieved documents and our previous conversation, here is the policy-related information on how you can foreclose your loan:\n\n1.  **Understand Foreclosure:** Foreclosure means paying off the **entire outstanding loan amount** before the originally agreed loan tenure ends (Document 1, Document 2). This is distinct from prepayment, which only reduces the principal without ending the loan (Document 1, Document 2).\n2.  **Ensure Eligibility:** You have the right to foreclose your loan after any minimum lock-in period has passed (Document 3). However, you are not eligible if you are currently undergoing bankruptcy/insolvency proceedings or if your account has a pending moratorium or restructuring agreement (Document 3).\n3.  **Request a Quote:** You are entitled to receive a written foreclosure quote that clearly breaks down the principal, accrued interest, and any applicable charges (Document 1, Document 3).\n4.  **Make Full Payment:** To foreclose, you must pay the entire amount specified in the foreclosure quote (Document 2, Document 3). You cannot foreclose only a part of the loan; that would be a part-payment (Document 2).\n5.  **Receive Confirmation:** Upon successful foreclosure, the loan account is closed positively (Document 2). While not explicitly detailed for all loans, for housing loans, crucial steps include lien release, issuance of a No Objection Certificate (NOC), and return of title documents (Document 4). Your CIBIL status will be updated (Document 2).\n\nThe documents state that you must receive assistance from the lender without undue delay during this process (Document 3). Note that the process and specific requirements can vary depending on the type of loan (e.g., housing vs. business loans) (Document 4).",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 1 (Keywords matched: ['foreclose'])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 1 (Keywords matched: ['foreclose'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 3 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking about the process or procedure for foreclosing a loan. This aligns with the definition of the \"policy\" category, which covers questions about company rules, processes, or general procedures. The previous conversation also treated this query as a policy question, explaining the steps involved in foreclosure.\n2. Agent type: policy"
+    },
+    {
+      "query": "am i eligible to  foreclose",
+      "response": "Based on the handbook excerpts and previous conversations, here is the policy information regarding your eligibility to foreclose your loan:\n\n*   **General Requirement:** You are generally eligible upon fulfilling the preconditions outlined in your specific loan agreement and initiating a formal request.\n*   **Lock-in Period:** You must have completed any specified lock-in period applicable to your loan.\n*   **Account Status:** Your loan account must not have unresolved EMIs, outstanding dues, or be under dispute. You may need to clear any pending dues or charges to qualify.\n*   **Program Restrictions:** Eligibility may be restricted if your loan is currently under restructuring, moratorium, or a debt waiver program until the program is closed or settled. You are not eligible if undergoing bankruptcy/insolvency proceedings.\n*   **Legal/Documentation:** There should be no pending litigation, unresolved insurance claims, or documentation discrepancies that could obstruct the process.\n*   **Regulatory Compliance:** Eligibility is subject to overarching frameworks like RBI guidelines, SARFAESI Act provisions, and institutional lending policies. You must not have availed certain benefits like interest subvention.\n*   **Co-borrowers/Guarantors:** If applicable, written consent from all co-borrowers or guarantors is required, especially for joint ownership or liability.\n*   **Legal Heirs/Nominees:** If applicable (e.g., for a deceased borrower), legal heirs or nominees must present appropriate documentation (like a succession certificate or probate).\n*   **Subsidy Schemes:** Be aware that foreclosing before a minimum tenure defined under a scheme may lead to a review or reversal of subsidy eligibility.\n*   **Verification Process:** The lender will verify your eligibility based on these factors upon receiving your foreclosure request. Ineligible requests will be flagged with reasons and suggested remedial steps.",
+      "policy_documents": [
+        {
+          "page_content": "7.4 Eligibility Based on Borrower Profile\nBorrowers with a clean credit history, consistent income sources, and a positive net worth\nare typically granted foreclosure privileges with minimal due diligence.\nFor co-borrowers or guarantors, foreclosure eligibility requires written consent from all\nparties involved, particularly if the loan involves joint ownership or liability.\nIn the case of deceased borrowers, legal heirs or nominees must present appropriate\ndocumentation (such as a succession certificate or probate) to qualify for foreclosure\nprocessing.\n7.5 Regulatory and Policy-Based Eligibility\nRBI guidelines, SARFAESI Act provisions, and institutional lending policies provide the\noverarching framework for eligibility.\nBorrowers under restructuring, moratorium, or debt waiver programs may have restricted\nforeclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Subsidy eligibility may be reviewed or reversed if foreclosed before the minimum tenure as\ndefined under the scheme.\n40. How will I know my foreclosure is successful?\nYou\u2019ll receive a closure confirmation, NOC, updated CIBIL status, and return of documents.\n41. Will foreclosure reflect in my credit report?\nYes. The loan account will be marked as \u201cclosed\u201d with no outstanding dues.\n42. Can I request EMI waiver while foreclosing?\nRarely approved, but can be considered under hardship or negotiation cases.\n43. Can I foreclose one of multiple loans only?\nYes, each loan account is independent and can be foreclosed separately.\n44. Can I foreclose without penalty if I pay from my salary?\nForeclosure fee exemptions are not tied to income source unless specified under a corporate or\ngovernment scheme.\n45. Are foreclosure terms same for personal and home loans?\nNo. Home loans often have lower or zero charges (for floating rates), while personal loans may\ncarry 2\u20135% foreclosure fees.\n5",
+          "metadata": {
+            "page": 74,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "5.2 Verification of Foreclosure Eligibility\nUpon receiving the request, the lender will verify if the loan qualifies for foreclosure based on\nthe terms of the agreement, such as completion of lock-in period and absence of\noutstanding dues or disputes.\nIneligible requests due to unresolved EMIs, disputes, or contractual restrictions will be\nflagged and communicated to the borrower with suggested remedial steps.\nBorrowers may be asked to clear pending dues or charges to qualify for foreclosure\neligibility.\n5.3 Generation of Foreclosure Statement\nOnce eligibility is confirmed, the lender generates a foreclosure statement detailing the total\namount payable by the borrower to foreclose the loan.\nThis statement includes the outstanding principal, accrued interest, foreclosure charges (if\napplicable), administrative fees, and applicable taxes.\nThe statement is typically valid for a limited period (e.g., 7\u201315 days), after which a revised\ncalculation may be necessary due to interest accrual.",
+          "metadata": {
+            "page": 14,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Eligibility Criteria for\nForeclosure\nForeclosure of a loan\u2014whether voluntary or involuntary\u2014is subject to a set of eligibility criteria\nestablished to ensure compliance with regulatory standards, internal bank protocols, and\nfairness in execution. This section outlines the various dimensions that define eligibility for\nforeclosure across borrower categories, loan types, and contextual factors.\n7.1 General Eligibility Requirements\nAny borrower, whether individual or institutional, becomes eligible for loan foreclosure upon\nfulfilling the preconditions outlined in the loan agreement or mandated by law.\nTypically, foreclosure eligibility arises once a loan has completed a specified lock-in period, if\napplicable, and when the borrower initiates a formal request or the lender determines that\nenforcement is warranted due to default.\nBorrowers must ensure that no pending litigation, unresolved insurance claims, or\ndocumentation discrepancies exist that may obstruct the foreclosure process.",
+          "metadata": {
+            "page": 20,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "policy_reasoning": "Based on the retrieved documents and previous conversations, here is the policy information regarding your eligibility to foreclose your loan:\n\nYou are generally eligible to foreclose your loan if you meet the following criteria:\n\n1.  **Fulfill Loan Agreement Preconditions:** You must meet the conditions outlined in your specific loan agreement (Document 4).\n2.  **Complete Lock-in Period:** If your loan has a specified lock-in period, you must have completed it (Document 4, Document 3, Previous Conversations).\n3.  **Initiate a Formal Request:** You need to formally request foreclosure (Document 4).\n4.  **No Outstanding Dues or Disputes:** Your loan account should not have unresolved EMIs, outstanding dues, or be under dispute (Document 3). You may need to clear any pending dues or charges to qualify (Document 3).\n5.  **Account Status:** Your foreclosure rights may be restricted if you are currently under a restructuring, moratorium, or debt waiver program until the program is closed or settled (Document 1). You are not eligible if you are undergoing bankruptcy/insolvency proceedings (Previous Conversations).\n6.  **Legal and Documentation Status:** There should be no pending litigation, unresolved insurance claims, or documentation discrepancies that could obstruct the process (Document 4).\n7.  **Borrower Profile (for smoother processing):** A clean credit history, consistent income sources, and a positive net worth can facilitate the process (Document 1).\n8.  **Co-borrowers/Guarantors:** If applicable, foreclosure requires written consent from all co-borrowers or guarantors, especially if there is joint ownership or liability (Document 1).\n9.  **Legal Heirs/Nominees:** If applicable (e.g., for a deceased borrower), legal heirs or nominees must present appropriate documentation like a succession certificate or probate (Document 1).\n10. **Regulatory Compliance:** Eligibility is also subject to overarching frameworks like RBI guidelines, SARFAESI Act provisions, and institutional lending policies (Document 1). You must not have availed certain benefits like interest subvention (Document 1). Note that foreclosing before a minimum tenure might affect subsidy eligibility (Document 2).\n\nThe lender will verify your eligibility based on these factors upon receiving your request (Document 3).",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 1 (Keywords matched: ['foreclose'])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 1 (Keywords matched: ['foreclose'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 3 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking about the conditions or rules that determine if they can foreclose their loan. This is a question about company policy regarding loan foreclosure eligibility.\n2. Agent type: policy"
+    },
+    {
+      "query": "give me my loan details",
+      "response": "*   Your name is **Satvik Bhardwaj**.\n*   Your loan ID is **loan001**.\n*   The original loan amount was **150000**.\n*   The current outstanding amount is **120000**.\n*   The interest rate is **5.2%**.\n*   The type of loan is **Fixed**.\n*   Your loan is not currently delinquent (delinquency period is 0 days).\n*   The foreclosure status is Not Started.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['details'])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for specific information related to their personal loan account (\"my loan details\"). This type of query requires accessing user-specific data.\n2. Agent type: user_data"
     }
   ],
   "user 001": [

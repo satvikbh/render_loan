@@ -15,7 +15,7 @@ import numpy as np
 import chromadb
 import uuid
 from orchestrator import Orchestrator
-from states import PolicyState, UserDataState, CombinedState
+from states import PolicyState, UserDataState, CalculationState, CombinedState
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -221,6 +221,16 @@ for chat in st.session_state.current_chat_display:
             else:
                 st.markdown("No user data available.")
             
+            st.markdown("### Calculation Results")
+            calculation_result = chat.get("calculation_result", {})
+            if calculation_result:
+                st.markdown(f"**Type**: {calculation_result.get('type', 'N/A')}")
+                st.markdown(f"**Value**: {calculation_result.get('value', 'N/A')}")
+                st.markdown("**Details**:")
+                st.markdown("\n".join([f"{k}: {v}" for k, v in calculation_result.get("details", {}).items()]))
+            else:
+                st.markdown("No calculation performed.")
+            
             st.markdown("### Orchestrator Reasoning")
             st.markdown(chat.get("orchestrator_reasoning", "No orchestrator reasoning available."))
 
@@ -258,6 +268,19 @@ if query:
                     user_data_db=st.session_state.user_data,
                     llm=llm
                 ),
+                calculation_state=CalculationState(
+                    user_id=user_id,
+                    query=query,
+                    user_data={},
+                    user_data_response="",
+                    required_fields=[],
+                    missing_fields=[],
+                    calculation_result={},
+                    response="",
+                    chat_history=chat_history,
+                    user_data_db=st.session_state.user_data,
+                    llm=llm
+                ),
                 final_response="",
                 chat_history=chat_history,
                 orchestrator_reasoning=""
@@ -279,6 +302,7 @@ if query:
                 "policy_documents": policy_documents,
                 "policy_reasoning": result["policy_state"]["reasoning"] or "No policy reasoning performed.",
                 "user_data": result["user_data_state"]["user_data"],
+                "calculation_result": result["calculation_state"]["calculation_result"],
                 "orchestrator_reasoning": result["orchestrator_reasoning"]
             }
             if user_id not in st.session_state.chat_history:
@@ -307,9 +331,20 @@ if query:
                     else:
                         st.markdown("No user data available.")
                     
+                    st.markdown("### Calculation Results")
+                    calculation_result = result["calculation_state"]["calculation_result"]
+                    if calculation_result:
+                        st.markdown(f"**Type**: {calculation_result.get('type', 'N/A')}")
+                        st.markdown(f"**Value**: {calculation_result.get('value', 'N/A')}")
+                        st.markdown("**Details**:")
+                        st.markdown("\n".join([f"{k}: {v}" for k, v in calculation_result.get("details", {}).items()]))
+                    else:
+                        st.markdown("No calculation performed.")
+                    
                     st.markdown("### Orchestrator Reasoning")
                     st.markdown(result["orchestrator_reasoning"] or "No orchestrator reasoning available.")
 
         except Exception as e:
             st.error(f"Error processing query: {str(e)}")
             logger.error(f"Query processing error: {str(e)}")
+            
