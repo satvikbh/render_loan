@@ -3187,6 +3187,41 @@
       },
       "calculation_result": {},
       "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for information about themselves, which directly relates to personal account information or user-specific details. This aligns with the definition of the `user_data` category.\n2. Agent type: user_data"
+    },
+    {
+      "query": "hi",
+      "response": "Hey Satvik Bhardwaj \ud83d\udc4b Nice to hear from you! How can I help out today?\n\nI'm here if you have questions about bank policies, your account, or need help with calculations! Just let me know. \ud83d\ude0a",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 1 (Keywords matched: ['hi'])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\nThe user query \"hi\" is a simple greeting. This falls under the category of general conversation or greetings. According to the category definitions, this is classified as \"small_talk\". The keyword matching context also indicates a high score for \"small_talk\" based on the keyword 'hi'.\n\nAgent type: small_talk"
+    },
+    {
+      "query": "hi",
+      "response": "Hey Satvik Bhardwaj \ud83d\udc4b Nice to hear from you! How can I assist you today?\n\nFeel free to ask if you have questions about bank policies, your account, or need help with any calculations. I'm here to help! \ud83d\ude0a",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 1 (Keywords matched: ['hi'])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\nThe user query \"hi\" is a simple greeting. Based on the category definitions, greetings fall under the \"small_talk\" category. The keyword matching context also supports this classification with a high score for \"small_talk\" based on the keyword 'hi'.\n\nAgent type: small_talk"
+    },
+    {
+      "query": "based on my outstanding amount and emi amount if i add extra 200 dollars in current emi amount then by how much it reduce my tenure period and give the data in tabular form like previous tenure data in left side of table and new tenure in right side ",
+      "response": "Hello there! I can certainly help you understand how adding an extra $200 to your monthly EMI could impact your loan tenure.\n\nBased on the calculations, adding an extra $200 to your current monthly payment is estimated to significantly reduce the time it takes to pay off your loan.\n\nHere are the details:\n\n*   **Calculation Details**\n    *   We've estimated this based on your Original Loan Amount of $150,000.00 and an Annual Interest Rate of 5.2%.\n    *   Your Original Monthly EMI was $823.67.\n    *   Your New Estimated Monthly Payment would be $823.67 + $200.00 = $1,023.67.\n\n*   **Estimated Tenure Comparison**\n    *   Here is a comparison showing the estimated impact on your loan tenure by making the higher payment:\n\n    | Original Tenure (Months) | New Estimated Tenure (Months) |\n    | :----------------------- | :---------------------------- |\n    | 360                      | ~208                          |\n\n    *   As shown in the table, this extra payment is estimated to reduce your loan tenure by approximately 152 months (which is about 12 years and 8 months!).\n\n*   **Bank Policy on Extra Payments**\n    *   Making extra payments is a great way to save on interest and pay off your loan faster.\n    *   Our general policy is that any amount you pay above your scheduled monthly EMI is applied directly towards reducing your loan's principal balance.\n    *   By reducing the principal balance faster, less interest accrues over the life of the loan, which directly leads to a shorter repayment period.\n    *   There are typically no penalties for making extra payments or paying off your loan early.\n    *   For the specific terms and conditions of your loan agreement, please refer to your original loan documents or contact us directly.\n\nWe hope this information is helpful! Let us know if you have any more questions.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "EMI",
+        "value": 823.67,
+        "details": {
+          "loan_amount": 150000.0,
+          "interest_rate": 5.2,
+          "loan_tenure_months": 360
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 2 (Keywords matched: ['outstanding', 'data'])\n- Calculation score: 2 (Keywords matched: ['emi', 'tenure'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 6 (Keywords matched: [' and '])\n\nLLM Reasoning:\n1. The user is asking for a calculation (how much tenure is reduced) based on their specific outstanding amount and current EMI, and an additional payment. This requires accessing user-specific data (outstanding amount, current EMI) and performing a calculation based on that data. The request for a tabular comparison of old and new tenure further reinforces the need to process user data and perform a calculation.\n2. Agent type: combined"
     }
   ],
   "user 001": [
@@ -3765,6 +3800,51 @@
         }
       },
       "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 1 (Keywords matched: ['emi'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for a calculation of a new EMI amount. This calculation is based on the condition of paying off the loan within a specific timeframe (2 years). This directly falls under the definition of a 'calculation' query.\n2. Agent type: calculation"
+    }
+  ],
+  "user010": [
+    {
+      "query": "hi\n",
+      "response": "Hey there! \ud83d\udc4b Nice to hear from you. How can I help out today?\n\nI'm here if you have questions about bank policies, your account, or need help with calculations! Just let me know. \ud83d\ude0a",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 1 (Keywords matched: ['hi'])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user query \"hi\" is a simple greeting. According to the category definitions, greetings fall under the \"small_talk\" category. The keyword matching results also indicate a match for \"small talk\" with the keyword 'hi'.\n2. Agent type: small_talk"
+    },
+    {
+      "query": "what is my name ?",
+      "response": "*   I do not have your name in the data provided.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan010",
+        "loan_amount": 160000,
+        "interest_rate": 5.4,
+        "email": "user010@example.com",
+        "phone": "555-0110",
+        "address": "741 Oakwood Dr, Waukegan, IL",
+        "last_contact_date": "2025-04-18",
+        "interaction_notes": "Requested penalty calculation.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Phone",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 128000,
+        "principal": 128000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 1086.44,
+        "loan_start_date": "2021-05-03"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['name'])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for their name, which is a piece of personal information related to their account or identity within the bank's system. This falls under the definition of 'user_data'.\n2. Agent type: user_data"
     }
   ]
 }

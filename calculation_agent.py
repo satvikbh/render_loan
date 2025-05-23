@@ -77,6 +77,7 @@ class CalculationAgent:
     def check_missing_data(state: CalculationState) -> str:
         return "incomplete" if state["missing_fields"] else "complete"
 
+    
     @staticmethod
     def request_missing_input(state: CalculationState) -> CalculationState:
         logger.info("Requesting missing input from user...")
@@ -88,7 +89,7 @@ class CalculationAgent:
 
         missing_fields_str = ", ".join(state["missing_fields"])
         prompt = ChatPromptTemplate.from_template(
-            """You are a calculation assistant. The user's query requires specific information that is missing.
+            """You are a calculation assistant for a bank. The user's query requires specific information that is missing.
             Ask the user to provide the missing details in a clear and friendly manner.
 
             *User Query*:
@@ -178,7 +179,7 @@ class CalculationAgent:
 
         # Generate response
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a calculation assistant. Provide a clear and concise response with the calculation results.
+            """You are a calculation assistant for a bank. Provide a clear and concise response with the calculation results.
 
             *Instructions:*
             - Present the calculated value clearly

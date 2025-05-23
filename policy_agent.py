@@ -27,6 +27,7 @@ class PolicyAgent:
         logger.info(f"Retrieved {len(state['documents'])} documents.")
         return state
 
+   
     @staticmethod
     def analyze_and_reason(state: PolicyState) -> PolicyState:
         logger.info("Analyzing documents and reasoning...")
@@ -38,10 +39,10 @@ class PolicyAgent:
                 history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
         
         reasoning_prompt = ChatPromptTemplate.from_template(
-            """You are a policy analysis system working with an Employee Handbook.
+            """You are a policy analysis system working with a Bank Handbook.
             Analyze the retrieved documents and reason step-by-step about how they relate to the user's query.
             Use relevant previous conversations to ensure continuity.
-            Focus on identifying relevant information, policy constraints, and accurate answers.
+            Focus on identifying relevant information, bank policy constraints, and accurate answers.
 
             *Retrieved Documents*:
             {context}
@@ -53,9 +54,9 @@ class PolicyAgent:
 
             *Step-by-Step Reasoning*:
             Let me think through this carefully:
-            1. Understand the policy information requested.
+            1. Understand the bank policy information requested.
             2. Identify relevant documents.
-            3. Analyze policy rules, exceptions, or processes.
+            3. Analyze bank policy rules, exceptions, or processes.
             4. Consider previous conversations for consistency.
             5. Determine conditions or requirements.
 
@@ -83,18 +84,18 @@ class PolicyAgent:
                 history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
         
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a policy retrieval assistant. Based on the handbook excerpts,
+            """You are a policy retrieval assistant for a bank. Based on the bank handbook excerpts,
             reasoning analysis, and previous conversations, provide a concise and accurate response to the
             policy-related part of the query.
 
             *Instructions:*
-            - Answer directly about the policy information requested (e.g., early loan foreclosure)
+            - Answer directly about the bank policy information requested (e.g., early loan foreclosure)
             - Provide specific steps or requirements if available
             - Format your answer as clear bullet points
             - Include any fees, timelines, or important considerations
-            - Do not be vague - give specific policy details whenever possible
+            - Do not be vague - give specific bank policy details whenever possible
 
-            *Handbook Excerpts*:
+            *Bank Handbook Excerpts*:
             {context}
 
             *User Query*:
@@ -105,7 +106,7 @@ class PolicyAgent:
 
             {history_context}
 
-            *Policy Response (in bullet points):*
+            *Bank Policy Response (in bullet points):*
             """
         )
         response_chain = response_prompt | state.get('llm')

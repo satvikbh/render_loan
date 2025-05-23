@@ -16,6 +16,7 @@ import chromadb
 import uuid
 from orchestrator import Orchestrator
 from states import PolicyState, UserDataState, CalculationState, CombinedState
+from utils import load_chat_history  # Import the utility function
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -114,21 +115,6 @@ def load_and_index_pdf(_splits=None, persist_dir=None):
         logger.error(f"Error creating Chroma database: {str(e)}")
         raise e
 
-# Load chat history from JSON
-def load_chat_history():
-    logger.info(f"Loading chat history from {CHAT_HISTORY_PATH}...")
-    if not os.path.exists(CHAT_HISTORY_PATH):
-        logger.info("No chat history file found, starting with empty history.")
-        return {}
-    try:
-        with open(CHAT_HISTORY_PATH, 'r') as f:
-            history = json.load(f)
-        logger.info("Chat history loaded successfully.")
-        return history
-    except Exception as e:
-        logger.error(f"Error loading chat history: {str(e)}")
-        return {}
-
 # Save chat history to JSON
 def save_chat_history(history):
     logger.info(f"Saving chat history to {CHAT_HISTORY_PATH}...")
@@ -163,7 +149,7 @@ def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: i
     return [entry for entry, _ in relevant_history]
 
 # Streamlit UI
-st.title('XYZ Bank Assistant bot 🤖')
+st.title('Bank Assistant Bot')
 
 # Initialize session state
 if "user_id" not in st.session_state:
@@ -191,7 +177,7 @@ if "orchestrator" not in st.session_state:
     st.session_state.orchestrator = Orchestrator(llm=llm)
 
 # User ID input (mandatory)
-user_id = st.text_input('Enter your customer ID):', key="user_id_input", value=st.session_state.user_id)
+user_id = st.text_input('Enter your User ID (e.g., user001):', key="user_id_input", value=st.session_state.user_id)
 if not user_id:
     st.error("User ID is required to proceed.")
     st.stop()
@@ -347,4 +333,3 @@ if query:
         except Exception as e:
             st.error(f"Error processing query: {str(e)}")
             logger.error(f"Query processing error: {str(e)}")
-            

@@ -74,12 +74,12 @@ class UserDataAgent:
         # If no user data and no name in history, provide fallback response
         if not state.get("user_data") and not name_from_history:
             logger.info("No user data or name in history available, using fallback response.")
-            state["response"] = "I don't have access to your account information in this conversation. To get your specific details, please log into your account portal or contact our customer service at 1-800-XXX-XXXX with your account details."
+            state["response"] = "I don't have access to your account information in this conversation. To get your specific details, please log into your bank account portal or contact our customer service at 1-800-XXX-XXXX with your account details."
             return state
         
         # Use LLM to generate response with user data and history context
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a user data assistant. Based on the user's data, query, and previous conversations,
+            """You are a user data assistant for a bank. Based on the user's data, query, and previous conversations,
             provide a concise and accurate response to the user-specific part of the query.
 
             *Instructions:*

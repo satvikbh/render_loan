@@ -1,12 +1,14 @@
 import logging
 from typing import Dict, List, Optional
 import re
+import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from states import PolicyState, UserDataState, CalculationState, CombinedState
 from policy_agent import PolicyAgent
 from user_data_agent import UserDataAgent
 from calculation_agent import CalculationAgent
+from utils import load_chat_history
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +18,13 @@ class Orchestrator:
         self.policy_workflow = PolicyAgent.create_workflow()
         self.user_data_workflow = UserDataAgent.create_workflow()
         self.calculation_workflow = CalculationAgent.create_workflow()
+        # Load user data for name retrieval
+        try:
+            with open('user_details.json', 'r') as f:
+                self.user_data_db = json.load(f).get("users", {})
+        except Exception as e:
+            logger.error(f"Error loading user_details.json: {str(e)}")
+            self.user_data_db = {}
 
     def classify_query(self, query: str, user_id: str, chat_history: List[Dict]) -> Dict:
         logger.info(f"Classifying query: {query}")
@@ -25,7 +34,7 @@ class Orchestrator:
         policy_keywords = [
             'policy', 'rule', 'procedure', 'guideline', 'regulation', 'process', 'how does',
             'vacation', 'leave', 'benefits', 'insurance', 'foreclosure', 'foreclose', 'foreclosing',
-            'terms', 'conditions', 'eligibility', 'requirements', 'company', 'handbook', 'protocol'
+            'terms', 'conditions', 'eligibility', 'requirements', 'bank', 'handbook', 'protocol'
         ]
         user_data_keywords = [
             'my account', 'balance', 'loan status', 'personal', 'details', 'account number',
@@ -42,7 +51,7 @@ class Orchestrator:
         ]
         combined_keywords = [
             'affect my', 'impact my', 'how does my', 'my loan and', 'my account and',
-            'balance and policy', 'status and procedure', 'personal and company', ' and ',
+            'balance and policy', 'status and procedure', 'personal and bank', ' and ',
             'emi and policy', 'penalty and procedure', 'calculate and policy'
         ]
 
@@ -95,14 +104,14 @@ class Orchestrator:
 
         # Use LLM with keyword results as context
         classification_prompt = ChatPromptTemplate.from_template(
-            """You are a query classification system for a company assistant. Your task is to categorize user queries.
+            """You are a query classification system for a bank assistant. Your task is to categorize user queries.
 
             EXACTLY FOLLOW THIS FORMAT FOR YOUR RESPONSE:
             1. Provide your reasoning
             2. End with EXACTLY "Agent type: X" where X is one of: "policy", "user_data", "calculation", "small_talk", or "combined"
             
             CATEGORY DEFINITIONS:
-            - policy: Questions about company rules, processes, or general procedures
+            - policy: Questions about bank rules, processes, or general procedures
             - user_data: Questions about personal account information or user-specific details
             - calculation: Questions requiring financial calculations like EMI or penalties
             - small_talk: General conversation, greetings, thanks
@@ -168,18 +177,48 @@ class Orchestrator:
 
     def handle_small_talk(self, query: str, user_id: str) -> str:
         logger.info(f"Handling small talk: {query}")
+        # Try to get user name from user_details.json
+        user_name = self.user_data_db.get(user_id, {}).get("name", None)
+        
+        # If not found in user_details.json, check chat history
+        if not user_name:
+            chat_history = load_chat_history().get(user_id, [])
+            for entry in chat_history:
+                # Look for name in previous queries or responses
+                if "my name is" in entry["query"].lower():
+                    words = entry["query"].lower().split()
+                    try:
+                        name_index = words.index("name") + 2
+                        user_name = " ".join(words[name_index:]).title()
+                    except:
+                        pass
+                elif "name" in entry["response"].lower():
+                    match = re.search(r"(?:your name is|name:)\s*([A-Za-z\s]+)", entry["response"], re.IGNORECASE)
+                    if match:
+                        user_name = match.group(1).title()
+        
+        # Default greeting if no name is found
+        greeting = f"Hey {user_name} 👋" if user_name else "Hey there! 👋"
+        
         small_talk_prompt = ChatPromptTemplate.from_template(
-            """You are a friendly company assistant chatbot. Respond to the user's small talk query in a warm, conversational tone.
-            Keep the response concise and relevant, encouraging the user to ask about company policies, their account, or calculations if needed.
+            """You are a friendly bank assistant chatbot. Respond to the user's small talk query in a warm, conversational tone.
+            Use the provided greeting to personalize the response.
+            Keep the response concise and relevant, encouraging the user to ask about bank policies, their account, or calculations if needed.
 
             *User Query*:
             {query}
 
+            *Greeting*:
+            {greeting}
+
             *Response*:
+            {greeting} Nice to hear from you. How can I help out today?
+
+            I'm here if you have questions about bank policies, your account, or need help with calculations! Just let me know. 😊
             """
         )
         response_chain = small_talk_prompt | self.llm
-        result = response_chain.invoke({"query": query})
+        result = response_chain.invoke({"query": query, "greeting": greeting})
         return result.content
 
     def orchestrate(self, state: CombinedState) -> CombinedState:
@@ -225,16 +264,16 @@ class Orchestrator:
             state['user_data_state'] = user_data_result
             state['calculation_state'] = calculation_result
             combined_prompt = ChatPromptTemplate.from_template(
-                """You are a friendly company assistant chatbot. Create a single, coherent response that integrates policy information,
+                """You are a friendly bank assistant chatbot. Create a single, coherent response that integrates policy information,
                 user-specific details, and calculation results as needed.
 
                 *Instructions:*
                 - Start by addressing the user's specific data or calculation question directly
-                - Then provide the policy information clearly
+                - Then provide the bank policy information clearly
                 - Format your answer as clear sections with bullet points
                 - Be direct and easy to read
                 - Ensure all relevant information is fully represented
-                - Make connections between the user's situation, calculations, and policy where relevant
+                - Make connections between the user's situation, calculations, and bank policy where relevant
 
                 *User Query*:
                 {query}
@@ -245,7 +284,7 @@ class Orchestrator:
                 *Calculation Results*:
                 {calculation_response}
 
-                *Policy Information*:
+                *Bank Policy Information*:
                 {policy_response}
 
                 *Final Answer (integrate all relevant information):*
