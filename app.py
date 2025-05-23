@@ -163,7 +163,7 @@ def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: i
     return [entry for entry, _ in relevant_history]
 
 # Streamlit UI
-st.title('Company Assistant Bot')
+st.title('XYZ Bank Assistant bot 🤖')
 
 # Initialize session state
 if "user_id" not in st.session_state:
@@ -191,7 +191,7 @@ if "orchestrator" not in st.session_state:
     st.session_state.orchestrator = Orchestrator(llm=llm)
 
 # User ID input (mandatory)
-user_id = st.text_input('Enter your User ID (e.g., user001):', key="user_id_input", value=st.session_state.user_id)
+user_id = st.text_input('Enter your customer ID):', key="user_id_input", value=st.session_state.user_id)
 if not user_id:
     st.error("User ID is required to proceed.")
     st.stop()

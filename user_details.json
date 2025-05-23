@@ -23,7 +23,9 @@
       "interest": 0,
       "penalty": 0,
       "type_of_loan": "Fixed",
-      "name": "Satvik Bhardwaj"
+      "name": "Satvik Bhardwaj",
+      "emi_amount": 1006.49,
+      "loan_start_date": "2019-07-12"
     },
     "user002": {
       "loan_id": "loan002",
@@ -47,7 +49,9 @@
       "principal": 160000,
       "interest": 2410.96,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1808.65,
+      "loan_start_date": "2020-11-05"
     },
     "user003": {
       "loan_id": "loan003",
@@ -71,7 +75,9 @@
       "principal": 140000,
       "interest": 2613.7,
       "penalty": 1600,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1215.94,
+      "loan_start_date": "2018-09-23"
     },
     "user004": {
       "loan_id": "loan004",
@@ -95,7 +101,9 @@
       "principal": 96000,
       "interest": 600.82,
       "penalty": 400,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 860.91,
+      "loan_start_date": "2021-03-15"
     },
     "user005": {
       "loan_id": "loan005",
@@ -119,7 +127,9 @@
       "principal": 200000,
       "interest": 3082.19,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 2188.45,
+      "loan_start_date": "2019-12-08"
     },
     "user006": {
       "loan_id": "loan006",
@@ -143,7 +153,9 @@
       "principal": 144000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1215.94,
+      "loan_start_date": "2020-06-19"
     },
     "user007": {
       "loan_id": "loan007",
@@ -167,7 +179,9 @@
       "principal": 240000,
       "interest": 4627.4,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 2059.95,
+      "loan_start_date": "2017-10-30"
     },
     "user008": {
       "loan_id": "loan008",
@@ -191,7 +205,9 @@
       "principal": 112000,
       "interest": 452.05,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 984.62,
+      "loan_start_date": "2022-02-14"
     },
     "user009": {
       "loan_id": "loan009",
@@ -215,7 +231,9 @@
       "principal": 176000,
       "interest": 3315.07,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1997.76,
+      "loan_start_date": "2020-08-27"
     },
     "user010": {
       "loan_id": "loan010",
@@ -239,7 +257,9 @@
       "principal": 128000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1086.44,
+      "loan_start_date": "2021-05-03"
     },
     "user011": {
       "loan_id": "loan011",
@@ -263,7 +283,9 @@
       "principal": 152000,
       "interest": 3246.58,
       "penalty": 1600,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1307.31,
+      "loan_start_date": "2018-04-17"
     },
     "user012": {
       "loan_id": "loan012",
@@ -287,7 +309,9 @@
       "principal": 104000,
       "interest": 854.79,
       "penalty": 400,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 929.96,
+      "loan_start_date": "2022-07-22"
     },
     "user013": {
       "loan_id": "loan013",
@@ -311,7 +335,9 @@
       "principal": 216000,
       "interest": 4774.52,
       "penalty": 2400,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 2414.29,
+      "loan_start_date": "2019-01-29"
     },
     "user014": {
       "loan_id": "loan014",
@@ -335,7 +361,9 @@
       "principal": 116000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1019.14,
+      "loan_start_date": "2020-09-10"
     },
     "user015": {
       "loan_id": "loan015",
@@ -359,7 +387,9 @@
       "principal": 168000,
       "interest": 4686.58,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1419.43,
+      "loan_start_date": "2017-12-01"
     },
     "user016": {
       "loan_id": "loan016",
@@ -383,7 +413,9 @@
       "principal": 136000,
       "interest": 255.48,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1167.82,
+      "loan_start_date": "2021-08-05"
     },
     "user017": {
       "loan_id": "loan017",
@@ -407,7 +439,9 @@
       "principal": 184000,
       "interest": 3088.36,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 2088.48,
+      "loan_start_date": "2020-03-14"
     },
     "user018": {
       "loan_id": "loan018",
@@ -431,7 +465,9 @@
       "principal": 100000,
       "interest": 1063.01,
       "penalty": 400,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 899.90,
+      "loan_start_date": "2022-01-27"
     },
     "user019": {
       "loan_id": "loan019",
@@ -455,7 +491,9 @@
       "principal": 224000,
       "interest": 6118.49,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1922.62,
+      "loan_start_date": "2017-06-09"
     },
     "user020": {
       "loan_id": "loan020",
@@ -479,7 +517,9 @@
       "principal": 124000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1073.57,
+      "loan_start_date": "2021-10-18"
     },
     "user021": {
       "loan_id": "loan021",
@@ -503,7 +543,9 @@
       "principal": 156000,
       "interest": 2986.85,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1778.24,
+      "loan_start_date": "2020-05-21"
     },
     "user022": {
       "loan_id": "loan022",
@@ -527,7 +569,9 @@
       "principal": 192000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1651.94,
+      "loan_start_date": "2020-12-12"
     },
     "user023": {
       "loan_id": "loan023",
@@ -551,7 +595,9 @@
       "principal": 108000,
       "interest": 1882.19,
       "penalty": 1200,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 964.49,
+      "loan_start_date": "2021-02-03"
     },
     "user024": {
       "loan_id": "loan024",
@@ -575,7 +621,9 @@
       "principal": 208000,
       "interest": 5753.42,
       "penalty": 2400,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1779.62,
+      "loan_start_date": "2017-08-25"
     },
     "user025": {
       "loan_id": "loan025",
@@ -599,7 +647,9 @@
       "principal": 132000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1146.37,
+      "loan_start_date": "2021-11-30"
     },
     "user026": {
       "loan_id": "loan026",
@@ -623,7 +673,9 @@
       "principal": 148000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1248.47,
+      "loan_start_date": "2020-04-16"
     },
     "user027": {
       "loan_id": "loan027",
@@ -647,7 +699,9 @@
       "principal": 164000,
       "interest": 3072.4,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1868.39,
+      "loan_start_date": "2020-07-08"
     },
     "user028": {
       "loan_id": "loan028",
@@ -671,7 +725,9 @@
       "principal": 116000,
       "interest": 1454.79,
       "penalty": 800,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1039.83,
+      "loan_start_date": "2021-09-19"
     },
     "user029": {
       "loan_id": "loan029",
@@ -695,7 +751,9 @@
       "principal": 220000,
       "interest": 6068.49,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1888.09,
+      "loan_start_date": "2017-05-12"
     },
     "user030": {
       "loan_id": "loan030",
@@ -719,7 +777,9 @@
       "principal": 120000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1054.66,
+      "loan_start_date": "2020-10-25"
     },
     "user031": {
       "loan_id": "loan031",
@@ -743,7 +803,9 @@
       "principal": 180000,
       "interest": 3852.74,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 2043.45,
+      "loan_start_date": "2020-02-16"
     },
     "user032": {
       "loan_id": "loan032",
@@ -767,7 +829,9 @@
       "principal": 136000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1154.95,
+      "loan_start_date": "2021-06-07"
     },
     "user033": {
       "loan_id": "loan033",
@@ -791,7 +855,9 @@
       "principal": 152000,
       "interest": 4109.59,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1307.31,
+      "loan_start_date": "2017-09-28"
     },
     "user034": {
       "loan_id": "loan034",
@@ -815,7 +881,9 @@
       "principal": 104000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 929.96,
+      "loan_start_date": "2021-12-14"
     },
     "user035": {
       "loan_id": "loan035",
@@ -839,7 +907,9 @@
       "principal": 212000,
       "interest": 4569.86,
       "penalty": 2400,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 2367.76,
+      "loan_start_date": "2019-03-20"
     },
     "user036": {
       "loan_id": "loan036",
@@ -863,7 +933,9 @@
       "principal": 112000,
       "interest": 1595.89,
       "penalty": 800,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 984.62,
+      "loan_start_date": "2021-07-11"
     },
     "user037": {
       "loan_id": "loan037",
@@ -887,7 +959,9 @@
       "principal": 188000,
       "interest": 5120.55,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1587.56,
+      "loan_start_date": "2018-01-15"
     },
     "user038": {
       "loan_id": "loan038",
@@ -911,7 +985,9 @@
       "principal": 144000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1236.88,
+      "loan_start_date": "2020-11-23"
     },
     "user039": {
       "loan_id": "loan039",
@@ -935,7 +1011,9 @@
       "principal": 160000,
       "interest": 3216.44,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1808.65,
+      "loan_start_date": "2020-06-30"
     },
     "user040": {
       "loan_id": "loan040",
@@ -959,7 +1037,9 @@
       "principal": 128000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1151.88,
+      "loan_start_date": "2021-04-09"
     },
     "user041": {
       "loan_id": "loan041",
@@ -983,7 +1063,9 @@
       "principal": 196000,
       "interest": 5216.44,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1681.82,
+      "loan_start_date": "2017-07-04"
     },
     "user042": {
       "loan_id": "loan042",
@@ -1007,7 +1089,9 @@
       "principal": 124000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1073.57,
+      "loan_start_date": "2021-09-16"
     },
     "user043": {
       "loan_id": "loan043",
@@ -1031,7 +1115,9 @@
       "principal": 172000,
       "interest": 3719.86,
       "penalty": 1800,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1956.02,
+      "loan_start_date": "2020-04-22"
     },
     "user044": {
       "loan_id": "loan044",
@@ -1055,7 +1141,9 @@
       "principal": 140000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1203.38,
+      "loan_start_date": "2020-08-11"
     },
     "user045": {
       "loan_id": "loan045",
@@ -1079,7 +1167,9 @@
       "principal": 100000,
       "interest": 3287.67,
       "penalty": 2000,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 894.96,
+      "loan_start_date": "2017-10-06"
     },
     "user046": {
       "loan_id": "loan046",
@@ -1103,7 +1193,9 @@
       "principal": 216000,
       "interest": 2654.79,
       "penalty": 1200,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1848.68,
+      "loan_start_date": "2021-01-08"
     },
     "user047": {
       "loan_id": "loan047",
@@ -1127,7 +1219,9 @@
       "principal": 132000,
       "interest": 3672.97,
       "penalty": 2400,
-      "type_of_loan": "Adjustable"
+      "type_of_loan": "Adjustable",
+      "emi_amount": 1499.70,
+      "loan_start_date": "2019-02-13"
     },
     "user048": {
       "loan_id": "loan048",
@@ -1151,7 +1245,9 @@
       "principal": 156000,
       "interest": 0,
       "penalty": 0,
-      "type_of_loan": "Fixed"
+      "type_of_loan": "Fixed",
+      "emi_amount": 1315.53,
+      "loan_start_date": "2020-09-04"
     }
   }
 }

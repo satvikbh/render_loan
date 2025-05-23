@@ -3137,6 +3137,56 @@
       },
       "calculation_result": {},
       "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['details'])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for specific information related to their personal loan account (\"my loan details\"). This type of query requires accessing user-specific data.\n2. Agent type: user_data"
+    },
+    {
+      "query": "calculate my emis",
+      "response": "*   Your calculated monthly EMI is 823.67.\n*   This calculation is based on a loan amount of 150,000.0, an interest rate of 5.2%, and a loan tenure of 360 months.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "EMI",
+        "value": 823.67,
+        "details": {
+          "loan_amount": 150000.0,
+          "interest_rate": 5.2,
+          "loan_tenure_months": 360
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 2 (Keywords matched: ['emi', 'calculate'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user query \"calculate my emis\" explicitly asks for a financial calculation, specifically the calculation of EMIs. This aligns directly with the definition of the 'calculation' category. The keyword matching results also strongly support this classification with a high score for 'calculation' based on the keywords 'emi' and 'calculate'.\n2. Agent type: calculation"
+    },
+    {
+      "query": "tell me about myself",
+      "response": "*   Your name is Satvik Bhardwaj.\n*   You have a fixed-type loan with ID `loan001`.\n*   The original loan amount was $150,000.\n*   Your current outstanding amount is $120,000 (Principal: $120,000, Interest: $0, Penalty: $0).\n*   Your interest rate is 5.2%.\n*   Your email address is user001@example.com.\n*   Your phone number is 555-0101.\n*   Your address is 123 Elm St, Springfield, IL.\n*   Your preferred contact method is Email.\n*   We last contacted you on 2025-04-15, discussing foreclosure options.\n*   Your foreclosure status is Not Started.\n*   You are currently not delinquent, with a delinquency period of 0.\n*   You are in the Standard customer segment.\n*   Your region is US-IL.\n*   Your customer sentiment is Neutral.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 150000,
+        "interest_rate": 5.2,
+        "email": "user001@example.com",
+        "phone": "555-0101",
+        "address": "123 Elm St, Springfield, IL",
+        "last_contact_date": "2025-04-15",
+        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "preferred_contact_method": "Email",
+        "customer_segment": "Standard",
+        "loan_type": "Fixed",
+        "region": "US-IL",
+        "delinquency_period": 0,
+        "customer_sentiment": "Neutral",
+        "notice_sent_date": null,
+        "outstanding_amount": 120000,
+        "principal": 120000,
+        "interest": 0,
+        "penalty": 0,
+        "type_of_loan": "Fixed",
+        "name": "Satvik Bhardwaj"
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for information about themselves, which directly relates to personal account information or user-specific details. This aligns with the definition of the `user_data` category.\n2. Agent type: user_data"
     }
   ],
   "user 001": [
@@ -3623,6 +3673,98 @@
         "type_of_loan": "Adjustable"
       },
       "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['name'])\n- Small talk score: 0 (Keywords matched: [])\n- Both score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for their personal name, which is a piece of user-specific data.\n2. Agent type: user_data"
+    }
+  ],
+  "user004": [
+    {
+      "query": "hi",
+      "response": "Hey there! \ud83d\udc4b Nice to hear from you. How can I help out today?\n\nI'm here if you have questions about company policies, your account, or need help with calculations! Just let me know. \ud83d\ude0a",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 1 (Keywords matched: ['hi'])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user query \"hi\" is a simple greeting. This falls under the definition of the \"small_talk\" category, which includes greetings and general conversation. The keyword matching context also confirms this with a high score for small talk based on the keyword 'hi'.\n2. Agent type: small_talk"
+    },
+    {
+      "query": "what are the policies to foreclose the loan ",
+      "response": "Here are the policies regarding loan foreclosure:\n\n*   **Borrower Right:** Borrowers have the right to foreclose their loan.\n*   **Scope:** The policy applies to all customer segments (salaried, self-employed, MSMEs, corporates), all loan types (including housing and business loans), all servicing channels (branches, customer care, digital platforms), and all stages of the loan lifecycle.\n*   **Transparency:** Foreclosure terms, including any applicable fees and support channels, must be clearly documented in loan agreements and communicated during the loan sanction and disbursement phases.\n*   **Foreclosure Quote:** Customers are entitled to receive a written foreclosure quote that clearly breaks down the principal, interest, and charges. These quotes must be shared within standard timelines.\n*   **Process Steps:** Crucial steps in the foreclosure process include lien release, issuance of a No Objection Certificate (NOC), and return of title documents.\n*   **Eligibility & Restrictions:**\n    *   Foreclosure may be subject to a minimum lock-in period.\n    *   Accounts with pending moratoriums or restructuring agreements are not eligible until those periods end.\n    *   Borrowers undergoing bankruptcy or insolvency proceedings require court or tribunal intervention before foreclosure.\n*   **Fees:** Applicable fees must be communicated to the borrower. (Specific fee amounts are not detailed in the provided excerpts).\n*   **Assistance & Timelines:** Borrowers must receive assistance from the lender without undue delay. Foreclosure quotes must be provided within standard timelines.\n*   **Regulatory Compliance:** Foreclosure procedures comply with relevant regulations, including the SARFAESI Act and state-specific requirements.\n*   **Policy Exceptions:** Any exception to the foreclosure policy requires formal approval from the compliance and legal teams.",
+      "policy_documents": [
+        {
+          "page_content": "Foreclosure improves the borrower\u2019s credit profile and may offer mental relief from long-\nterm liabilities.\n6.13 Housing Loan Foreclosure\nHousing loans are the most commonly foreclosed voluntarily due to refinancing, asset sale,\nor prepayment using bonuses or investments.\nLien release, issuance of NOC, and title document return are crucial steps in housing loan\nforeclosure.\nHome loan foreclosure is governed by multiple regulations including SARFAESI, state land\nlaws, and housing finance company norms.\n6.14 Business Loan Foreclosure\nBusiness loans, whether secured or unsecured, may be foreclosed voluntarily or involuntarily\nbased on performance of the business.\nCollateral may include plant machinery, accounts receivable, or company property. Lenders\nassess asset liquidity before enforcing foreclosure.\nThe process may involve court-monitored restructuring before full foreclosure is\nimplemented.\n5",
+          "metadata": {
+            "page": 18,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "legislation, ensuring borrowers are not misled or treated unfairly during foreclosure. Clear\nrecourse options are also outlined for disputes.\nSARFAESI Act: For secured loans involving collateral, the policy incorporates procedures\ncompatible with SARFAESI provisions. It enables lawful enforcement while safeguarding\nborrower dignity.\nState Regulations: Foreclosure procedures also comply with state-specific requirements,\nsuch as those governing stamp duties or regional legal mandates. This ensures operational\nlegality across geographies.\n2.6 Scope Across Lifecycle Phases\nSanction Phase: Foreclosure terms must be clearly documented in loan agreements and\ncommunicated during sanction. Borrowers should have no ambiguity regarding the option to\nclose the loan early.\nDisbursement Phase: At the time of disbursement, borrowers are reminded about the\nforeclosure terms, any applicable fees, and support channels. Transparency at this stage\nensures proactive borrower engagement.",
+          "metadata": {
+            "page": 6,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "unified approach regardless of loan type.\nIt covers all customer segments \u2014 salaried, self-employed, MSMEs, and corporates \u2014\nensuring inclusive access to foreclosure procedures.\nThe policy applies to all channels of loan servicing including branches, customer care, and\ndigital platforms such as mobile apps and internet banking.\nIt is applicable at all stages of the loan lifecycle \u2014 from loan sanction to disbursement to\npost-closure record updates and credit bureau reporting.\n2.3 Purpose of the Policy\nThe purpose is to ensure borrowers can exercise their right to foreclose loans efficiently,\nwithout facing unnecessary delays, hidden charges, or procedural ambiguities.\nIt aims to minimize financial stress for customers by enabling them to clear their liabilities\nearly and regain control over their finances, which enhances financial wellness.\nThe policy aligns with regulatory guidelines, promotes transparency, and fosters trust in the",
+          "metadata": {
+            "page": 5,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "foreclosure. This avoids premature closure and ensures legal clarity.\nBorrowers undergoing bankruptcy or insolvency proceedings are handled under separate\nlegal protocols. Such accounts require court or tribunal intervention before any foreclosure.\nAccounts with pending moratoriums or restructuring agreements are not eligible until those\nperiods end. The foreclosure timeline is resumed only after those conditions are met.\nAny exception to the foreclosure policy must receive formal approval from the compliance\nand legal teams. This prevents misuse or unauthorized deviations.\n52.10 Customer Rights and Empowerment\nBorrowers have the right to foreclose their loan after a minimum lock-in period, if applicable.\nThey must receive assistance from the lender without undue delay.\nCustomers are entitled to a foreclosure quote clearly breaking down principal, interest, and\ncharges. These quotes must be shared in writing within standard timelines.",
+          "metadata": {
+            "page": 7,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "policy_reasoning": "Based on the retrieved documents, here are the key policies regarding loan foreclosure:\n\n1.  **Purpose:** The policy aims to ensure borrowers can exercise their right to foreclose loans efficiently, without unnecessary delays, hidden charges, or procedural ambiguities. It seeks to minimize financial stress and enhance financial wellness by allowing customers to clear liabilities early (Document 3).\n2.  **Scope:** The policy applies to all customer segments (salaried, self-employed, MSMEs, corporates) and all loan servicing channels (branches, customer care, digital platforms). It is applicable at all stages of the loan lifecycle, from sanction to post-closure (Document 3). It covers various loan types, including housing and business loans (Document 1, 3).\n3.  **Borrower Rights:** Borrowers have the right to foreclose their loan after a minimum lock-in period, if applicable (Document 4). They must receive assistance from the lender without undue delay (Document 4).\n4.  **Transparency and Communication:** Foreclosure terms must be clearly documented in loan agreements and communicated during the sanction and disbursement phases. Borrowers should have no ambiguity regarding the option to close early, applicable fees, and support channels (Document 2, 3).\n5.  **Foreclosure Quote:** Customers are entitled to a written foreclosure quote clearly breaking down principal, interest, and charges. These quotes must be shared within standard timelines (Document 4).\n6.  **Process Steps:** Crucial steps in the process include lien release, issuance of No Objection Certificate (NOC), and return of title documents (Document 1).\n7.  **Regulatory Compliance:** The policy aligns with and incorporates procedures compatible with various regulations, including SARFAESI, state land laws, and housing finance company norms, ensuring operational legality and safeguarding borrower dignity (Document 1, 2, 3).\n8.  **Ineligibility/Restrictions:**\n    *   Accounts with pending moratoriums or restructuring agreements are not eligible until those periods end (Document 4).\n    *   Borrowers undergoing bankruptcy or insolvency proceedings are handled under separate legal protocols requiring court or tribunal intervention (Document 4).\n    *   A minimum lock-in period may apply before foreclosure is permitted (Document 4).\n9.  **Policy Exceptions:** Any exception to the foreclosure policy requires formal approval from the compliance and legal teams (Document 4).",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 1 (Keywords matched: ['foreclose'])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 0 (Keywords matched: [])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\nThe user is asking about the rules or procedures related to foreclosing a loan. This falls under the definition of company rules, processes, or general procedures. The keyword matching also supports this classification by identifying 'foreclose' as a policy-related term.\n\nAgent type: policy"
+    },
+    {
+      "query": "calculate the emi for the outstanding amount if a add 200 dollars extra emi",
+      "response": "*   **New EMI:** 927.19\n*   **Details:** Calculated by adding an extra $200 to the previous EMI of $727.19.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "EMI",
+        "value": 727.19,
+        "details": {
+          "loan_amount": 120000.0,
+          "interest_rate": 6.1,
+          "loan_tenure_months": 360
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 1 (Keywords matched: ['outstanding'])\n- Calculation score: 2 (Keywords matched: ['emi', 'calculate'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 3 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for a financial calculation, specifically the EMI. The query includes parameters for this calculation (outstanding amount, adding extra to EMI). Although it mentions 'outstanding amount' (which relates to user data), the primary action requested is the calculation itself. It does not ask for the outstanding amount, but to use it in a calculation. It does not involve policies or small talk.\n2. Agent type: calculation"
+    },
+    {
+      "query": "how does it affect to my remaining loan tenure",
+      "response": "Hello there! I can certainly help explain how different actions can affect your remaining loan tenure.\n\nTo give you a specific answer tailored to your situation, I need a bit more information. The effect on your remaining loan tenure depends entirely on the specific action you are asking about and your current loan details.\n\n*   **Information Needed to Calculate the Impact:**\n    *   **What action are you asking about?** (e.g., making an extra payment, changing your payment amount, refinancing, a change in interest rate, etc.)\n    *   **Your current loan details:** (e.g., current outstanding balance, current interest rate, current monthly payment, original loan term, remaining loan term).\n    *   **Details of the proposed change:** (e.g., the amount of the extra payment, the new proposed monthly payment, the new interest rate).\n\n*   **General Policy Considerations:**\n    *   Company policy often dictates how certain actions, like extra payments or early payoffs, are applied.\n    *   Policies may specify if extra payments go directly towards the principal balance, which is key to reducing tenure.\n    *   Some policies might have fees or specific procedures for modifying loan terms or making large principal payments.\n    *   Without specific policy details provided, I can only speak in general terms about how loan tenure is affected.\n\n*   **How Actions Typically Affect Tenure (General Principles):**\n    *   **Making Extra Principal Payments:** This is the most common way to reduce your loan tenure. By paying down the principal faster, you reduce the amount of interest accrued over time, allowing the loan to be paid off sooner.\n    *   **Increasing Your Regular Payment Amount:** Similar to extra payments, consistently paying more than your scheduled minimum payment (with the excess applied to principal) will shorten your loan term.\n    *   **Refinancing to a Shorter Term:** Taking out a new loan with a shorter repayment period will directly reduce your tenure, although it usually results in higher monthly payments.\n    *   **Changes in Interest Rate:** A decrease in interest rate can potentially shorten tenure if you keep your payment amount the same (more goes to principal), while an increase can lengthen it if you only pay the minimum required amount.\n\nPlease provide the details of the action you are considering and your current loan information, and I can give you a more precise explanation based on any relevant policy information available.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 2 (Keywords matched: ['how does'])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 1 (Keywords matched: ['tenure'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 3 (Keywords matched: [])\n\nLLM Reasoning:\nThe user is asking about the impact of an action (implied from previous conversation, likely foreclosure or extra payment) on their loan tenure. This involves understanding the policy or process related to that action and how it affects the loan duration, which is related to calculation. The query combines aspects of policy/process and the result on tenure, fitting the 'combined' category.\n\nAgent type: combined"
+    },
+    {
+      "query": "if i want to close my loan in next 2 years what should be my new emi",
+      "response": "*   To calculate the new EMI required to close your loan in the next 2 years (24 months), I need your current loan details.\n*   Please provide your current outstanding loan balance and the current interest rate on your loan.\n*   With this information, I can calculate the new monthly payment needed to pay off the remaining balance over a 24-month period.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "EMI",
+        "value": 727.19,
+        "details": {
+          "loan_amount": 120000.0,
+          "interest_rate": 6.1,
+          "loan_tenure_months": 360
+        }
+      },
+      "orchestrator_reasoning": "Keyword Matching Results:\n- Policy score: 0 (Keywords matched: [])\n- User data score: 0 (Keywords matched: [])\n- Calculation score: 1 (Keywords matched: ['emi'])\n- Small talk score: 0 (Keywords matched: [])\n- Combined score: 0 (Keywords matched: [])\n\nLLM Reasoning:\n1. The user is asking for a calculation of a new EMI amount. This calculation is based on the condition of paying off the loan within a specific timeframe (2 years). This directly falls under the definition of a 'calculation' query.\n2. Agent type: calculation"
     }
   ]
 }
