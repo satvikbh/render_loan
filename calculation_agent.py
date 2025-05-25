@@ -33,7 +33,6 @@ class CalculationAgent:
     @staticmethod
     def retrieve_user_data(state: CalculationState) -> CalculationState:
         logger.info(f"Retrieving user data for calculation for user_id: {state['user_id']}")
-        # Use UserDataAgent to fetch user data
         user_data_state = {
             "user_id": state["user_id"],
             "query": state["query"],
@@ -56,16 +55,14 @@ class CalculationAgent:
         query_lower = state["query"].lower()
         required_fields = []
 
-        # Determine required fields based on query type
         if "emi" in query_lower or "monthly payment" in query_lower:
             required_fields = ["loan_amount", "interest_rate", "loan_tenure"]
-        elif "penalty" in query_lower:
-            required_fields = ["delinquency_period", "principal"]
+        elif "penalty" in query_lower or "foreclose" in query_lower:
+            required_fields = ["delinquency_period", "principal", "interest_rate", "loan_start_date", "foreclosure_status"]
 
         state["required_fields"] = required_fields
         state["missing_fields"] = []
 
-        # Check for missing fields
         for field in required_fields:
             if field not in state["user_data"] or state["user_data"][field] is None:
                 state["missing_fields"].append(field)
@@ -77,32 +74,29 @@ class CalculationAgent:
     def check_missing_data(state: CalculationState) -> str:
         return "incomplete" if state["missing_fields"] else "complete"
 
-    
     @staticmethod
     def request_missing_input(state: CalculationState) -> CalculationState:
         logger.info("Requesting missing input from user...")
         history_context = ""
         if state["chat_history"]:
-            history_context = "\n\n*Relevant Previous Conversations*:\n"
+            history_context = "\nPrevious Conversations:\n"
             for entry in state["chat_history"]:
-                history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
+                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
 
         missing_fields_str = ", ".join(state["missing_fields"])
         prompt = ChatPromptTemplate.from_template(
-            """You are a calculation assistant for a bank. The user's query requires specific information that is missing.
-            Ask the user to provide the missing details in a clear and friendly manner.
+            """You are a bank calculation assistant. The query requires missing information. Request the missing details in a concise, professional manner using plain text.
 
-            *User Query*:
+            User Query:
             {query}
 
-            *Missing Information*:
+            Missing Information:
             {missing_fields}
 
             {history_context}
 
-            *Response*:
-            To proceed with your calculation, please provide the following details: {missing_fields}.
-            For example, if asked for loan tenure, specify the number of months (e.g., 360 for 30 years).
+            Response:
+            Please provide the following details: {missing_fields}. For example, specify loan tenure in months (e.g., 360 for 30 years) or loan start date in YYYY-MM-DD format.
             """
         )
         response_chain = prompt | state["llm"]
@@ -112,19 +106,21 @@ class CalculationAgent:
             "history_context": history_context
         })
         state["response"] = result.content
-        # Simulate user input for missing fields (in a real app, this would wait for user response)
-        # For now, set defaults or prompt user to provide via next query
         for field in state["missing_fields"]:
             if field == "loan_tenure":
-                state["user_data"][field] = 360  # Default to 30 years
+                state["user_data"][field] = 360
             elif field == "loan_amount":
-                state["user_data"][field] = 100000  # Default loan amount
+                state["user_data"][field] = 100000
             elif field == "interest_rate":
-                state["user_data"][field] = 5.0  # Default interest rate
+                state["user_data"][field] = 5.0
             elif field == "delinquency_period":
-                state["user_data"][field] = 0  # Default delinquency
+                state["user_data"][field] = 0
             elif field == "principal":
                 state["user_data"][field] = state["user_data"].get("loan_amount", 100000)
+            elif field == "loan_start_date":
+                state["user_data"][field] = "2020-01-01"
+            elif field == "foreclosure_status":
+                state["user_data"][field] = "Not Started"
         logger.info(f"Simulated user input for missing fields: {state['user_data']}")
         return state
 
@@ -134,12 +130,11 @@ class CalculationAgent:
         query_lower = state["query"].lower()
         history_context = ""
         if state["chat_history"]:
-            history_context = "\n\n*Relevant Previous Conversations*:\n"
+            history_context = "\nPrevious Conversations:\n"
             for entry in state["chat_history"]:
-                history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
+                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
 
         if "emi" in query_lower or "monthly payment" in query_lower:
-            # EMI Calculation: EMI = [P x R x (1+R)^N] / [(1+R)^N - 1]
             principal = float(state["user_data"]["loan_amount"])
             annual_rate = float(state["user_data"]["interest_rate"]) / 100
             monthly_rate = annual_rate / 12
@@ -161,52 +156,58 @@ class CalculationAgent:
                 logger.error(f"EMI calculation error: {str(e)}")
                 return state
 
-        elif "penalty" in query_lower:
-            # Penalty Calculation: Assume penalty is $100 per 30 days of delinquency, capped at $2000
-            delinquency_period = int(state["user_data"]["delinquency_period"])
+        elif "penalty" in query_lower or "foreclose" in query_lower:
+            from datetime import datetime
             principal = float(state["user_data"]["principal"])
-            penalty_per_30_days = 100
-            max_penalty = 2000
-            penalty = min((delinquency_period // 30) * penalty_per_30_days, max_penalty)
+            annual_rate = float(state["user_data"]["interest_rate"]) / 100
+            loan_start_date = datetime.strptime(state["user_data"]["loan_start_date"], "%Y-%m-%d")
+            current_date = datetime.now()
+            tenure_months = state["user_data"].get("loan_tenure", 360)  # Default 30 years
+            months_passed = (current_date.year - loan_start_date.year) * 12 + current_date.month - loan_start_date.month
+            remaining_months = max(0, tenure_months - months_passed)
+            # Penalty: 2% of principal for remaining tenure > 12 months, 1% for <= 12 months
+            penalty_rate = 0.02 if remaining_months > 12 else 0.01
+            penalty = principal * penalty_rate
             state["calculation_result"] = {
-                "type": "Penalty",
-                "value": penalty,
+                "type": "Foreclosure Penalty",
+                "value": round(penalty, 2),
                 "details": {
-                    "delinquency_period": delinquency_period,
-                    "principal": principal
+                    "principal": principal,
+                    "remaining_months": remaining_months,
+                    "penalty_rate": penalty_rate * 100,
+                    "delinquency_period": state["user_data"].get("delinquency_period", 0),
+                    "foreclosure_status": state["user_data"].get("foreclosure_status", "Not Started")
                 }
             }
 
-        # Generate response
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a calculation assistant for a bank. Provide a clear and concise response with the calculation results.
+            """You are a bank calculation assistant. Provide a concise, professional response with the calculation results in a proper **tabular format**. Use plain text only, no bold or italics. Include relevant details used in the calculation.
+            **Give the textual output in short and concise pointers**
 
-            *Instructions:*
-            - Present the calculated value clearly
-            - Include relevant details used in the calculation
-            - Format the response in bullet points
-            - Use history to ensure consistency
-
-            *User Query*:
+            User Query:
             {query}
 
-            *Calculation Result*:
+            Calculation Result:
             Type: {calc_type}
             Value: {calc_value}
-            Details: {calc_details}
+            Details:
+            {calc_details}
 
             {history_context}
 
-            *Response (in bullet points):*
+            Response:
+            Calculation Results:
             """
         )
+        table_details = "\n".join([f"| {k.replace('_', ' ').title()} | {v} |" for k, v in state["calculation_result"]["details"].items()])
         response_chain = response_prompt | state["llm"]
         result = response_chain.invoke({
             "query": state["query"],
             "calc_type": state["calculation_result"]["type"],
             "calc_value": state["calculation_result"]["value"],
             "calc_details": "\n".join([f"{k}: {v}" for k, v in state["calculation_result"]["details"].items()]),
-            "history_context": history_context
+            "history_context": history_context,
+            "table_details": table_details
         })
         state["response"] = result.content
         logger.info(f"Calculation response generated: {state['response']}")

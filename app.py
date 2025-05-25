@@ -16,7 +16,7 @@ import chromadb
 import uuid
 from orchestrator import Orchestrator
 from states import PolicyState, UserDataState, CalculationState, CombinedState
-from utils import load_chat_history  # Import the utility function
+from utils import load_chat_history
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -38,7 +38,7 @@ CHAT_HISTORY_PATH = os.path.join('conversation_history.json')
 if "persist_dir" not in st.session_state:
     unique_id = str(uuid.uuid4())
     st.session_state.persist_dir = os.path.join(tempfile.gettempdir(), f"chroma_db_{unique_id}")
-    logger.info(f"Created unique Chroma DB path: {st.session_state.persist_dir}")
+    
 
 PERSIST_DIR = st.session_state.persist_dir
 
@@ -176,8 +176,20 @@ with st.spinner('Loading systems...'):
 if "orchestrator" not in st.session_state:
     st.session_state.orchestrator = Orchestrator(llm=llm)
 
-# User ID input (mandatory)
-user_id = st.text_input('Enter your User ID (e.g., user001):', key="user_id_input", value=st.session_state.user_id)
+# User ID input and logout button
+col1, col2 = st.columns([3, 1])
+with col1:
+    user_id = st.text_input('Enter your User ID (e.g., user001):', key="user_id_input", value=st.session_state.user_id)
+with col2:
+    if user_id:
+        if st.button("Logout", key="logout_button"):
+            # Clear session state for new user
+            st.session_state.user_id = ""
+            st.session_state.current_chat_display = []
+            st.session_state.chat_history = load_chat_history()
+            st.session_state.orchestrator = Orchestrator(llm=llm)
+            st.rerun()
+
 if not user_id:
     st.error("User ID is required to proceed.")
     st.stop()
@@ -185,12 +197,12 @@ else:
     st.session_state.user_id = user_id
 
 # Display current session chat history
-for chat in st.session_state.current_chat_display:
+for idx, chat in enumerate(st.session_state.current_chat_display):
     with st.chat_message("user"):
         st.markdown(chat['query'])
     with st.chat_message("assistant"):
         st.markdown(chat['response'])
-        with st.expander("🔍 View Technical Details", expanded=False):
+        with st.expander(f"🔍 View Technical Details for Query {idx + 1}", expanded=False):
             st.markdown("### Retrieved Policy Excerpts")
             for i, doc in enumerate(chat.get("policy_documents", [])):
                 st.markdown(f"**Document {i+1}:**")
@@ -300,7 +312,7 @@ if query:
             # Display the assistant's response
             with st.chat_message("assistant"):
                 st.markdown(result['final_response'])
-                with st.expander("🔍 View Technical Details", expanded=False):
+                with st.expander(f"🔍 View Technical Details for Query {len(st.session_state.current_chat_display)}", expanded=False):
                     st.markdown("### Retrieved Policy Excerpts")
                     for i, doc in enumerate(result["policy_state"]["documents"]):
                         st.markdown(f"**Document {i+1}:**")

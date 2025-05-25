@@ -18,7 +18,6 @@ class Orchestrator:
         self.policy_workflow = PolicyAgent.create_workflow()
         self.user_data_workflow = UserDataAgent.create_workflow()
         self.calculation_workflow = CalculationAgent.create_workflow()
-        # Load user data for name retrieval
         try:
             with open('user_details.json', 'r') as f:
                 self.user_data_db = json.load(f).get("users", {})
@@ -29,8 +28,6 @@ class Orchestrator:
     def classify_query(self, query: str, user_id: str, chat_history: List[Dict]) -> Dict:
         logger.info(f"Classifying query: {query}")
 
-        # Step 1: Keyword Matching Logic
-        # Define keyword lists for each category
         policy_keywords = [
             'policy', 'rule', 'procedure', 'guideline', 'regulation', 'process', 'how does',
             'vacation', 'leave', 'benefits', 'insurance', 'foreclosure', 'foreclose', 'foreclosing',
@@ -52,20 +49,17 @@ class Orchestrator:
         combined_keywords = [
             'affect my', 'impact my', 'how does my', 'my loan and', 'my account and',
             'balance and policy', 'status and procedure', 'personal and bank', ' and ',
-            'emi and policy', 'penalty and procedure', 'calculate and policy'
+            'emi and policy', 'penalty and procedure', 'calculate and policy', 'eligible to foreclose'
         ]
 
-        # Normalize query for matching
         query_lower = query.lower().strip()
 
-        # Calculate scores for each category based on keyword matches
         policy_score = sum(1 for keyword in policy_keywords if keyword in query_lower)
         user_data_score = sum(1 for keyword in user_data_keywords if keyword in query_lower)
         calculation_score = sum(1 for keyword in calculation_keywords if keyword in query_lower)
         small_talk_score = sum(1 for keyword in small_talk_keywords if keyword in query_lower)
         combined_score = sum(1 for keyword in combined_keywords if keyword in query_lower)
 
-        # Add a boost for exact phrase matches
         for keyword in combined_keywords:
             if keyword in query_lower:
                 combined_score += 2
@@ -79,12 +73,10 @@ class Orchestrator:
             if keyword in query_lower and len(keyword.split()) > 1:
                 calculation_score += 1
 
-        # Boost 'combined' score if multiple categories are matched
-        if sum([policy_score > 0, user_data_score > 0, calculation_score > 0]) > 1:
+        if sum([policy_score > 0, user_data_score > 0, calculation_score > 0]) > 1 or 'eligible to foreclose' in query_lower:
             combined_score += 3
-            logger.info("Detected multiple category keywords, boosting 'combined' score")
+            logger.info("Detected multiple categories or eligibility query, boosting 'combined' score")
 
-        # Prepare keyword matching context for LLM
         keyword_context = (
             f"Keyword Matching Results:\n"
             f"- Policy score: {policy_score} (Keywords matched: {[k for k in policy_keywords if k in query_lower]})\n"
@@ -95,42 +87,39 @@ class Orchestrator:
         )
         logger.info(keyword_context)
 
-        # Step 2: LLM Classification
         history_context = ""
         if chat_history:
-            history_context = "\n\n*Relevant Previous Conversations*:\n"
+            history_context = "\nPrevious Conversations:\n"
             for entry in chat_history:
-                history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
+                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
 
-        # Use LLM with keyword results as context
         classification_prompt = ChatPromptTemplate.from_template(
-            """You are a query classification system for a bank assistant. Your task is to categorize user queries.
+            """You are a query classification system for a bank assistant. Categorize the query into one category.
 
-            EXACTLY FOLLOW THIS FORMAT FOR YOUR RESPONSE:
-            1. Provide your reasoning
-            2. End with EXACTLY "Agent type: X" where X is one of: "policy", "user_data", "calculation", "small_talk", or "combined"
-            
+            EXACTLY FOLLOW THIS FORMAT:
+            1. Reasoning
+            2. Agent type: X (where X is policy, user_data, calculation, small_talk, or combined)
+
             CATEGORY DEFINITIONS:
-            - policy: Questions about bank rules, processes, or general procedures
-            - user_data: Questions about personal account information or user-specific details
-            - calculation: Questions requiring financial calculations like EMI or penalties
-            - small_talk: General conversation, greetings, thanks
-            - combined: Questions requiring multiple types (e.g., policy and calculation, or user data and policy)
+            - policy: Questions about bank rules or procedures
+            - user_data: Questions about personal account details
+            - calculation: Questions requiring financial calculations
+            - small_talk: General conversation or greetings
+            - combined: Questions involving multiple types or eligibility (e.g., foreclosure eligibility)
 
             EXAMPLES:
-            - "What's the vacation policy?" → Agent type: policy
-            - "What's my outstanding balance?" → Agent type: user_data
-            - "Calculate my EMI" → Agent type: calculation
-            - "Hello there" → Agent type: small_talk
-            - "How does my loan status affect my benefits?" → Agent type: combined
-            - "What is my EMI and foreclosure policy?" → Agent type: combined
+            - "What's the foreclosure policy?" -> Agent type: policy
+            - "What's my loan balance?" -> Agent type: user_data
+            - "Calculate my EMI" -> Agent type: calculation
+            - "Hello" -> Agent type: small_talk
+            - "Am I eligible to foreclose?" -> Agent type: combined
 
-            *User Query*:
+            User Query:
             {query}
 
             {history_context}
 
-            *Keyword Matching Context*:
+            Keyword Matching Context:
             {keyword_context}
 
             Reasoning:
@@ -144,19 +133,15 @@ class Orchestrator:
         })
 
         response_text = result.content
-
-        # Default to small_talk if we can't determine
         agent_type = 'small_talk'
 
-        # Extract agent type from the response using regex
         agent_type_match = re.search(r"Agent type:\s*(policy|user_data|calculation|small_talk|combined)", response_text, re.IGNORECASE)
-        
         if agent_type_match:
             agent_type_text = agent_type_match.group(1).lower()
             if agent_type_text in ["policy", "user_data", "calculation", "small_talk", "combined"]:
                 agent_type = agent_type_text
         else:
-            logger.warning("Failed to extract agent type using regex, falling back to simple text matching")
+            logger.warning("Failed to extract agent type, using fallback")
             if "agent type: policy" in response_text.lower():
                 agent_type = 'policy'
             elif "agent type: user_data" in response_text.lower():
@@ -177,14 +162,10 @@ class Orchestrator:
 
     def handle_small_talk(self, query: str, user_id: str) -> str:
         logger.info(f"Handling small talk: {query}")
-        # Try to get user name from user_details.json
         user_name = self.user_data_db.get(user_id, {}).get("name", None)
-        
-        # If not found in user_details.json, check chat history
         if not user_name:
             chat_history = load_chat_history().get(user_id, [])
             for entry in chat_history:
-                # Look for name in previous queries or responses
                 if "my name is" in entry["query"].lower():
                     words = entry["query"].lower().split()
                     try:
@@ -197,24 +178,19 @@ class Orchestrator:
                     if match:
                         user_name = match.group(1).title()
         
-        # Default greeting if no name is found
-        greeting = f"Hey {user_name} 👋" if user_name else "Hey there! 👋"
-        
+        greeting = f"Hello {user_name}" if user_name else "Hello"
         small_talk_prompt = ChatPromptTemplate.from_template(
-            """You are a friendly bank assistant chatbot. Respond to the user's small talk query in a warm, conversational tone.
-            Use the provided greeting to personalize the response.
-            Keep the response concise and relevant, encouraging the user to ask about bank policies, their account, or calculations if needed.
+            """You are a bank assistant. Respond to the small talk query in a concise, professional tone using plain text. Encourage the user to ask about bank policies, accounts, or calculations.
+            **Give the output in short and concise pointers**
 
-            *User Query*:
+            User Query:
             {query}
 
-            *Greeting*:
+            Greeting:
             {greeting}
 
-            *Response*:
-            {greeting} Nice to hear from you. How can I help out today?
-
-            I'm here if you have questions about bank policies, your account, or need help with calculations! Just let me know. 😊
+            Response:
+            {greeting}. How may I assist you with your banking needs today?
             """
         )
         response_chain = small_talk_prompt | self.llm
@@ -231,9 +207,9 @@ class Orchestrator:
 
         if agent_type == 'small_talk':
             state['final_response'] = self.handle_small_talk(state['query'], state['user_id'])
-            state['policy_state']['response'] = "No policy information retrieved for small talk."
-            state['user_data_state']['response'] = "No user data retrieved for small talk."
-            state['calculation_state']['response'] = "No calculation performed for small talk."
+            state['policy_state']['response'] = "No policy information retrieved."
+            state['user_data_state']['response'] = "No user data retrieved."
+            state['calculation_state']['response'] = "No calculation performed."
         elif agent_type == 'policy':
             policy_result = self.policy_workflow.invoke(state['policy_state'])
             state['policy_state'] = policy_result
@@ -254,9 +230,9 @@ class Orchestrator:
             state['final_response'] = calculation_result['response']
         elif agent_type == 'combined':
             logger.info("Initiating combined workflows")
-            policy_result = self.policy_workflow.invoke(state['policy_state']) if any(k in state['query'].lower() for k in ['policy', 'foreclosure', 'procedure']) else state['policy_state']
-            user_data_result = self.user_data_workflow.invoke(state['user_data_state']) if any(k in state['query'].lower() for k in ['balance', 'account', 'details']) else state['user_data_state']
-            calculation_result = self.calculation_workflow.invoke(state['calculation_state']) if any(k in state['query'].lower() for k in ['emi', 'penalty', 'calculate']) else state['calculation_state']
+            policy_result = self.policy_workflow.invoke(state['policy_state']) if any(k in state['query'].lower() for k in ['policy', 'foreclosure', 'procedure', 'eligible']) else state['policy_state']
+            user_data_result = self.user_data_workflow.invoke(state['user_data_state']) if any(k in state['query'].lower() for k in ['balance', 'account', 'details', 'eligible']) else state['user_data_state']
+            calculation_result = self.calculation_workflow.invoke(state['calculation_state']) if any(k in state['query'].lower() for k in ['emi', 'penalty', 'calculate', 'foreclose']) else state['calculation_state']
             logger.info(f"Policy response: {policy_result.get('response', 'No response')[:100]}...")
             logger.info(f"User data response: {user_data_result.get('response', 'No response')[:100]}...")
             logger.info(f"Calculation response: {calculation_result.get('response', 'No response')[:100]}...")
@@ -264,30 +240,22 @@ class Orchestrator:
             state['user_data_state'] = user_data_result
             state['calculation_state'] = calculation_result
             combined_prompt = ChatPromptTemplate.from_template(
-                """You are a friendly bank assistant chatbot. Create a single, coherent response that integrates policy information,
-                user-specific details, and calculation results as needed.
+                """You are a bank assistant. Create a concise, professional response integrating policy, user data, and calculation results as needed. Use plain text, no bold or italics. Format numerical data in tablular format, not ASCII. For eligibility queries, combine user data (delinquency period, foreclosure status) with policy rules (e.g., delinquency < 180 days, foreclosure not Initiated/Pending).
+                **Give the output in short and concise pointers**
 
-                *Instructions:*
-                - Start by addressing the user's specific data or calculation question directly
-                - Then provide the bank policy information clearly
-                - Format your answer as clear sections with bullet points
-                - Be direct and easy to read
-                - Ensure all relevant information is fully represented
-                - Make connections between the user's situation, calculations, and bank policy where relevant
-
-                *User Query*:
+                User Query:
                 {query}
 
-                *User-Specific Information*:
+                User-Specific Information:
                 {user_response}
 
-                *Calculation Results*:
+                Calculation Results:
                 {calculation_response}
 
-                *Bank Policy Information*:
+                Bank Policy Information:
                 {policy_response}
-
-                *Final Answer (integrate all relevant information):*
+                
+                Response:
                 """
             )
             response_chain = combined_prompt | self.llm

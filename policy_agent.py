@@ -27,40 +27,34 @@ class PolicyAgent:
         logger.info(f"Retrieved {len(state['documents'])} documents.")
         return state
 
-   
     @staticmethod
     def analyze_and_reason(state: PolicyState) -> PolicyState:
         logger.info("Analyzing documents and reasoning...")
-        context = "\n\n".join([f"Document {i+1}:\n{doc.page_content}" for i, doc in enumerate(state["documents"])])
+        context = "\n".join([f"Document {i+1}:\n{doc.page_content}" for i, doc in enumerate(state["documents"])])
         history_context = ""
         if state["chat_history"]:
-            history_context = "\n\n*Relevant Previous Conversations*:\n"
+            history_context = "\nPrevious Conversations:\n"
             for entry in state["chat_history"]:
-                history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
+                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
         
         reasoning_prompt = ChatPromptTemplate.from_template(
-            """You are a policy analysis system working with a Bank Handbook.
-            Analyze the retrieved documents and reason step-by-step about how they relate to the user's query.
-            Use relevant previous conversations to ensure continuity.
-            Focus on identifying relevant information, bank policy constraints, and accurate answers.
-
-            *Retrieved Documents*:
+            """You are a bank policy analysis system. Analyze the retrieved documents and reason step-by-step about how they relate to the user's query. Use previous conversations for continuity. For eligibility queries (e.g., foreclosure), consider user data like delinquency period and foreclosure status if provided. Focus on bank policy constraints and accurate answers.
+            **Give the output in short and concise pointers**
+            
+            Retrieved Documents:
             {context}
 
-            *User Query*:
+            User Query:
             {query}
 
             {history_context}
 
-            *Step-by-Step Reasoning*:
-            Let me think through this carefully:
-            1. Understand the bank policy information requested.
-            2. Identify relevant documents.
-            3. Analyze bank policy rules, exceptions, or processes.
-            4. Consider previous conversations for consistency.
-            5. Determine conditions or requirements.
-
-            Begin your reasoning now:
+            Reasoning:
+            1. Identify the policy information requested.
+            2. Match relevant documents to the query.
+            3. Analyze policy rules, exceptions, or processes.
+            4. For eligibility, check user data constraints (e.g., delinquency < 180 days).
+            5. Ensure consistency with previous conversations.
             """
         )
         reasoning_chain = reasoning_prompt | state.get('llm')
@@ -76,37 +70,35 @@ class PolicyAgent:
     @staticmethod
     def generate_policy_response(state: PolicyState) -> PolicyState:
         logger.info("Generating policy response...")
-        context = "\n\n".join([f"Document {i+1}:\n{doc.page_content}" for i, doc in enumerate(state["documents"])])
+        context = "\n".join([f"Document {i+1}:\n{doc.page_content}" for i, doc in enumerate(state["documents"])])
         history_context = ""
         if state["chat_history"]:
-            history_context = "\n\n*Relevant Previous Conversations*:\n"
+            history_context = "\nPrevious Conversations:\n"
             for entry in state["chat_history"]:
-                history_context += f"User Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
+                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
         
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a policy retrieval assistant for a bank. Based on the bank handbook excerpts,
-            reasoning analysis, and previous conversations, provide a concise and accurate response to the
-            policy-related part of the query.
+            """You are a bank policy assistant. Provide a concise, professional response to the policy-related query based on the handbook excerpts, reasoning, and previous conversations. Do not use bold, italics, or other markdown formatting. Use plain text only. For numerical data (e.g., fees, timelines), format as tablular format. For eligibility queries (e.g., foreclosure), use user data (delinquency period, foreclosure status) to determine eligibility, assuming policies require delinquency < 180 days and foreclosure status not 'Initiated' or 'Pending'.
+            ```Give the output in short and concise pointers like : 
+            1. Point 1
+            2. Point 2
+            3. Point 3
+            4. Point 4
+            5. Point 5
+            6. Point 6```
 
-            *Instructions:*
-            - Answer directly about the bank policy information requested (e.g., early loan foreclosure)
-            - Provide specific steps or requirements if available
-            - Format your answer as clear bullet points
-            - Include any fees, timelines, or important considerations
-            - Do not be vague - give specific bank policy details whenever possible
-
-            *Bank Handbook Excerpts*:
+            Bank Handbook Excerpts:
             {context}
 
-            *User Query*:
+            User Query:
             {query}
 
-            *Your Reasoning Analysis*:
+            Reasoning Analysis:
             {reasoning}
 
             {history_context}
 
-            *Bank Policy Response (in bullet points):*
+            Response:
             """
         )
         response_chain = response_prompt | state.get('llm')
