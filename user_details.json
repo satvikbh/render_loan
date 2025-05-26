@@ -22,8 +22,8 @@
       "principal": 120000,
       "interest": 0,
       "penalty": 0,
+      "name": "Gaurav Sardar",
       "type_of_loan": "Fixed",
-      "name": "Satvik Bhardwaj",
       "emi_amount": 1006.49,
       "loan_start_date": "2019-07-12"
     },

@@ -3,7 +3,7 @@ from typing import List
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, END
 from states import PolicyState
-
+import json
 logger = logging.getLogger(__name__)
 
 class PolicyAgent:
@@ -23,7 +23,7 @@ class PolicyAgent:
     def retrieve_documents(state: PolicyState) -> PolicyState:
         logger.info(f"Retrieving documents for query: {state['query']}")
         vectorstore = state.get('vectorstore')
-        state["documents"] = vectorstore.similarity_search(state["query"], k=4)
+        state["documents"] = vectorstore.similarity_search(state['query'], k=4)
         logger.info(f"Retrieved {len(state['documents'])} documents.")
         return state
 
@@ -38,9 +38,9 @@ class PolicyAgent:
                 history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
         
         reasoning_prompt = ChatPromptTemplate.from_template(
-            """You are a bank policy analysis system. Analyze the retrieved documents and reason step-by-step about how they relate to the user's query. Use previous conversations for continuity. For eligibility queries (e.g., foreclosure), consider user data like delinquency period and foreclosure status if provided. Focus on bank policy constraints and accurate answers.
-            **Give the output in short and concise pointers**
-            
+            """You are a bank policy analysis system. Analyze the retrieved documents and reason step-by-step about how they relate to the user's query. For eligibility queries (e.g., foreclosure), extract specific criteria (e.g., delinquency period < 180 days, foreclosure status not Initiated/Pending) in a structured JSON format. Use previous conversations for continuity.
+            **Return reasoning in short pointers and criteria in JSON**
+
             Retrieved Documents:
             {context}
 
@@ -52,9 +52,11 @@ class PolicyAgent:
             Reasoning:
             1. Identify the policy information requested.
             2. Match relevant documents to the query.
-            3. Analyze policy rules, exceptions, or processes.
-            4. For eligibility, check user data constraints (e.g., delinquency < 180 days).
+            3. Extract eligibility criteria in JSON format (e.g., {{"delinquency_period": "< 180 days", "foreclosure_status": "Not Initiated or Pending"}}).
+            4. Analyze policy rules, exceptions, or processes.
             5. Ensure consistency with previous conversations.
+
+            Eligibility Criteria (JSON):
             """
         )
         reasoning_chain = reasoning_prompt | state.get('llm')
@@ -63,10 +65,19 @@ class PolicyAgent:
             "query": state["query"],
             "history_context": history_context
         })
-        state["reasoning"] = reasoning_result.content
+        # Parse reasoning and JSON criteria
+        reasoning_text = reasoning_result.content
+        try:
+            json_start = reasoning_text.rfind("Eligibility Criteria (JSON):") + len("Eligibility Criteria (JSON):\n")
+            json_str = reasoning_text[json_start:].strip()
+            eligibility_criteria = json.loads(json_str)
+            state["eligibility_criteria"] = eligibility_criteria
+            state["reasoning"] = reasoning_text[:json_start].strip()
+        except:
+            state["eligibility_criteria"] = {}
+            state["reasoning"] = reasoning_text
         logger.info("Reasoning completed.")
         return state
-
     @staticmethod
     def generate_policy_response(state: PolicyState) -> PolicyState:
         logger.info("Generating policy response...")
@@ -78,14 +89,8 @@ class PolicyAgent:
                 history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
         
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a bank policy assistant. Provide a concise, professional response to the policy-related query based on the handbook excerpts, reasoning, and previous conversations. Do not use bold, italics, or other markdown formatting. Use plain text only. For numerical data (e.g., fees, timelines), format as tablular format. For eligibility queries (e.g., foreclosure), use user data (delinquency period, foreclosure status) to determine eligibility, assuming policies require delinquency < 180 days and foreclosure status not 'Initiated' or 'Pending'.
-            ```Give the output in short and concise pointers like : 
-            1. Point 1
-            2. Point 2
-            3. Point 3
-            4. Point 4
-            5. Point 5
-            6. Point 6```
+            """You are a bank policy assistant. Provide a concise, professional response to the policy-related query based on the handbook excerpts, reasoning, and previous conversations. Use plain text only. For numerical data, use tabular format. For eligibility queries, use extracted criteria to inform the response.
+            **Give the output in short and concise pointers**
 
             Bank Handbook Excerpts:
             {context}
@@ -95,6 +100,9 @@ class PolicyAgent:
 
             Reasoning Analysis:
             {reasoning}
+
+            Eligibility Criteria (JSON):
+            {eligibility_criteria}
 
             {history_context}
 
@@ -106,6 +114,7 @@ class PolicyAgent:
             "context": context,
             "query": state["query"],
             "reasoning": state["reasoning"],
+            "eligibility_criteria": json.dumps(state.get("eligibility_criteria", {})),
             "history_context": history_context
         })
         state["response"] = response_result.content

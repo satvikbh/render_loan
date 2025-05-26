@@ -149,7 +149,7 @@ def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: i
     return [entry for entry, _ in relevant_history]
 
 # Streamlit UI
-st.title('Bank Assistant Bot')
+st.title('XYZ Bank Assistant Bot ')
 
 # Initialize session state
 if "user_id" not in st.session_state:
