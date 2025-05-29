@@ -66,6 +66,31 @@ class CalculationAgent:
         for field in required_fields:
             if field not in state["user_data"] or state["user_data"][field] is None:
                 state["missing_fields"].append(field)
+            elif field in ["loan_amount", "principal", "interest_rate"]:
+                try:
+                    state["user_data"][field] = float(state["user_data"][field])
+                    if state["user_data"][field] <= 0:
+                        state["missing_fields"].append(field)
+                        logger.warning(f"Invalid {field}: {state['user_data'][field]}")
+                except (ValueError, TypeError):
+                    state["missing_fields"].append(field)
+                    logger.warning(f"Invalid {field} format: {state['user_data'][field]}")
+            elif field == "loan_tenure":
+                try:
+                    state["user_data"][field] = int(state["user_data"][field])
+                    if state["user_data"][field] <= 0:
+                        state["missing_fields"].append(field)
+                        logger.warning(f"Invalid loan_tenure: {state['user_data'][field]}")
+                except (ValueError, TypeError):
+                    state["missing_fields"].append(field)
+                    logger.warning(f"Invalid loan_tenure format: {state['user_data'][field]}")
+            elif field == "loan_start_date":
+                from datetime import datetime
+                try:
+                    datetime.strptime(state["user_data"][field], "%Y-%m-%d")
+                except (ValueError, TypeError):
+                    state["missing_fields"].append(field)
+                    logger.warning(f"Invalid loan_start_date format: {state['user_data'][field]}")
 
         logger.info(f"Required fields: {required_fields}, Missing fields: {state['missing_fields']}")
         return state
@@ -134,15 +159,18 @@ class CalculationAgent:
             for entry in state["chat_history"]:
                 history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
 
+        user_data = state["user_data"]
+        calculation_result = {"type": "", "value": 0, "details": {}}
+
         if "emi" in query_lower or "monthly payment" in query_lower:
-            principal = float(state["user_data"]["loan_amount"])
-            annual_rate = float(state["user_data"]["interest_rate"]) / 100
+            principal = float(user_data["loan_amount"])
+            annual_rate = float(user_data["interest_rate"]) / 100
             monthly_rate = annual_rate / 12
-            tenure_months = int(state["user_data"]["loan_tenure"])
+            tenure_months = int(user_data["loan_tenure"])
             try:
                 emi = (principal * monthly_rate * (1 + monthly_rate) ** tenure_months) / \
                       ((1 + monthly_rate) ** tenure_months - 1)
-                state["calculation_result"] = {
+                calculation_result = {
                     "type": "EMI",
                     "value": round(emi, 2),
                     "details": {
@@ -151,6 +179,12 @@ class CalculationAgent:
                         "loan_tenure_months": tenure_months
                     }
                 }
+                # Cross-check with user_data emi_amount if available
+                if "emi_amount" in user_data and user_data["emi_amount"] is not None:
+                    stored_emi = float(user_data["emi_amount"])
+                    if abs(emi - stored_emi) > 0.01:
+                        logger.warning(f"EMI calculation mismatch: Calculated {emi}, Stored {stored_emi}")
+                        calculation_result["details"]["note"] = f"Calculated EMI differs from stored EMI ({stored_emi}). Using calculated value."
             except Exception as e:
                 state["response"] = f"Error calculating EMI: {str(e)}"
                 logger.error(f"EMI calculation error: {str(e)}")
@@ -158,31 +192,38 @@ class CalculationAgent:
 
         elif "penalty" in query_lower or "foreclose" in query_lower:
             from datetime import datetime
-            principal = float(state["user_data"]["principal"])
-            annual_rate = float(state["user_data"]["interest_rate"]) / 100
-            loan_start_date = datetime.strptime(state["user_data"]["loan_start_date"], "%Y-%m-%d")
+            principal = float(user_data["principal"])
+            annual_rate = float(user_data["interest_rate"]) / 100
+            loan_start_date = datetime.strptime(user_data["loan_start_date"], "%Y-%m-%d")
             current_date = datetime.now()
-            tenure_months = state["user_data"].get("loan_tenure", 360)  # Default 30 years
+            tenure_months = user_data.get("loan_tenure", 360)  # Default 30 years
             months_passed = (current_date.year - loan_start_date.year) * 12 + current_date.month - loan_start_date.month
             remaining_months = max(0, tenure_months - months_passed)
             # Penalty: 2% of principal for remaining tenure > 12 months, 1% for <= 12 months
             penalty_rate = 0.02 if remaining_months > 12 else 0.01
             penalty = principal * penalty_rate
-            state["calculation_result"] = {
+            calculation_result = {
                 "type": "Foreclosure Penalty",
                 "value": round(penalty, 2),
                 "details": {
                     "principal": principal,
                     "remaining_months": remaining_months,
                     "penalty_rate": penalty_rate * 100,
-                    "delinquency_period": state["user_data"].get("delinquency_period", 0),
-                    "foreclosure_status": state["user_data"].get("foreclosure_status", "Not Started")
+                    "delinquency_period": user_data.get("delinquency_period", 0),
+                    "foreclosure_status": user_data.get("foreclosure_status", "Not Started")
                 }
             }
+            # Cross-check with user_data penalty if available
+            if "penalty" in user_data and user_data["penalty"] is not None:
+                stored_penalty = float(user_data["penalty"])
+                if abs(penalty - stored_penalty) > 0.01:
+                    logger.warning(f"Penalty calculation mismatch: Calculated {penalty}, Stored {stored_penalty}")
+                    calculation_result["details"]["note"] = f"Calculated penalty differs from stored penalty ({stored_penalty}). Using calculated value."
+
+        state["calculation_result"] = calculation_result
 
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a bank calculation assistant. Provide a concise, professional response with the calculation results in a proper **tabular format**. Use plain text only, no bold or italics. Include relevant details used in the calculation.
-            **Give the textual output in short and concise pointers**
+            """You are a bank calculation assistant. Provide a concise, professional response with the calculation results in a tabular format using plain text. Include only validated data used in the calculation. If a mismatch with stored data is noted, include the note in the table.
 
             User Query:
             {query}
@@ -196,18 +237,21 @@ class CalculationAgent:
             {history_context}
 
             Response:
-            Calculation Results:
             """
         )
-        table_details = "\n".join([f"| {k.replace('_', ' ').title()} | {v} |" for k, v in state["calculation_result"]["details"].items()])
+        table_details = []
+        for k, v in calculation_result["details"].items():
+            table_details.append(f"| {k.replace('_', ' ').title()} | {v} |")
+        table_details_str = "\n".join(table_details)
+
         response_chain = response_prompt | state["llm"]
         result = response_chain.invoke({
             "query": state["query"],
-            "calc_type": state["calculation_result"]["type"],
-            "calc_value": state["calculation_result"]["value"],
-            "calc_details": "\n".join([f"{k}: {v}" for k, v in state["calculation_result"]["details"].items()]),
+            "calc_type": calculation_result["type"],
+            "calc_value": calculation_result["value"],
+            "calc_details": "\n".join([f"{k}: {v}" for k, v in calculation_result["details"].items()]),
             "history_context": history_context,
-            "table_details": table_details
+            "table_details": table_details_str
         })
         state["response"] = result.content
         logger.info(f"Calculation response generated: {state['response']}")

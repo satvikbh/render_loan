@@ -34,25 +34,13 @@ class UserDataAgent:
     def generate_user_response(state: UserDataState) -> UserDataState:
         logger.info("Generating user data response...")
         
-        # Check if user_data contains the requested information
-        user_info = ""
-        if state.get("user_data"):
-            user_info += "User Data:\n"
-            # List all fields as plain text
-            for key, value in state["user_data"].items():
-                if value is not None:
-                    user_info += f"- {key.replace('_', ' ').title()}: {value}\n"
-        
-        # Initialize history context
-        history_context = ""
-        if state["chat_history"]:
-            history_context = "\nPrevious Conversations:\n"
-            for entry in state["chat_history"]:
-                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
-        
+        # Check if the query explicitly asks for the user's name
+        query_lower = state["query"].lower()
+        is_name_query = "name" in query_lower and any(word in query_lower for word in ["my name", "what is my name", "who am i"])
+
         # Check chat history for user's name if query is about name
         name_from_history = None
-        if "name" in state["query"].lower():
+        if is_name_query and state["chat_history"]:
             for entry in state["chat_history"]:
                 if "my name is" in entry["query"].lower():
                     words = entry["query"].lower().split()
@@ -66,23 +54,45 @@ class UserDataAgent:
                     if match:
                         name_from_history = match.group(1).title()
         
-        # If name is found in history or user data
-        if name_from_history or state["user_data"].get("name"):
+        # If the query is explicitly about the name and a name is found
+        if is_name_query and (name_from_history or state["user_data"].get("name")):
             name = name_from_history or state["user_data"]["name"]
             state["response"] = f"Your name is {name}."
             logger.info(f"User name retrieved: {name}")
             return state
         
-        # If no user data and no name in history, provide fallback response
-        if not state.get("user_data") and not name_from_history:
-            logger.info("No user data or name available, using fallback response.")
+        # If no user data is available, provide fallback response
+        if not state.get("user_data"):
+            logger.info("No user data available, using fallback response.")
             state["response"] = "I don't have access to your account information. Please log into your bank account portal or contact customer service at 1-800-555-1234 with your account details."
             return state
         
-        # Use LLM to generate response with user data and history context
+        # Filter user data based on query keywords
+        query_keywords = query_lower.split()
+        relevant_fields = []
+        for field in state["user_data"].keys():
+            if any(keyword in field.lower() for keyword in query_keywords) or field in ["outstanding_amount", "loan_amount", "principal", "interest", "penalty", "emi_amount"]:
+                if state["user_data"][field] is not None:
+                    relevant_fields.append((field, state["user_data"][field]))
+
+        # Prepare user data for response
+        user_info = "User Data:\n"
+        if relevant_fields:
+            user_info += "\n".join([f"- {field.replace('_', ' ').title()}: {value}" for field, value in relevant_fields])
+        else:
+            user_info += "No relevant user data found for the query."
+
+        # Initialize history context
+        history_context = ""
+        if state["chat_history"]:
+            history_context = "\nPrevious Conversations:\n"
+            for entry in state["chat_history"]:
+                history_context += f"Query: {entry['query']}\nResponse: {entry['response']}\n---\n"
+        
+        # Generate response with user data and history context
         response_prompt = ChatPromptTemplate.from_template(
-            """You are a bank assistant. Provide a concise, professional response to the user's query based on their data and previous conversations. Do not use bold, italics, or other markdown formatting. Use plain text only.  Give numerical data in tabular format. For eligibility queries (e.g., foreclosure), include relevant user data (delinquency period, loan status) to inform the response.
-            **Give the output in short and concise pointers**
+            """You are a bank assistant. Provide a concise, professional response to the user's query based on their data and previous conversations. Use plain text only. Present numerical data in a tabular format. For eligibility queries (e.g., foreclosure), include relevant user data (delinquency period, loan status) to inform the response.
+            Output the response in short, concise pointers or a table as needed.
 
             User Data:
             {user_info}

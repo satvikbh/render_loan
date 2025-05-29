@@ -18,38 +18,31 @@ from orchestrator import Orchestrator
 from states import PolicyState, UserDataState, CalculationState, CombinedState
 from utils import load_chat_history
 
-# Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Load environment variables
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     st.error("GOOGLE_API_KEY not found in .env file. Please set it to continue.")
     st.stop()
 
-# Paths and configurations
 PDF_PATH = os.path.join('public', 'Employee Handbook.pdf')
 USER_DATA_PATH = os.path.join('user_details.json')
 CHAT_HISTORY_PATH = os.path.join('conversation_history.json')
 
-# Create a unique session directory for Chroma database
 if "persist_dir" not in st.session_state:
     unique_id = str(uuid.uuid4())
     st.session_state.persist_dir = os.path.join(tempfile.gettempdir(), f"chroma_db_{unique_id}")
-    
 
 PERSIST_DIR = st.session_state.persist_dir
 
-# Initialize Gemini model
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash-preview-04-17",
     google_api_key=GOOGLE_API_KEY,
-    temperature=0.1,
+    temperature=0.2,
 )
 
-# Load user data from JSON
 @st.cache_data
 def load_user_data():
     logger.info("Loading user data from JSON...")
@@ -67,7 +60,6 @@ def load_user_data():
         logger.error(f"User data loading error: {str(e)}")
         st.stop()
 
-# Load and split PDF
 @st.cache_data
 def load_pdf_and_split():
     logger.info("Loading and splitting PDF...")
@@ -87,7 +79,6 @@ def load_pdf_and_split():
         logger.error(f"PDF loading error: {str(e)}")
         st.stop()
 
-# Load or create Chroma vector store
 @st.cache_resource
 def load_and_index_pdf(_splits=None, persist_dir=None):
     if persist_dir is None:
@@ -115,7 +106,6 @@ def load_and_index_pdf(_splits=None, persist_dir=None):
         logger.error(f"Error creating Chroma database: {str(e)}")
         raise e
 
-# Save chat history to JSON
 def save_chat_history(history):
     logger.info(f"Saving chat history to {CHAT_HISTORY_PATH}...")
     try:
@@ -125,7 +115,6 @@ def save_chat_history(history):
     except Exception as e:
         logger.error(f"Error saving chat history: {str(e)}")
 
-# Find relevant chat history for context
 def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: int = 2) -> List[Dict]:
     logger.info("Finding relevant chat history...")
     if user_id not in chat_history or not chat_history[user_id]:
@@ -148,10 +137,8 @@ def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: i
     logger.info(f"Found {len(relevant_history)} relevant chat history entries.")
     return [entry for entry, _ in relevant_history]
 
-# Streamlit UI
-st.title('XYZ Bank Assistant Bot ')
+st.title('XYZ Bank Assistant Bot')
 
-# Initialize session state
 if "user_id" not in st.session_state:
     st.session_state.user_id = ""
 if "current_chat_display" not in st.session_state:
@@ -160,7 +147,6 @@ if "chat_history_loaded" not in st.session_state:
     st.session_state.chat_history = load_chat_history()
     st.session_state.chat_history_loaded = True
 
-# Load vector store and user data at startup
 with st.spinner('Loading systems...'):
     try:
         splits = load_pdf_and_split()
@@ -172,18 +158,15 @@ with st.spinner('Loading systems...'):
             st.rerun()
         st.stop()
 
-# Initialize orchestrator
 if "orchestrator" not in st.session_state:
     st.session_state.orchestrator = Orchestrator(llm=llm)
 
-# User ID input and logout button
 col1, col2 = st.columns([3, 1])
 with col1:
     user_id = st.text_input('Enter your User ID (e.g., user001):', key="user_id_input", value=st.session_state.user_id)
 with col2:
     if user_id:
         if st.button("Logout", key="logout_button"):
-            # Clear session state for new user
             st.session_state.user_id = ""
             st.session_state.current_chat_display = []
             st.session_state.chat_history = load_chat_history()
@@ -196,43 +179,13 @@ if not user_id:
 else:
     st.session_state.user_id = user_id
 
-# Display current session chat history
-for idx, chat in enumerate(st.session_state.current_chat_display):
+# Display previous chats without technical details
+for chat in st.session_state.current_chat_display:
     with st.chat_message("user"):
         st.markdown(chat['query'])
     with st.chat_message("assistant"):
         st.markdown(chat['response'])
-        with st.expander(f"🔍 View Technical Details for Query {idx + 1}", expanded=False):
-            st.markdown("### Retrieved Policy Excerpts")
-            for i, doc in enumerate(chat.get("policy_documents", [])):
-                st.markdown(f"**Document {i+1}:**")
-                st.markdown(doc["page_content"] if isinstance(doc, dict) else doc.page_content)
-                st.markdown("---")
-            
-            st.markdown("### Policy Reasoning Process")
-            st.markdown(chat.get("policy_reasoning", "No reasoning available."))
-            
-            st.markdown("### User Data")
-            user_data = chat.get("user_data", {})
-            if user_data:
-                st.markdown("\n".join([f"**{key}**: {value}" for key, value in user_data.items()]))
-            else:
-                st.markdown("No user data available.")
-            
-            st.markdown("### Calculation Results")
-            calculation_result = chat.get("calculation_result", {})
-            if calculation_result:
-                st.markdown(f"**Type**: {calculation_result.get('type', 'N/A')}")
-                st.markdown(f"**Value**: {calculation_result.get('value', 'N/A')}")
-                st.markdown("**Details**:")
-                st.markdown("\n".join([f"{k}: {v}" for k, v in calculation_result.get("details", {}).items()]))
-            else:
-                st.markdown("No calculation performed.")
-            
-            st.markdown("### Orchestrator Reasoning")
-            st.markdown(chat.get("orchestrator_reasoning", "No orchestrator reasoning available."))
 
-# Query input
 query = st.chat_input('How can I help you today?', key="query_input")
 
 if query:
@@ -241,10 +194,8 @@ if query:
     
     with st.spinner('Finding information for you...'):
         try:
-            # Get relevant chat history
             chat_history = get_relevant_chat_history(query, user_id, st.session_state.chat_history)
 
-            # Initialize state for orchestrator
             initial_state = CombinedState(
                 user_id=user_id,
                 query=query,
@@ -284,16 +235,17 @@ if query:
                 orchestrator_reasoning=""
             )
 
-            # Run orchestrator
             result = st.session_state.orchestrator.orchestrate(initial_state)
 
-            # Convert Document objects to dictionaries for JSON serialization
             policy_documents = [
                 {"page_content": doc.page_content, "metadata": doc.metadata}
                 for doc in result["policy_state"]["documents"]
             ]
 
-            # Save to session state and JSON
+            # Determine agent type for this query
+            classification = st.session_state.orchestrator.classify_query(query, user_id, chat_history)
+            agent_type = classification['agent_type']
+
             chat_entry = {
                 "query": query,
                 "response": result["final_response"],
@@ -301,7 +253,8 @@ if query:
                 "policy_reasoning": result["policy_state"]["reasoning"] or "No policy reasoning performed.",
                 "user_data": result["user_data_state"]["user_data"],
                 "calculation_result": result["calculation_state"]["calculation_result"],
-                "orchestrator_reasoning": result["orchestrator_reasoning"]
+                "orchestrator_reasoning": result["orchestrator_reasoning"],
+                "agent_type": agent_type
             }
             if user_id not in st.session_state.chat_history:
                 st.session_state.chat_history[user_id] = []
@@ -309,38 +262,38 @@ if query:
             save_chat_history(st.session_state.chat_history)
             st.session_state.current_chat_display.append(chat_entry)
 
-            # Display the assistant's response
             with st.chat_message("assistant"):
                 st.markdown(result['final_response'])
-                with st.expander(f"🔍 View Technical Details for Query {len(st.session_state.current_chat_display)}", expanded=False):
-                    st.markdown("### Retrieved Policy Excerpts")
-                    for i, doc in enumerate(result["policy_state"]["documents"]):
-                        st.markdown(f"**Document {i+1}:**")
-                        st.markdown(doc.page_content)
-                        st.markdown("---")
-                    
-                    st.markdown("### Policy Reasoning Process")
-                    st.markdown(result["policy_state"]["reasoning"] or "No reasoning available.")
-                    
-                    st.markdown("### User Data")
-                    user_data = result["user_data_state"]["user_data"]
-                    if user_data:
-                        st.markdown("\n".join([f"**{key}**: {value}" for key, value in user_data.items()]))
-                    else:
-                        st.markdown("No user data available.")
-                    
-                    st.markdown("### Calculation Results")
-                    calculation_result = result["calculation_state"]["calculation_result"]
-                    if calculation_result:
-                        st.markdown(f"**Type**: {calculation_result.get('type', 'N/A')}")
-                        st.markdown(f"**Value**: {calculation_result.get('value', 'N/A')}")
-                        st.markdown("**Details**:")
-                        st.markdown("\n".join([f"{k}: {v}" for k, v in calculation_result.get("details", {}).items()]))
-                    else:
-                        st.markdown("No calculation performed.")
-                    
-                    st.markdown("### Orchestrator Reasoning")
-                    st.markdown(result["orchestrator_reasoning"] or "No orchestrator reasoning available.")
+                if agent_type != "small_talk":
+                    with st.expander(f"🔍 View Technical Details", expanded=False):
+                        st.markdown("### Retrieved Policy Excerpts")
+                        for i, doc in enumerate(result["policy_state"]["documents"]):
+                            st.markdown(f"**Document {i+1}:**")
+                            st.markdown(doc.page_content)
+                            st.markdown("---")
+                        
+                        st.markdown("### Policy Reasoning Process")
+                        st.markdown(result["policy_state"]["reasoning"] or "No reasoning available.")
+                        
+                        st.markdown("### User Data")
+                        user_data = result["user_data_state"]["user_data"]
+                        if user_data:
+                            st.markdown("\n".join([f"**{key}**: {value}" for key, value in user_data.items()]))
+                        else:
+                            st.markdown("No user data available.")
+                        
+                        st.markdown("### Calculation Results")
+                        calculation_result = result["calculation_state"]["calculation_result"]
+                        if calculation_result:
+                            st.markdown(f"**Type**: {calculation_result.get('type', 'N/A')}")
+                            st.markdown(f"**Value**: {calculation_result.get('value', 'N/A')}")
+                            st.markdown("**Details**:")
+                            st.markdown("\n".join([f"{k}: {v}" for k, v in calculation_result.get("details", {}).items()]))
+                        else:
+                            st.markdown("No calculation performed.")
+                        
+                        st.markdown("### Orchestrator Reasoning")
+                        st.markdown(result["orchestrator_reasoning"] or "No orchestrator reasoning available.")
 
         except Exception as e:
             st.error(f"Error processing query: {str(e)}")
