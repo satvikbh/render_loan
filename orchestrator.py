@@ -34,7 +34,7 @@ class Orchestrator:
         self.reference_queries = {
             "policy": ["What's the foreclosure policy?", "What are the bank rules for loans?"],
             "user_data": ["What's my loan balance?", "Show my account details", "What is my outstanding amount?"],
-            "calculation": ["Calculate my EMI", "What's the penalty for foreclosure?", "What is my EMI amount?"],
+            "calculation": ["Calculate my EMI", "What's the penalty for foreclosure?", "What is my EMI amount?", "extra to EMI", "affect my tenure"],
             "small_talk": ["Hello", "Good morning"],
             "combined": ["Am I eligible to foreclose?", "Can I close my loan early?", "Is my loan eligible for prepayment?"]
         }
@@ -206,6 +206,12 @@ class Orchestrator:
                 meets_requirement = user_status == required_status
                 if not meets_requirement:
                     result["eligible"] = False
+            
+            elif criterion == "delinquency_period":
+                user_status = user_data.get("delinquency_period", 0)
+                meets_requirement = user_status < int(required_status.split("<")[1]) if "<" in required_status else user_status == required_status
+                if not meets_requirement:
+                    result["eligible"] = False
 
             result["details"].append({
                 "criterion": criterion,
@@ -215,6 +221,19 @@ class Orchestrator:
             })
 
         return result
+
+    def check_history_for_calculation(self, query: str, user_id: str, chat_history: List[Dict]) -> Optional[Dict]:
+        logger.info(f"Checking conversation history for relevant calculation results for query: {query}")
+        query_lower = query.lower().strip()
+        if "new tenure" in query_lower or "tenure after" in query_lower:
+            for entry in reversed(chat_history):
+                if entry.get("calculation_result") and entry["calculation_result"].get("type") == "Tenure Adjustment":
+                    return {
+                        "new_tenure_months": entry["calculation_result"]["details"].get("new_tenure_months"),
+                        "original_query": entry["query"],
+                        "response": entry["response"]
+                    }
+        return None
 
     def classify_query(self, query: str, user_id: str, chat_history: List[Dict]) -> Dict:
         logger.info(f"Classifying query: {query}")
@@ -232,14 +251,15 @@ class Orchestrator:
                 similarities.append(similarity)
             category_scores[category] = np.mean(similarities)
         
-        if intent_score < 0.7:
-            agent_type = max(category_scores, key=category_scores.get)
-        else:
-            agent_type = predicted_label
-
         query_lower = query.lower().strip()
-        if any(word in query_lower for word in ['emi', 'monthly payment', 'penalty', 'calculate']):
-            if category_scores['calculation'] > 0.5:
+        if "new tenure" in query_lower or "tenure after" in query_lower:
+            historical_calc = self.check_history_for_calculation(query, user_id, chat_history)
+            if historical_calc:
+                agent_type = "calculation"
+            else:
+                agent_type = "combined" if category_scores["combined"] > 0.5 else max(category_scores, key=category_scores.get)
+        elif any(word in query_lower for word in ['extra', 'tenure', 'additional', 'emi', 'monthly payment']):
+            if category_scores['calculation'] > 0.4:
                 agent_type = 'calculation'
         elif any(word in query_lower for word in ['outstanding amount', 'loan balance', 'account details']):
             if category_scores['user_data'] > 0.5:
@@ -247,6 +267,8 @@ class Orchestrator:
         elif any(word in query_lower for word in ['eligible', 'eligibility', 'can i', 'am i', 'qualify']):
             if category_scores['combined'] > 0.5 or any(word in query_lower for word in ['foreclosure', 'foreclose', 'early closure', 'prepayment']):
                 agent_type = 'combined'
+        else:
+            agent_type = max(category_scores, key=category_scores.get) if intent_score < 0.7 else predicted_label
 
         keyword_context = (
             f"Intent Classification:\n"
@@ -272,7 +294,7 @@ class Orchestrator:
             CATEGORY DEFINITIONS:
             - policy: Questions about bank rules or procedures
             - user_data: Questions about personal account details
-            - calculation: Questions requiring financial calculations, like EMI or penalties
+            - calculation: Questions requiring financial calculations, like EMI, penalties, or tenure adjustments
             - small_talk: General conversation or greetings
             - combined: Questions involving multiple types, especially eligibility queries
 
@@ -335,11 +357,19 @@ class Orchestrator:
             state['calculation_state']['response'] = "No calculation required."
             state['final_response'] = user_data_result['response']
         elif agent_type == 'calculation':
-            calculation_result = self.calculation_workflow.invoke(state['calculation_state'])
-            state['calculation_state'] = calculation_result
-            state['policy_state']['response'] = "No bank policy information required."
-            state['user_data_state']['response'] = calculation_result['user_data_response']
-            state['final_response'] = calculation_result['response']
+            # Check history for prior tenure adjustment
+            historical_calc = self.check_history_for_calculation(state['query'], state['user_id'], state['chat_history'])
+            if historical_calc and ("new tenure" in state['query'].lower() or "tenure after" in state['query'].lower()):
+                state['final_response'] = f"Your new loan tenure is {historical_calc['new_tenure_months']} months, as calculated previously for the query: '{historical_calc['original_query']}'."
+                state['policy_state']['response'] = "No bank policy information required."
+                state['user_data_state']['response'] = "No additional user data retrieved."
+                state['calculation_state']['response'] = state['final_response']
+            else:
+                calculation_result = self.calculation_workflow.invoke(state['calculation_state'])
+                state['calculation_state'] = calculation_result
+                state['policy_state']['response'] = "No bank policy information required."
+                state['user_data_state']['response'] = calculation_result['user_data_response']
+                state['final_response'] = calculation_result['response']
         elif agent_type == 'combined':
             logger.info("Initiating combined workflows")
             user_data_result = self.user_data_workflow.invoke(state['user_data_state'])
@@ -389,7 +419,7 @@ class Orchestrator:
             if 'calculation_result' in calculation_result and calculation_result['calculation_result']:
                 calc_details = calculation_result['calculation_result']['details']
                 table_rows = [
-                    "| Type | Penalty |",
+                    "| Type | Value |",
                     "|------|--------|",
                     f"| {calculation_result['calculation_result']['type']} | {calculation_result['calculation_result']['value']} |",
                     "",
@@ -401,14 +431,14 @@ class Orchestrator:
                 calculation_output = "\n".join(table_rows)
 
             combined_prompt = ChatPromptTemplate.from_template(
-                """You are a bank assistant. Provide a concise, professional response to the user's eligibility query. Use plain text only. Follow these steps:
-                1. State whether the user is eligible or not eligible for loan foreclosure based on the eligibility evaluation.
-                2. If not eligible, specify which criteria are not met and suggest next steps (e.g., clear outstanding dues).
-                3. Present relevant user data in a table.
-                4. Present the eligibility evaluation in a table, showing each criterion, user status, required status, and whether the requirement is met.
-                5. If a calculation (e.g., penalty) is provided, include it in a separate table.
-                6. Advise the user to contact the bank for a formal foreclosure request if needed.
-                Do not make assumptions beyond the provided data and policy information. Ensure the response is clear and structured.
+                """You are a bank assistant. Provide a concise, professional response to the user's query. Use plain text only. Follow these steps:
+                1. If the query involves calculations (e.g., EMI, tenure adjustment), prioritize the calculation result and present it clearly.
+                2. For eligibility queries, state whether the user is eligible or not for loan foreclosure based on the eligibility evaluation.
+                3. If not eligible, specify which criteria are not met and suggest next steps.
+                4. Present relevant user data in a table.
+                5. Present the eligibility evaluation in a table, if applicable.
+                6. Include calculation results in a separate table, if applicable.
+                7. Advise the user to contact the bank for further details if needed.
 
                 User Query:
                 {query}

@@ -115,7 +115,7 @@ def save_chat_history(history):
     except Exception as e:
         logger.error(f"Error saving chat history: {str(e)}")
 
-def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: int = 2) -> List[Dict]:
+def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: int = 3) -> List[Dict]:
     logger.info("Finding relevant chat history...")
     if user_id not in chat_history or not chat_history[user_id]:
         return []
@@ -124,18 +124,32 @@ def get_relevant_chat_history(query: str, user_id: str, chat_history: Dict, k: i
     query_embedding = embedding_function.embed_query(query)
     
     relevant_history = []
-    for entry in chat_history[user_id]:
-        entry_embedding = embedding_function.embed_query(entry["query"])
-        similarity = cosine_similarity([query_embedding], [entry_embedding])[0][0]
-        relevant_history.append((entry, similarity))
+    query_lower = query.lower().strip()
     
-    relevant_history = sorted(relevant_history, key=lambda x: x[1], reverse=True)[:k-1]
+    # Prioritize calculation results for tenure-related queries
+    if "new tenure" in query_lower or "tenure after" in query_lower:
+        for entry in reversed(chat_history[user_id]):
+            if entry.get("calculation_result") and entry["calculation_result"].get("type") == "Tenure Adjustment":
+                relevant_history.append((entry, 1.0))  # Highest priority
+                break
+    
+    # Add other relevant history based on semantic similarity
+    for entry in chat_history[user_id]:
+        if (entry, 1.0) not in relevant_history:  # Avoid duplicates
+            entry_embedding = embedding_function.embed_query(entry["query"])
+            similarity = cosine_similarity([query_embedding], [entry_embedding])[0][0]
+            relevant_history.append((entry, similarity))
+    
+    # Sort by similarity, ensuring calculation results stay on top
+    relevant_history = sorted(relevant_history, key=lambda x: x[1], reverse=True)[:k]
+    
+    # Always include the most recent entry if not already included
     most_recent = chat_history[user_id][-1] if chat_history[user_id] else None
     if most_recent and most_recent not in [x[0] for x in relevant_history]:
         relevant_history.append((most_recent, 0))
     
     logger.info(f"Found {len(relevant_history)} relevant chat history entries.")
-    return [entry for entry, _ in relevant_history]
+    return [entry for entry, _ in relevant_history[:k]]
 
 st.title('XYZ Bank Assistant Bot')
 

@@ -1,113 +1,33 @@
 {
-  "user001": [
+  "user002": [
     {
-      "query": "Hi",
-      "response": "Hello, how can I assist you with your banking needs today?",
+      "query": "depending upon my outstanding amount if i add 5000 extra to my emi then how will it affect my loan tenure ?",
+      "response": "Based on your request regarding the impact of adding an extra payment to your EMI, the calculation shows a significant reduction in your loan tenure.\n\nYour new loan tenure will be **85 months**.\n\nCalculation Details:\n+-----------------------------+--------------------+\n| Detail                      | Value              |\n+-----------------------------+--------------------+\n| Outstanding Loan Amount     | 695832.47          |\n| Interest Rate (Annual)      | 7.8%               |\n| Original Loan Tenure        | 300 months         |\n| Original EMI (Calculated)   | 5689.61            |\n| Extra Payment Added         | 5000.00            |\n| New EMI                     | 10689.61           |\n| New Loan Tenure             | 85 months          |\n| Note                        | Calculated EMI     |\n|                             | differs from       |\n|                             | stored EMI         |\n|                             | (5562.15). Using   |\n|                             | calculated value.  |\n+-----------------------------+--------------------+",
       "policy_documents": [],
       "policy_reasoning": "No policy reasoning performed.",
       "user_data": {},
-      "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_1 (Score: 0.5259919762611389)\nSemantic Similarity Scores:\n- policy: 0.087\n- user_data: 0.196\n- calculation: 0.044\n- small_talk: 0.635\n- combined: 0.104\n\nLLM Reasoning:\n1. Reasoning: The user query \"Hi\" is a standard greeting. The semantic similarity scores show the highest correlation with the 'small_talk' category (0.635), which is defined to include greetings and general conversation.\n2. Agent type: small_talk",
-      "agent_type": "small_talk"
-    },
-    {
-      "query": "My name is Gaurav Sardar",
-      "response": "Hello, how can I assist you with your banking needs today?",
-      "policy_documents": [],
-      "policy_reasoning": "No policy reasoning performed.",
-      "user_data": {},
-      "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_1 (Score: 0.5441981554031372)\nSemantic Similarity Scores:\n- policy: -0.001\n- user_data: 0.174\n- calculation: 0.074\n- small_talk: 0.224\n- combined: 0.051\n\nLLM Reasoning:\n1. Reasoning: The user query \"My name is Gaurav Sardar\" is a statement providing personal information. While this information is user data, the query is not a question *about* personal account details, which is the definition of the 'user_data' category. The query functions more as an introduction or identification statement, fitting within the scope of general conversation, especially following a greeting in the previous turn. The semantic similarity scores also show 'small_talk' having the highest score (0.224), followed by 'user_data' (0.174). Based on the query type (statement vs question), the definition of 'user_data', and the semantic scores, 'small_talk' is the most appropriate category.\n2. Agent type: small_talk",
-      "agent_type": "user_data"
-    },
-    {
-      "query": "Hi",
-      "response": "Hello Gaurav Sardar, how can I assist you with your banking needs today?",
-      "policy_documents": [],
-      "policy_reasoning": "No policy reasoning performed.",
-      "user_data": {},
-      "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_1 (Score: 0.511339545249939)\nSemantic Similarity Scores:\n- policy: 0.087\n- user_data: 0.196\n- calculation: 0.044\n- small_talk: 0.635\n- combined: 0.104\n\nLLM Reasoning:\n1. The user query \"Hi\" is a standard greeting. The semantic similarity scores show the highest score (0.635) for 'small_talk', significantly higher than other categories. The previous conversation also shows the assistant responding to \"Hi\" as a greeting. Therefore, the query belongs to the 'small_talk' category.\n2. Agent type: small_talk",
-      "agent_type": "small_talk"
-    },
-    {
-      "query": "What are my loan details",
-      "response": "Here are your loan details:\n\n| Detail          | Value      |\n|-----------------|------------|\n| Loan Id         | loan001    |\n| Loan Type       | Fixed      |\n| Loan Amount     | 150000     |\n| Outstanding Amt | 120000     |\n| EMI Amount      | 1006.49    |\n| Start Date      | 2019-07-12 |",
-      "policy_documents": [],
-      "policy_reasoning": "No policy reasoning performed.",
-      "user_data": {
-        "loan_id": "loan001",
-        "loan_amount": 150000,
-        "interest_rate": 5.2,
-        "email": "user001@example.com",
-        "phone": "555-0101",
-        "address": "123 Elm St, Springfield, IL",
-        "last_contact_date": "2025-04-15",
-        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
-        "foreclosure_status": "Not Started",
-        "foreclosure_start_date": null,
-        "preferred_contact_method": "Email",
-        "customer_segment": "Standard",
-        "loan_type": "Fixed",
-        "region": "US-IL",
-        "delinquency_period": 0,
-        "customer_sentiment": "Neutral",
-        "notice_sent_date": null,
-        "outstanding_amount": 120000,
-        "principal": 120000,
-        "interest": 0,
-        "penalty": 0,
-        "name": "Gaurav Sardar",
-        "type_of_loan": "Fixed",
-        "emi_amount": 1006.49,
-        "loan_start_date": "2019-07-12"
-      },
-      "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_1 (Score: 0.5133870840072632)\nSemantic Similarity Scores:\n- policy: 0.439\n- user_data: 0.518\n- calculation: 0.189\n- small_talk: 0.175\n- combined: 0.481\n\nLLM Reasoning:\n1. Reasoning: The user is asking for specific information related to their personal loan account (\"my loan details\"). This directly aligns with the definition of the `user_data` category, which covers questions about personal account details. The semantic similarity scores also show the highest score for `user_data` (0.518), supporting this classification.\n2. Agent type: user_data",
-      "agent_type": "user_data"
-    },
-    {
-      "query": "What documents are required for loan foreclosure?",
-      "response": "Based on the bank handbook excerpts, the required documents for loan foreclosure include:\n\n*   **Core Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n    *   Government-Issued Identification (Borrower)\n\n*   **For Borrower-Initiated Foreclosure:**\n    *   Formal foreclosure request letter\n    *   Identification proof\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Additional documents may include: Loan account statement, NOC from guarantors, Form 35 (vehicle loans), Lien release request forms (secured loans)\n\n*   **For Involuntary Foreclosure:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n\n*   **Documents for Specific Circumstances:**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications (if bankruptcy filed)\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n\n*   **Post-Foreclosure Documentation:**\n    *   Certificate of Sale\n    *   Eviction Order",
-      "policy_documents": [
-        {
-          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
-          "metadata": {
-            "page": 21,
-            "source": "public\\Employee Handbook.pdf"
-          }
-        },
-        {
-          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
-          "metadata": {
-            "page": 31,
-            "source": "public\\Employee Handbook.pdf"
-          }
-        },
-        {
-          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
-          "metadata": {
-            "page": 34,
-            "source": "public\\Employee Handbook.pdf"
-          }
-        },
-        {
-          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
-          "metadata": {
-            "page": 31,
-            "source": "public\\Employee Handbook.pdf"
-          }
+      "calculation_result": {
+        "type": "Tenure Adjustment",
+        "value": 85,
+        "details": {
+          "loan_amount": 750000.0,
+          "interest_rate": 7.8,
+          "loan_tenure_months": 300,
+          "note": "Calculated EMI differs from stored EMI (5562.15). Using calculated value.",
+          "original_emi": 5689.61,
+          "extra_payment": 5000,
+          "new_emi": 10689.61,
+          "original_tenure_months": 300,
+          "new_tenure_months": 85,
+          "outstanding_amount": 695832.47
         }
-      ],
-      "policy_reasoning": "Reasoning:\n1. Identify the policy information requested: Documents required for loan foreclosure.\n2. Match relevant documents to the query: Documents 1, 2, 3, and 4 provide details on required documentation for foreclosure.\n3. Extract eligibility criteria in JSON format: The query is about required documents, not eligibility criteria.\n4. Analyze policy rules, exceptions, or processes: Extract specific documents mentioned in the documents.\n5. Ensure consistency with previous conversations: Maintain short pointer format for reasoning.\n\nRequired Documents:\n*   **General/Core Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if loan modified)\n    *   Government-Issued Identification (Borrower)\n*   **For Borrower-Initiated Foreclosure:**\n    *   Formal foreclosure request letter\n    *   Identification proof\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Loan account statement (additional)\n    *   NOC from guarantors (additional)\n    *   Form 35 for vehicle loans (additional)\n    *   Lien release request forms for secured loans (additional)\n*   **For Involuntary Foreclosure:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n*   **Documents for Specific Circumstances:**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications (if borrower filed bankruptcy)\n    *   Probate court records, death certificate, heirship affidavits (if borrower is deceased)\n*   **Post-Foreclosure Documentation:**\n    *   Certificate of Sale\n    *   Eviction Order\n\nEligibility Criteria (JSON):",
-      "user_data": {},
-      "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_1 (Score: 0.5093104243278503)\nSemantic Similarity Scores:\n- policy: 0.585\n- user_data: 0.202\n- calculation: 0.138\n- small_talk: 0.064\n- combined: 0.478\n\nLLM Reasoning:\n1. The user is asking about the documents needed for loan foreclosure, which is a specific bank procedure. This aligns with the definition of the `policy` category. The semantic similarity scores also indicate `policy` as the most relevant category with the highest score (0.585). The predicted category `label_1` is not a valid category from the provided list.\n2. Agent type: policy",
-      "agent_type": "policy"
+      },
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5206465721130371)\nSemantic Similarity Scores:\n- policy: 0.280\n- user_data: 0.337\n- calculation: 0.403\n- small_talk: 0.040\n- combined: 0.358\n\nLLM Reasoning:\n1. Reasoning: The user's query asks how an additional payment to their EMI will affect their loan tenure. This requires a financial calculation based on the outstanding loan amount, current EMI, and the extra payment to determine the new tenure. This aligns directly with the definition of the 'calculation' category. The predicted category 'label_0' is not a valid category. The semantic similarity scores also indicate 'calculation' as the most relevant category.\n2. Agent type: calculation",
+      "agent_type": "calculation"
     },
     {
-      "query": "Am I eligible for loan foreclosure?",
-      "response": "Based on the information provided, an eligibility evaluation for loan foreclosure has not been performed. Therefore, we cannot determine your eligibility at this time.\n\nTo determine your eligibility, a formal request and evaluation against bank policy and loan agreement terms are required.\n\nUser Data:\n| Field              | Value       |\n|--------------------|-------------|\n| Delinquency Period | 0           |\n| Foreclosure Status | Not Started |\n| Loan Start Date    | 2019-07-12  |\n| Outstanding Amount | 120000      |\n| Loan Type          | Fixed       |\n| Principal          | 120000      |\n| Interest           | 0           |\n| Penalty            | 0           |\n\nEligibility Evaluation:\n| Criterion         | User Status | Required Status | Met Requirement |\n|-------------------|-------------|-----------------|-----------------|\n| Evaluation Status | Not Performed | Performed       | No              |\n\nCalculation Result:\n| Calculation Type | Result |\n|------------------|--------|\n| Status           | Not Performed |\n\nFor a formal foreclosure request and eligibility assessment, please contact the bank directly.",
+      "query": "am i eligible for loan foreclosure ?",
+      "response": "Based on the provided information, you are currently not eligible for loan foreclosure.\n\nThis is due to the significant delinquency period indicated in your loan data, which suggests outstanding dues. Clearing all pending dues and charges is typically required to be eligible for voluntary foreclosure.\n\nYour Loan Data:\n| Field | Value |\n|-------|-------|\n| Delinquency Period | 120 |\n| Foreclosure Status | Initiated |\n| Loan Start Date | 2021-09-10 |\n| Outstanding Amount | 695832.47 |\n| Loan Type | Fixed |\n| Principal | 54167.53 |\n| Interest | 146250.0 |\n\nFor a definitive assessment of your eligibility and to discuss options for clearing outstanding dues, please contact the bank directly.",
       "policy_documents": [
         {
           "page_content": "7.4 Eligibility Based on Borrower Profile\nBorrowers with a clean credit history, consistent income sources, and a positive net worth\nare typically granted foreclosure privileges with minimal due diligence.\nFor co-borrowers or guarantors, foreclosure eligibility requires written consent from all\nparties involved, particularly if the loan involves joint ownership or liability.\nIn the case of deceased borrowers, legal heirs or nominees must present appropriate\ndocumentation (such as a succession certificate or probate) to qualify for foreclosure\nprocessing.\n7.5 Regulatory and Policy-Based Eligibility\nRBI guidelines, SARFAESI Act provisions, and institutional lending policies provide the\noverarching framework for eligibility.\nBorrowers under restructuring, moratorium, or debt waiver programs may have restricted\nforeclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention",
@@ -138,94 +58,263 @@
           }
         }
       ],
-      "policy_reasoning": "Reasoning:\n1.  The user is asking for eligibility criteria for loan foreclosure.\n2.  Documents 1, 2, and 3 contain specific sections detailing foreclosure eligibility.\n3.  Eligibility is based on loan agreement terms, regulatory compliance, borrower status, and the state of the loan account (dues, disputes, lock-in period).\n4.  Certain borrower situations (co-borrowers, deceased) and loan statuses (restructuring, subvention) have specific requirements or restrictions.\n5.  Eligibility verification involves checking for pending issues like litigation, unresolved EMIs, or documentation discrepancies.\n\nEligibility Criteria (JSON):\n```json\n{\n  \"loan_status\": {\n    \"loan_agreement_terms_met\": \"Yes\",\n    \"lock_in_period_completed\": \"Yes (if applicable)\",\n    \"no_unresolved_emis_dues_disputes\": \"Yes\",\n    \"not_under_restricted_program\": \"Yes (e.g., restructuring, moratorium, debt waiver, until program closure/settlement)\",\n    \"not_availed_restricted_benefits\": \"Yes (e.g., interest subvention)\"\n  },\n  \"borrower_status\": {\n    \"no_pending_litigation_claims_discrepancies\": \"Yes\",\n    \"co_borrower_guarantor_consent_obtained\": \"Yes (if applicable)\",\n    \"deceased_borrower_heir_documentation_provided\": \"Yes (if applicable, e.g., succession certificate, probate)\",\n    \"borrower_profile_favorable\": \"Yes (clean credit, consistent income, positive net worth - influences process, not strict eligibility)\"\n  },\n  \"compliance\": {\n    \"regulatory_policy_compliance_met\": \"Yes (RBI, SARFAESI, institutional policies)\"\n  }\n}\n```",
+      "policy_reasoning": "Reasoning:\n1.  The user is asking about eligibility for loan foreclosure.\n2.  Documents 1, 2, and 3 provide specific criteria for foreclosure eligibility.\n3.  Extracted criteria include fulfilling loan agreement terms, completing lock-in periods, absence of disputes/dues, and compliance with regulations.\n4.  Contextual criteria like co-borrower consent and documentation for deceased borrowers are also included.\n5.  The response is structured with short reasoning pointers and eligibility criteria in JSON format as requested.\n\nEligibility Criteria (JSON):\n```json\n{\n  \"general_requirements\": [\n    \"Fulfilling preconditions outlined in loan agreement or mandated by law\",\n    \"Completion of specified lock-in period (if applicable)\",\n    \"Absence of pending litigation\",\n    \"Absence of unresolved insurance claims\",\n    \"Absence of documentation discrepancies\",\n    \"Absence of outstanding dues or disputes\",\n    \"May require clearing pending dues or charges\"\n  ],\n  \"regulatory_and_policy_based\": [\n    \"Compliance with RBI guidelines, SARFAESI Act, and institutional lending policies\",\n    \"Not currently under restructuring, moratorium, or debt waiver programs (may have restricted rights)\",\n    \"Not having availed certain benefits like interest subvention (may have restrictions)\"\n  ],\n  \"borrower_profile_contextual\": [\n    \"Clean credit history, consistent income, positive net worth (for minimal due diligence)\",\n    \"Written consent from co-borrowers or guarantors (if applicable)\",\n    \"Legal documentation (succession certificate/probate) for deceased borrowers (if applicable)\"\n  ]\n}\n```",
       "user_data": {
-        "loan_id": "loan001",
-        "loan_amount": 150000,
-        "interest_rate": 5.2,
-        "email": "user001@example.com",
-        "phone": "555-0101",
-        "address": "123 Elm St, Springfield, IL",
-        "last_contact_date": "2025-04-15",
-        "interaction_notes": "Discussed foreclosure options; prefers email updates.",
-        "foreclosure_status": "Not Started",
-        "foreclosure_start_date": null,
-        "preferred_contact_method": "Email",
-        "customer_segment": "Standard",
+        "loan_id": "loan002",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
+        "foreclosure_status": "Initiated",
+        "foreclosure_start_date": "2024-01-20",
         "loan_type": "Fixed",
-        "region": "US-IL",
-        "delinquency_period": 0,
-        "customer_sentiment": "Neutral",
-        "notice_sent_date": null,
-        "outstanding_amount": 120000,
-        "principal": 120000,
-        "interest": 0,
-        "penalty": 0,
-        "name": "Gaurav Sardar",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
         "type_of_loan": "Fixed",
-        "emi_amount": 1006.49,
-        "loan_start_date": "2019-07-12"
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
       },
       "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_1 (Score: 0.5144582986831665)\nSemantic Similarity Scores:\n- policy: 0.597\n- user_data: 0.216\n- calculation: 0.221\n- small_talk: 0.043\n- combined: 0.655\n\nLLM Reasoning:\n1. Reasoning: The user is asking about their eligibility for loan foreclosure. Determining eligibility requires checking the user's specific loan details (user_data) against the bank's rules and criteria for foreclosure (policy). This type of query, which combines personal data with bank rules, fits the definition of the 'combined' category, specifically mentioned as including eligibility queries. The semantic similarity scores also strongly support 'combined' (0.655) and 'policy' (0.597), indicating the query touches upon both aspects.\n2. Agent type: combined",
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5159295201301575)\nSemantic Similarity Scores:\n- policy: 0.597\n- user_data: 0.216\n- calculation: 0.146\n- small_talk: 0.043\n- combined: 0.655\n\nLLM Reasoning:\n1. The user is asking about eligibility for loan foreclosure. According to the category definitions, eligibility queries are explicitly classified under the `combined` category. The semantic similarity scores also show the highest score for `combined` (0.655), followed by `policy` (0.597). While foreclosure is a policy/procedure, the question specifically asks about *eligibility*, which often involves checking policy rules against user-specific data, fitting the `combined` definition. The predicted category `label_0` is invalid and has a low score.\n2. Agent type: combined",
       "agent_type": "combined"
-    }
-  ],
-  "user002": [
+    },
     {
-      "query": "Hi my name is Gaurav Sardar",
+      "query": "what are my loan details ?",
+      "response": "Here are your loan details:\n\n| Field              | Value      |\n|--------------------|------------|\n| Loan Id            | loan002    |\n| Loan Amount        | 750000.00  |\n| Loan Type          | Fixed      |\n| Outstanding Amount | 695832.47  |\n| Principal Paid     | 54167.53   |\n| Interest Paid      | 146250.00  |\n| EMI Amount         | 5562.15    |\n| Loan Start Date    | 2021-09-10 |\n| Loan Tenure Months | 300        |",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan002",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
+        "foreclosure_status": "Initiated",
+        "foreclosure_start_date": "2024-01-20",
+        "loan_type": "Fixed",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5160791277885437)\nSemantic Similarity Scores:\n- policy: 0.455\n- user_data: 0.525\n- calculation: 0.155\n- small_talk: 0.182\n- combined: 0.490\n\nLLM Reasoning:\n1. Reasoning: The user is asking for specific information about their personal loan account, such as outstanding amount, tenure, interest rate, etc. This requires accessing and retrieving personal account details. The semantic similarity scores also indicate the highest relevance to 'user_data'.\n2. Agent type: user_data",
+      "agent_type": "user_data"
+    },
+    {
+      "query": "what is my new tenure ?",
+      "response": "Your new loan tenure is 85 months, as calculated previously for the query: 'depending upon my outstanding amount if i add 5000 extra to my emi then how will it affect my loan tenure ?'.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.524138867855072)\nSemantic Similarity Scores:\n- policy: 0.096\n- user_data: 0.225\n- calculation: 0.162\n- small_talk: 0.159\n- combined: 0.140\n\nLLM Reasoning:\n1. Reasoning: The user is asking for their \"new tenure\". Based on the previous conversation, a calculation was just performed to determine the loan tenure after adding an extra amount to the EMI. This query is asking for the result of that specific calculation. Therefore, it falls under the `calculation` category.\n2. Agent type: calculation",
+      "agent_type": "user_data"
+    },
+    {
+      "query": "hi",
       "response": "Hello, how can I assist you with your banking needs today?",
       "policy_documents": [],
       "policy_reasoning": "No policy reasoning performed.",
       "user_data": {},
       "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5606546401977539)\nSemantic Similarity Scores:\n- policy: -0.005\n- user_data: 0.166\n- calculation: 0.064\n- small_talk: 0.322\n- combined: 0.070\n\nLLM Reasoning:\n1. Reasoning: The user query is a greeting and self-introduction. The semantic similarity scores show the highest correlation with the 'small_talk' category, which is defined as general conversation or greetings.\n2. Agent type: small_talk",
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5306601524353027)\nSemantic Similarity Scores:\n- policy: 0.087\n- user_data: 0.196\n- calculation: 0.057\n- small_talk: 0.635\n- combined: 0.104\n\nLLM Reasoning:\n1. The user query \"hi\" is a simple greeting. The semantic similarity scores show the highest score (0.635) for the `small_talk` category, which is defined as \"General conversation or greetings\". This aligns perfectly with the query.\n2. Agent type: small_talk",
       "agent_type": "small_talk"
     },
     {
-      "query": "Hi",
-      "response": "Hello Gaurav Sardar, how can I assist you with your banking needs today?",
+      "query": "my name is satvik bhardwaj",
+      "response": "Hello, how can I assist you with your banking needs today?",
       "policy_documents": [],
       "policy_reasoning": "No policy reasoning performed.",
       "user_data": {},
       "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5287395119667053)\nSemantic Similarity Scores:\n- policy: 0.087\n- user_data: 0.196\n- calculation: 0.044\n- small_talk: 0.635\n- combined: 0.104\n\nLLM Reasoning:\n1. Reasoning: The user query \"Hi\" is a simple greeting. The semantic similarity scores indicate the highest relevance to the `small_talk` category (0.635), significantly higher than other categories. The predicted category (label_0) with a score of 0.528 is consistent with this strong semantic similarity, suggesting label_0 maps to `small_talk`. The previous conversation context also supports handling initial greetings as small talk. Therefore, the query should be classified as `small_talk`.\n2. Agent type: small_talk",
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.553303599357605)\nSemantic Similarity Scores:\n- policy: -0.005\n- user_data: 0.183\n- calculation: 0.122\n- small_talk: 0.218\n- combined: 0.048\n\nLLM Reasoning:\n1. The user query \"my name is satvik bhardwaj\" is a statement providing personal information. It is not a question about bank rules (policy), a request for personal account details (user_data), a request for financial calculation (calculation), or a complex query involving multiple types (combined). It fits best as a form of general conversation or self-introduction, aligning with the 'small_talk' category. The semantic similarity scores also show the highest score for 'small_talk' (0.218), followed by 'user_data' (0.183). While it contains user data, it is not a *question* about user data. Therefore, 'small_talk' is the most appropriate category. Assuming 'label_0' corresponds to 'small_talk' based on the highest semantic similarity score, the predicted category is validated.\n2. Agent type: small_talk",
       "agent_type": "small_talk"
     },
     {
-      "query": "What are my loan details?",
-      "response": "Here are your loan details:\n\n| Detail           | Value        |\n|------------------|--------------|\n| Loan Id          | loan002      |\n| Loan Type        | Adjustable   |\n| Loan Amount      | 200000       |\n| Outstanding Amt  | 165410.96    |\n| Principal        | 160000       |\n| Interest         | 2410.96      |\n| Penalty          | 1800         |\n| EMI Amount       | 1808.65      |\n| Loan Start Date  | 2020-11-05   |",
+      "query": "hi",
+      "response": "Hello Satvik Bhardwaj, how can I assist you with your banking needs today?",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5306601524353027)\nSemantic Similarity Scores:\n- policy: 0.087\n- user_data: 0.196\n- calculation: 0.057\n- small_talk: 0.635\n- combined: 0.104\n\nLLM Reasoning:\n1. The user query \"hi\" is a simple greeting. The semantic similarity scores show the highest similarity to `small_talk` (0.635). The predicted category `label_0` with a score of 0.5306601524353027 aligns with the highest semantic similarity score, indicating that `label_0` corresponds to `small_talk`. The previous conversation history also shows \"hi\" being treated as a greeting. Thus, the query should be classified as `small_talk`.\n2. Agent type: small_talk",
+      "agent_type": "small_talk"
+    },
+    {
+      "query": "depending on my outstanding amount if a add 5000 extra then how will it affect my tenure ?",
+      "response": "Based on your query regarding adding an extra payment to your EMI, the calculation shows a significant reduction in your loan tenure.\n\nYour new loan tenure will be **85 months**, reduced from the original 300 months.\n\nCalculation Details:\n| Field                     | Value      |\n|---------------------------|------------|\n| Outstanding Loan Amount   | 695832.47  |\n| Interest Rate (Annual)    | 7.8%       |\n| Base EMI (Calculated)     | 5689.61    |\n| Extra Payment Added       | 5000.00    |\n| New EMI                   | 10689.61   |\n| New Loan Tenure           | 85 months  |\n| Note                      | Calculated EMI (5689.61) used as base for calculation differs from stored EMI (5562.15). |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {},
+      "calculation_result": {
+        "type": "",
+        "value": 0,
+        "details": {}
+      },
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5202381014823914)\nSemantic Similarity Scores:\n- policy: 0.169\n- user_data: 0.289\n- calculation: 0.275\n- small_talk: 0.008\n- combined: 0.240\n\nLLM Reasoning:\n1. The user is asking how an extra payment will affect their loan tenure, which requires a financial calculation based on their outstanding loan amount. The previous conversation confirms that a similar query was handled by performing a calculation to determine the new tenure. The semantic similarity scores also indicate relevance to 'user_data' and 'calculation', with 'calculation' being slightly lower than 'user_data' but still significant, and 'combined' also relevant. However, the primary action needed is the calculation of the new tenure based on the provided information (outstanding amount, extra payment). This fits the definition of the 'calculation' category.\n2. Agent type: calculation",
+      "agent_type": "calculation"
+    },
+    {
+      "query": "am i eligible for loan foreclosure ?",
+      "response": "Based on the information provided, you are currently not eligible for voluntary loan foreclosure.\n\nEligibility Evaluation:\n| Status | Reason |\n|---|---|\n| Not Eligible | Outstanding dues/delinquency |\n\nTo become eligible for foreclosure, you are required to clear all pending dues.\n\nUser Data:\n| Field | Value |\n|-------|-------|\n| Delinquency Period | 120 |\n| Foreclosure Status | Initiated |\n| Loan Start Date | 2021-09-10 |\n| Outstanding Amount | 695832.47 |\n| Loan Type | Fixed |\n| Principal | 54167.53 |\n| Interest | 146250.0 |\n\nPlease contact the bank for further details and assistance regarding your outstanding dues and foreclosure process.",
+      "policy_documents": [
+        {
+          "page_content": "7.4 Eligibility Based on Borrower Profile\nBorrowers with a clean credit history, consistent income sources, and a positive net worth\nare typically granted foreclosure privileges with minimal due diligence.\nFor co-borrowers or guarantors, foreclosure eligibility requires written consent from all\nparties involved, particularly if the loan involves joint ownership or liability.\nIn the case of deceased borrowers, legal heirs or nominees must present appropriate\ndocumentation (such as a succession certificate or probate) to qualify for foreclosure\nprocessing.\n7.5 Regulatory and Policy-Based Eligibility\nRBI guidelines, SARFAESI Act provisions, and institutional lending policies provide the\noverarching framework for eligibility.\nBorrowers under restructuring, moratorium, or debt waiver programs may have restricted\nforeclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Eligibility Criteria for\nForeclosure\nForeclosure of a loan\u2014whether voluntary or involuntary\u2014is subject to a set of eligibility criteria\nestablished to ensure compliance with regulatory standards, internal bank protocols, and\nfairness in execution. This section outlines the various dimensions that define eligibility for\nforeclosure across borrower categories, loan types, and contextual factors.\n7.1 General Eligibility Requirements\nAny borrower, whether individual or institutional, becomes eligible for loan foreclosure upon\nfulfilling the preconditions outlined in the loan agreement or mandated by law.\nTypically, foreclosure eligibility arises once a loan has completed a specified lock-in period, if\napplicable, and when the borrower initiates a formal request or the lender determines that\nenforcement is warranted due to default.\nBorrowers must ensure that no pending litigation, unresolved insurance claims, or\ndocumentation discrepancies exist that may obstruct the foreclosure process.",
+          "metadata": {
+            "page": 20,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "5.2 Verification of Foreclosure Eligibility\nUpon receiving the request, the lender will verify if the loan qualifies for foreclosure based on\nthe terms of the agreement, such as completion of lock-in period and absence of\noutstanding dues or disputes.\nIneligible requests due to unresolved EMIs, disputes, or contractual restrictions will be\nflagged and communicated to the borrower with suggested remedial steps.\nBorrowers may be asked to clear pending dues or charges to qualify for foreclosure\neligibility.\n5.3 Generation of Foreclosure Statement\nOnce eligibility is confirmed, the lender generates a foreclosure statement detailing the total\namount payable by the borrower to foreclose the loan.\nThis statement includes the outstanding principal, accrued interest, foreclosure charges (if\napplicable), administrative fees, and applicable taxes.\nThe statement is typically valid for a limited period (e.g., 7\u201315 days), after which a revised\ncalculation may be necessary due to interest accrual.",
+          "metadata": {
+            "page": 14,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Subsidy eligibility may be reviewed or reversed if foreclosed before the minimum tenure as\ndefined under the scheme.\n40. How will I know my foreclosure is successful?\nYou\u2019ll receive a closure confirmation, NOC, updated CIBIL status, and return of documents.\n41. Will foreclosure reflect in my credit report?\nYes. The loan account will be marked as \u201cclosed\u201d with no outstanding dues.\n42. Can I request EMI waiver while foreclosing?\nRarely approved, but can be considered under hardship or negotiation cases.\n43. Can I foreclose one of multiple loans only?\nYes, each loan account is independent and can be foreclosed separately.\n44. Can I foreclose without penalty if I pay from my salary?\nForeclosure fee exemptions are not tied to income source unless specified under a corporate or\ngovernment scheme.\n45. Are foreclosure terms same for personal and home loans?\nNo. Home loans often have lower or zero charges (for floating rates), while personal loans may\ncarry 2\u20135% foreclosure fees.\n5",
+          "metadata": {
+            "page": 74,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "policy_reasoning": "Reasoning:\n1.  The user is asking about eligibility for loan foreclosure.\n2.  Documents 1, 2, and 3 outline various eligibility criteria for loan foreclosure.\n3.  Eligibility is based on fulfilling loan agreement preconditions, completing lock-in periods, absence of outstanding dues or disputes, and not being under specific programs or having availed certain benefits.\n4.  These criteria are extracted and presented in the requested JSON format.\n5.  Previous conversation context indicated ineligibility due to delinquency and initiated foreclosure status, which aligns with the requirement for absence of outstanding dues mentioned in the documents.\n\nEligibility Criteria (JSON):\n```json\n{\n  \"lock_in_period\": \"Completed (if applicable)\",\n  \"outstanding_dues\": \"None\",\n  \"disputes_litigation_etc\": \"None (no pending litigation, unresolved insurance claims, documentation discrepancies, or contractual restrictions)\",\n  \"special_programs\": \"Not enrolled (e.g., restructuring, moratorium, debt waiver)\",\n  \"specific_benefits_availed\": \"None (e.g., interest subvention)\",\n  \"borrower_profile\": \"Clean credit history, consistent income, positive net worth (may influence process ease)\",\n  \"consent_required\": \"Yes (for co-borrowers/guarantors if applicable)\",\n  \"documentation_required\": \"Yes (for legal heirs/nominees of deceased borrowers)\"\n}\n```",
+      "user_data": {
+        "loan_id": "loan002",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
+        "foreclosure_status": "Initiated",
+        "foreclosure_start_date": "2024-01-20",
+        "loan_type": "Fixed",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5320024490356445)\nSemantic Similarity Scores:\n- policy: 0.597\n- user_data: 0.216\n- calculation: 0.146\n- small_talk: 0.043\n- combined: 0.655\n\nLLM Reasoning:\n1. Reasoning: The user is asking about eligibility for loan foreclosure. Eligibility questions typically require checking bank policies (rules for foreclosure) and the user's specific account details (loan status, payment history, etc.). The category definition for 'combined' explicitly mentions \"eligibility queries\" as an example of questions involving multiple types. The semantic similarity scores also show the highest score for 'combined' (0.655), followed by 'policy' (0.597). The previous conversation for the exact same query confirms that user data (Delinquency Period, Foreclosure Status) is used to determine eligibility based on policy requirements (clearing dues). Therefore, the query fits the 'combined' category.\n2. Agent type: combined",
+      "agent_type": "combined"
+    },
+    {
+      "query": "what are my loan details ?",
+      "response": "Here are your loan details:\n\n| Field              | Value      |\n|--------------------|------------|\n| Loan Id            | loan002    |\n| Loan Amount        | 750000.00  |\n| Loan Type          | Fixed      |\n| Outstanding Amount | 695832.47  |\n| Principal Paid     | 54167.53   |\n| Interest Paid      | 146250.00  |\n| EMI Amount         | 5562.15    |\n| Loan Start Date    | 2021-09-10 |\n| Loan Tenure Months | 300        |",
       "policy_documents": [],
       "policy_reasoning": "No policy reasoning performed.",
       "user_data": {
         "loan_id": "loan002",
-        "loan_amount": 200000,
-        "interest_rate": 4.9,
-        "email": "user002@example.com",
-        "phone": "555-0102",
-        "address": "456 Oak Ave, Chicago, IL",
-        "last_contact_date": "2025-03-20",
-        "interaction_notes": "Requested penalty details; follow-up call scheduled.",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
         "foreclosure_status": "Initiated",
-        "foreclosure_start_date": "2025-03-25",
-        "preferred_contact_method": "Phone",
-        "customer_segment": "High Risk",
-        "loan_type": "Adjustable",
-        "region": "US-IL",
-        "delinquency_period": 90,
-        "customer_sentiment": "Frustrated",
-        "notice_sent_date": "2025-03-20",
-        "outstanding_amount": 165410.96,
-        "principal": 160000,
-        "interest": 2410.96,
-        "penalty": 1800,
-        "type_of_loan": "Adjustable",
-        "emi_amount": 1808.65,
-        "loan_start_date": "2020-11-05"
+        "foreclosure_start_date": "2024-01-20",
+        "loan_type": "Fixed",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
       },
       "calculation_result": {},
-      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.520994246006012)\nSemantic Similarity Scores:\n- policy: 0.455\n- user_data: 0.525\n- calculation: 0.202\n- small_talk: 0.182\n- combined: 0.490\n\nLLM Reasoning:\n1. Reasoning: The user is asking for personal information related to their loan account (\"my loan details\"). This directly aligns with the definition of the `user_data` category, which covers questions about personal account details. The semantic similarity scores also indicate the highest relevance to `user_data` (0.525). The predicted category label is not mapped, so the validation relies on the query and scores.\n2. Agent type: user_data",
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.537980318069458)\nSemantic Similarity Scores:\n- policy: 0.455\n- user_data: 0.525\n- calculation: 0.155\n- small_talk: 0.182\n- combined: 0.490\n\nLLM Reasoning:\n1. Reasoning: The user query \"what are my loan details ?\" is a direct request for personal information related to their bank account, specifically their loan. The semantic similarity scores show the highest correlation with 'user_data' (0.525). The previous conversation context confirms this interpretation, as the assistant responded to the exact same query by providing specific personal loan details such as Loan ID, Amount, Outstanding Amount, EMI, etc. This aligns perfectly with the definition of the 'user_data' category, which covers questions about personal account details.\n2. Agent type: user_data",
       "agent_type": "user_data"
+    },
+    {
+      "query": "what documents are required for loan foreclosure ?",
+      "response": "Required documents for loan foreclosure:\n*   Formal foreclosure request letter\n*   Identification proof (e.g., government-issued photo ID)\n*   Updated repayment record\n*   Pre-closure charges (if required)\n*   Loan account statement (additional)\n*   NOC from guarantors (additional)\n*   Form 35 for vehicle loans (additional)\n*   Lien release request forms for secured loans (additional)\n*   Original Mortgage Agreement (or certified copy)\n*   Promissory Note\n*   Amended Terms or Riders (if loan modified)\n*   Evidence of borrower default (in involuntary cases)\n*   Legal notices served (in involuntary cases)\n*   Auction-related documents (in involuntary cases)\n*   Valuation reports of secured assets (in involuntary cases)\n*   Military Affidavit (if applicable, for U.S. servicemembers)\n*   Bankruptcy Filings related documents (if applicable)\n*   Death of Borrower related documents (if applicable)\n*   Certificate of Sale (post-foreclosure)\n*   Eviction Order (post-foreclosure)",
+      "policy_documents": [
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "policy_reasoning": "Reasoning:\n1. The user is asking for the documents required for loan foreclosure.\n2. The retrieved documents detail various documents needed for the foreclosure process.\n3. Extract the specific documents mentioned in the documents.\n4. Present the extracted documents as the answer.\n5. The query is not about eligibility, so no JSON eligibility criteria are needed for this response.\n\nRequired Documents for Loan Foreclosure:\n*   Formal foreclosure request letter\n*   Identification proof (e.g., valid government-issued photo ID)\n*   Updated repayment record\n*   Pre-closure charges (if required)\n*   Loan account statement (additional)\n*   NOC from guarantors (additional)\n*   Form 35 for vehicle loans (additional)\n*   Lien release request forms for secured loans (additional)\n*   Original Mortgage Agreement (or certified copy)\n*   Promissory Note\n*   Amended Terms or Riders (if loan modified)\n*   Evidence of borrower default (in involuntary cases)\n*   Legal notices served (in involuntary cases)\n*   Auction-related documents (in involuntary cases)\n*   Valuation reports of secured assets (in involuntary cases)\n*   Military Affidavit (if applicable, for U.S. servicemembers)\n*   Bankruptcy Filings related documents (if applicable)\n*   Death of Borrower related documents (if applicable)",
+      "user_data": {},
+      "calculation_result": {},
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5315925478935242)\nSemantic Similarity Scores:\n- policy: 0.585\n- user_data: 0.202\n- calculation: 0.084\n- small_talk: 0.064\n- combined: 0.478\n\nLLM Reasoning:\n1. Reasoning: The user is asking about the documents required for loan foreclosure, which is a question about bank procedures and rules. The semantic similarity score for 'policy' is the highest (0.585), supporting this classification. The query does not involve personal account details, calculations, general conversation, or a combination of types like eligibility.\n2. Agent type: policy",
+      "agent_type": "policy"
+    },
+    {
+      "query": "what is my new loan tenure ?",
+      "response": "Your new loan tenure is 85 months, based on the previous calculation where an extra 5000 was added to your EMI.",
+      "policy_documents": [],
+      "policy_reasoning": "No policy reasoning performed.",
+      "user_data": {
+        "loan_id": "loan002",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
+        "foreclosure_status": "Initiated",
+        "foreclosure_start_date": "2024-01-20",
+        "loan_type": "Fixed",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
+      },
+      "calculation_result": {},
+      "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5303914546966553)\nSemantic Similarity Scores:\n- policy: 0.398\n- user_data: 0.387\n- calculation: 0.194\n- small_talk: 0.136\n- combined: 0.445\n\nLLM Reasoning:\n1. The user is asking for a specific detail about their personal loan account (\"my new loan tenure\"). This directly aligns with the definition of the 'user_data' category, which covers questions about personal account details. Although the 'new' tenure might be the result of a previous calculation or policy change, the query itself is a request for the resulting data point. The previous conversation also shows that \"new tenure\" is treated as a specific value provided to the user.\n2. Agent type: user_data",
+      "agent_type": "calculation"
     }
   ]
 }
