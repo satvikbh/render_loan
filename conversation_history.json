@@ -316,5 +316,138 @@
       "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5303914546966553)\nSemantic Similarity Scores:\n- policy: 0.398\n- user_data: 0.387\n- calculation: 0.194\n- small_talk: 0.136\n- combined: 0.445\n\nLLM Reasoning:\n1. The user is asking for a specific detail about their personal loan account (\"my new loan tenure\"). This directly aligns with the definition of the 'user_data' category, which covers questions about personal account details. Although the 'new' tenure might be the result of a previous calculation or policy change, the query itself is a request for the resulting data point. The previous conversation also shows that \"new tenure\" is treated as a specific value provided to the user.\n2. Agent type: user_data",
       "agent_type": "calculation"
     }
+  ],
+  "user001": [
+    {
+      "query": "what documents are required for loan foreclosure?",
+      "response": "Based on bank policy excerpts, required documents for loan foreclosure include:\n\n*   **General/Borrower-Initiated:**\n    *   Formal foreclosure request letter\n    *   Identification proof (Government-Issued ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Loan account statement (additional)\n    *   NOC from guarantors (additional)\n    *   Form 35 for vehicle loans (additional)\n    *   Lien release request forms for secured loans (additional)\n\n*   **Involuntary Cases:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n\n*   **Core Loan Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n\n*   **Specific Circumstances:**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications (if bankruptcy filed)\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n\n*   **Post-Foreclosure:**\n    *   Certificate of Sale\n    *   Eviction Order",
+      "documents": [
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1.  The user is asking for documents required for loan foreclosure.\n2.  Documents 1, 2, 3, and 4 provide details on required documentation at various stages and for different circumstances of foreclosure.\n3.  Extract specific documents mentioned in the text.\n4.  Categorize documents based on the context provided in the documents (e.g., general, borrower-initiated, involuntary, specific circumstances, post-foreclosure).\n\nEligibility Criteria (JSON):\n*This is not an eligibility query.*\n\nRequired Documents:\n*   Formal foreclosure request letter (for borrower-initiated foreclosure)\n*   Identification proof (borrower)\n*   Updated repayment record\n*   Pre-closure charges (if required)\n*   Loan account statement (additional)\n*   NOC from guarantors (additional)\n*   Form 35 for vehicle loans (additional)\n*   Lien release request forms for secured loans (additional)\n*   Evidence of borrower default (involuntary cases)\n*   Legal notices served (involuntary cases)\n*   Auction-related documents (involuntary cases)\n*   Valuation reports of secured assets (involuntary cases)\n*   Government-Issued Identification (Borrower Identity)\n*   Military Affidavit (if applicable, for U.S. servicemembers)\n*   Bankruptcy court orders, automatic stay relief documents, trustee communications (if borrower filed bankruptcy)\n*   Probate court records, death certificate, heirship affidavits (if borrower is deceased)\n*   Original Mortgage Agreement (or certified copy)\n*   Promissory Note\n*   Amended Terms or Riders (if loan was modified)\n*   Certificate of Sale (Post-foreclosure)\n*   Eviction Order (Post-foreclosure)",
+      "agent_type": "policy"
+    },
+    {
+      "query": "what are my loan details ",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |\n\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "calculate my penalty amount ?",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type                | Value  |\n|---------------------|--------|\n| Foreclosure Penalty | 429.15 |\n\nCalculation Details:\n| Field              | Value      |\n|--------------------|------------|\n| Principal          | 21457.65   |\n| Remaining Months   | 215        |\n| Penalty Rate       | 2.0        |\n| Delinquency Period | 0          |\n| Foreclosure Status | Not Started|\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "Foreclosure Penalty",
+        "value": 429.15,
+        "details": {
+          "principal": 21457.65,
+          "remaining_months": 215,
+          "penalty_rate": 2.0,
+          "delinquency_period": 0,
+          "foreclosure_status": "Not Started"
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "what document are required for loan foreclosure ?",
+      "response": "Based on bank policy excerpts, required documents for loan foreclosure include:\n\n*   **General/Borrower-Initiated:**\n    *   Formal foreclosure request letter\n    *   Identification proof (Government-Issued ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Loan account statement (additional)\n    *   NOC from guarantors (additional)\n    *   Form 35 for vehicle loans (additional)\n    *   Lien release request forms for secured loans (additional)\n\n*   **Involuntary Cases:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n\n*   **Core Loan Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n\n*   **Specific Circumstances:**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications (if bankruptcy filed)\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n\n*   **Post-Foreclosure:**\n    *   Certificate of Sale\n    *   Eviction Order",
+      "documents": [
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1.  User query asks for documents required for loan foreclosure.\n2.  Documents 1, 2, 3, and 4 contain information about required documentation at various stages and circumstances of foreclosure.\n3.  Extract document requirements based on the categories mentioned in the documents (general, involuntary, core, specific circumstances, post-foreclosure).\n4.  Present the extracted information in a structured list, consistent with the previous conversation's response to the same query.\n5.  No eligibility criteria are requested or found in the documents for a general foreclosure requirement query, so JSON output for criteria is not applicable.\n\nEligibility Criteria (JSON):",
+      "agent_type": "policy"
+    }
   ]
 }
