@@ -305,7 +305,8 @@ class CalculationAgent:
             original_tenure = calculation_result["details"].get("original_tenure_months", 0)
             new_tenure = calculation_result["details"].get("new_tenure_months", 0)
             tenure_reduction = original_tenure - new_tenure
-            tenure_impact = f"New Tenure: Your loan tenure will be approximately {new_tenure} months.\nImpact: Adding an extra {calculation_result["details"]["extra_payment"]} to your EMI will reduce your remaining loan tenure by approximately {tenure_reduction} months."
+            extra_payment = calculation_result["details"]["extra_payment"]
+            tenure_impact = f"New Tenure: Your loan tenure will be approximately {new_tenure} months.\nImpact: Adding an extra {extra_payment} to your EMI will reduce your remaining loan tenure by approximately {tenure_reduction} months."
 
         response_chain = response_prompt | state["llm"]
         result = response_chain.invoke({
