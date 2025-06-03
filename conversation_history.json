@@ -315,6 +315,101 @@
       "calculation_result": {},
       "orchestrator_reasoning": "Intent Classification:\n- Predicted: label_0 (Score: 0.5303914546966553)\nSemantic Similarity Scores:\n- policy: 0.398\n- user_data: 0.387\n- calculation: 0.194\n- small_talk: 0.136\n- combined: 0.445\n\nLLM Reasoning:\n1. The user is asking for a specific detail about their personal loan account (\"my new loan tenure\"). This directly aligns with the definition of the 'user_data' category, which covers questions about personal account details. Although the 'new' tenure might be the result of a previous calculation or policy change, the query itself is a request for the resulting data point. The previous conversation also shows that \"new tenure\" is treated as a specific value provided to the user.\n2. Agent type: user_data",
       "agent_type": "calculation"
+    },
+    {
+      "query": "what documents are required for loan foreclosure ?",
+      "response": "Required documents for loan foreclosure:\n*   Formal foreclosure request letter (for voluntary foreclosure)\n*   Identification proof (e.g., government-issued photo ID)\n*   Updated repayment record\n*   Pre-closure charges payment proof (if required)\n*   Loan account statement (additional)\n*   NOC from guarantors (additional)\n*   Form 35 for vehicle loans (additional, for vehicle loans)\n*   Lien release request forms for secured loans (additional, for secured loans)\n*   Original Mortgage Agreement (or certified copy)\n*   Promissory Note\n*   Amended Terms or Riders (if loan terms were modified)\n*   Evidence of borrower default (in involuntary cases)\n*   Legal notices served (in involuntary cases)\n*   Auction-related documents (in involuntary cases)\n*   Valuation reports of secured assets (in involuntary cases)\n*   Military Affidavit (if applicable, for U.S. servicemembers)\n*   Bankruptcy Filings related court orders, automatic stay relief documents, trustee communications (if applicable)\n*   Death Certificate, probate court records, heirship affidavits (if applicable, if borrower is deceased)\n*   Certificate of Sale (post-foreclosure)\n*   Eviction Order (post-foreclosure)",
+      "documents": [
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1. The user is asking for the documents required for loan foreclosure.\n2. Documents 1, 2, 3, and 4 contain information about documentation needed for the foreclosure process.\n3. Document 1 lists documents for eligibility (voluntary) and involuntary cases.\n4. Document 2 mentions borrower identity documents.\n5. Document 3 lists additional documents for specific circumstances and post-foreclosure documents.\n6. Document 4 lists core loan documents.\n7. Compile a list of all relevant documents mentioned across the documents.\n8. The query is not an eligibility query based on user data, so no JSON eligibility criteria are required.\n\nRequired documents for loan foreclosure:\n*   Formal foreclosure request letter (for voluntary foreclosure)\n*   Identification proof (e.g., government-issued photo ID)\n*   Updated repayment record\n*   Pre-closure charges payment proof (if required)\n*   Loan account statement (additional)\n*   NOC from guarantors (additional)\n*   Form 35 for vehicle loans (additional, for vehicle loans)\n*   Lien release request forms for secured loans (additional, for secured loans)\n*   Evidence of borrower default (in involuntary cases)\n*   Legal notices served (in involuntary cases)\n*   Auction-related documents (in involuntary cases)\n*   Valuation reports of secured assets (in involuntary cases)\n*   Original Mortgage Agreement (or certified copy)\n*   Promissory Note\n*   Amended Terms or Riders (if loan terms were modified)\n*   Military Affidavit (if applicable, for U.S. servicemembers under SCRA)\n*   Bankruptcy Filings related court orders, automatic stay relief documents, trustee communications (if applicable)\n*   Death Certificate, probate court records, heirship affidavits (if applicable, if borrower is deceased)\n*   Certificate of Sale (post-foreclosure)\n*   Eviction Order (post-foreclosure)",
+      "agent_type": "policy"
+    },
+    {
+      "query": "give me my loan details ",
+      "response": "Here are your loan details:\n\n| Field              | Value      |\n|--------------------|------------|\n| Loan Id            | loan002    |\n| Loan Amount        | 750000.00  |\n| Loan Type          | Fixed      |\n| Outstanding Amount | 695832.47  |\n| Principal Paid     | 54167.53   |\n| Interest Paid      | 146250.00  |\n| EMI Amount         | 5562.15    |\n| Loan Start Date    | 2021-09-10 |\n| Loan Tenure Months | 300        |\n| Payments Made      | 36         |",
+      "user_data": {
+        "loan_id": "loan002",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
+        "foreclosure_status": "Initiated",
+        "foreclosure_start_date": "2024-01-20",
+        "loan_type": "Fixed",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "calculate my penalty amount ?",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type                | Value   |\n|---------------------|---------|\n| Foreclosure Penalty | 1083.35 |\n\nCalculation Details:\n| Field              | Value     |\n|--------------------|-----------|\n| Principal          | 54167.53  |\n| Remaining Months   | 255       |\n| Penalty Rate       | 2.0       |\n| Delinquency Period | 120       |\n| Foreclosure Status | Initiated |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "Foreclosure Penalty",
+        "value": 1083.35,
+        "details": {
+          "principal": 54167.53,
+          "remaining_months": 255,
+          "penalty_rate": 2.0,
+          "delinquency_period": 120,
+          "foreclosure_status": "Initiated"
+        }
+      },
+      "user_data": {
+        "loan_id": "loan002",
+        "loan_amount": 750000,
+        "interest_rate": 7.8,
+        "foreclosure_status": "Initiated",
+        "foreclosure_start_date": "2024-01-20",
+        "loan_type": "Fixed",
+        "delinquency_period": 120,
+        "outstanding_amount": 695832.47,
+        "principal": 54167.53,
+        "interest": 146250.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 5562.15,
+        "loan_start_date": "2021-09-10",
+        "loan_tenure_months": 300,
+        "payments_made": 36,
+        "next_due_date": "2024-10-10",
+        "total_paid_so_far": 200237.4
+      },
+      "agent_type": "calculation"
     }
   ],
   "user001": [
@@ -447,6 +542,739 @@
         }
       ],
       "reasoning": "Reasoning:\n1.  User query asks for documents required for loan foreclosure.\n2.  Documents 1, 2, 3, and 4 contain information about required documentation at various stages and circumstances of foreclosure.\n3.  Extract document requirements based on the categories mentioned in the documents (general, involuntary, core, specific circumstances, post-foreclosure).\n4.  Present the extracted information in a structured list, consistent with the previous conversation's response to the same query.\n5.  No eligibility criteria are requested or found in the documents for a general foreclosure requirement query, so JSON output for criteria is not applicable.\n\nEligibility Criteria (JSON):",
+      "agent_type": "policy"
+    },
+    {
+      "query": "what document are required for loan foreclosure",
+      "response": "Required documents for loan foreclosure include:\n\n*   **Core Loan Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n*   **Borrower Identity & Request (if borrower-initiated):**\n    *   Formal foreclosure request letter\n    *   Identification proof (Government-Issued ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Additional documents may include loan account statement, NOC from guarantors, Form 35 (vehicle loans), lien release forms (secured loans)\n*   **Involuntary Cases:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n*   **Specific Circumstances (if applicable):**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n*   **Post-Foreclosure:**\n    *   Certificate of Sale\n    *   Eviction Order",
+      "documents": [
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1.  User query asks for required documents for loan foreclosure.\n2.  Analyzed retrieved documents for relevant information on documentation requirements.\n3.  Document 1 specifies borrower identity documents.\n4.  Document 2 details documents for borrower-initiated requests and involuntary cases.\n5.  Document 3 lists documents for specific borrower circumstances and post-foreclosure.\n6.  Document 4 outlines core loan documents.\n7.  Compiled a comprehensive list based on these categories, consistent with previous responses.\n\nRequired Documents for Loan Foreclosure:\n\n*   **Core Loan Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n*   **Borrower Identity & Request Documents (for borrower-initiated):**\n    *   Formal foreclosure request letter\n    *   Identification proof (Valid, non-expired government-issued photo ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Loan account statement (additional)\n    *   NOC from guarantors (additional)\n    *   Form 35 for vehicle loans (additional)\n    *   Lien release request forms for secured loans (additional)\n*   **Involuntary Cases:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n*   **Specific Circumstances:**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications (if bankruptcy filed)\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n*   **Post-Foreclosure:**\n    *   Certificate of Sale\n    *   Eviction Order",
+      "agent_type": "policy"
+    },
+    {
+      "query": "give me my loan details",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\nPayments Made: 12\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "what are my loan details?",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "what the my loan details?",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "what are my loan details?",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "what are my loan details?",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "calculate my loan panelty amount",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type             | Value |\n|------------------|-------|\n| Penalty Amount   | 0     |\n| Note             | Mismatch with previous calculation noted |\n\nCalculation Details:\n| Field | Value |\n|-------|-------|\n\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "",
+        "value": 0,
+        "details": {}
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "calculate my loan penalty amount",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type                | Value  |\n|---------------------|--------|\n| Foreclosure Penalty | 429.15 |\n\nCalculation Details:\n| Field              | Value      |\n|--------------------|------------|\n| Principal          | 21457.65   |\n| Remaining Months   | 214        |\n| Penalty Rate       | 2.0        |\n| Delinquency Period | 0          |\n| Foreclosure Status | Not Started|\n| Note               | Mismatch: Loan details indicate 228 remaining months |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "Foreclosure Penalty",
+        "value": 429.15,
+        "details": {
+          "principal": 21457.65,
+          "remaining_months": 214,
+          "penalty_rate": 2.0,
+          "delinquency_period": 0,
+          "foreclosure_status": "Not Started"
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "What is my outstanding loan",
+      "response": "Based on your query, here is your outstanding loan amount:\n\nCalculation Result:\n| Type              | Value      |\n|-------------------|------------|\n| Outstanding Amount| 478542.35  |\n\nCalculation Details:\n| Field | Value |\n|-------|-------|\n\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "",
+        "value": 0,
+        "details": {}
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate my penalty amount",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type                | Value  |\n|---------------------|--------|\n| Foreclosure Penalty | 429.15 |\n\nCalculation Details:\n| Field              | Value      |\n|--------------------|------------|\n| Principal          | 21457.65   |\n| Remaining Months   | 214        |\n| Penalty Rate       | 2.0        |\n| Delinquency Period | 0          |\n| Foreclosure Status | Not Started|\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "Foreclosure Penalty",
+        "value": 429.15,
+        "details": {
+          "principal": 21457.65,
+          "remaining_months": 214,
+          "penalty_rate": 2.0,
+          "delinquency_period": 0,
+          "foreclosure_status": "Not Started"
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate my new emi if I add 5000 extra",
+      "response": "Based on your query and current loan details, increasing your monthly payment by 5000 will result in a new estimated tenure.\n\nCalculation Result:\n| Type                  | Value        |\n|-----------------------|--------------|\n| New Monthly Payment   | 9174.29      |\n| Estimated New Tenure  | 64.77 months |\n\nCalculation Details:\n| Field                 | Value      |\n|-----------------------|------------|\n| Outstanding Amount    | 478542.35  |\n| Stored EMI            | 4174.29    |\n| Extra Amount Added    | 5000.00    |\n| New Monthly Payment   | 9174.29    |\n| Effective Annual Rate | 8.25       |\n| Note                  | Effective rate (8.25%) derived from stored EMI differs from 8.5% used in previous examples. Using 8.25%. |\n\nTenure Adjustment Impact:\nYour estimated new loan tenure will be approximately 65 months. This represents a significant reduction compared to your current remaining tenure of 228 months.\n\nPlease contact the bank to confirm and arrange changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate my new emi amount if I add 5000 extra",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type | Value |\n|------|-------|\n| EMI | 4339.12 |\n\nCalculation Details:\n| Field | Value |\n|-------|-------|\n| Loan Amount | 500000.0 |\n| Interest Rate | 8.5 |\n| Loan Tenure Months | 240 |\n| Note | Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value. |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate my new emi amount if I add 500 extra",
+      "response": "Based on your query and current loan details, increasing your monthly payment by 500 will result in a new estimated tenure.\n\nCalculation Result:\n| Type                  | Value        |\n|-----------------------|--------------|\n| New Monthly Payment   | 4674.29      |\n| Estimated New Tenure  | 177.14 months|\n\nCalculation Details:\n| Field                 | Value      |\n|-----------------------|------------|\n| Outstanding Amount    | 478542.35  |\n| Stored EMI            | 4174.29    |\n| Extra Amount Added    | 500.00     |\n| New Monthly Payment   | 4674.29    |\n| Effective Annual Rate | 8.25       |\n| Note                  | Effective rate (8.25%) derived from stored EMI differs from 8.5% used in some examples. Using 8.25%. |\n\nTenure Adjustment Impact:\nYour estimated new loan tenure will be approximately 177 months. This represents a reduction compared to your current remaining tenure of 228 months.\n\nPlease contact the bank to confirm and arrange changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate new emi if I add 500 extra",
+      "response": "Based on your query and current loan details, increasing your monthly payment by 500 will result in a new estimated tenure.\n\nCalculation Result:\n| Type                  | Value        |\n|-----------------------|--------------|\n| New Monthly Payment   | 4674.29      |\n| Estimated New Tenure  | 177.14 months|\n\nCalculation Details:\n| Field                 | Value      |\n|-----------------------|------------|\n| Outstanding Amount    | 478542.35  |\n| Stored EMI            | 4174.29    |\n| Extra Amount Added    | 500.00     |\n| New Monthly Payment   | 4674.29    |\n| Effective Annual Rate | 8.25       |\n| Note                  | Effective rate (8.25%) derived from stored EMI differs from 8.5% used in some examples. Using 8.25%. |\n\nTenure Adjustment Impact:\nYour estimated new loan tenure will be approximately 177 months. This represents a reduction compared to your current remaining tenure of 228 months.\n\nPlease contact the bank to confirm and arrange changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate new emi if I add 500 extra",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type | Value |\n|------|-------|\n| EMI | 4339.12 |\n\nCalculation Details:\n| Field | Value |\n|-------|-------|\n| Loan Amount | 500000.0 |\n| Interest Rate | 8.5 |\n| Loan Tenure Months | 240 |\n| Note | Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value. |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "Calculate new emi if I add 500 extra",
+      "response": "Based on your query and current loan details, increasing your monthly payment by 500 will result in a new estimated tenure.\n\nCalculation Result:\n| Type                  | Value        |\n|-----------------------|--------------|\n| New Monthly Payment   | 4674.29      |\n| Estimated New Tenure  | 177.14 months|\n\nCalculation Details:\n| Field                 | Value      |\n|-----------------------|------------|\n| Outstanding Amount    | 478542.35  |\n| Stored EMI            | 4174.29    |\n| Extra Amount Added    | 500.00     |\n| New Monthly Payment   | 4674.29    |\n| Effective Annual Rate | 8.25       |\n| Note                  | Effective rate (8.25%) derived from stored EMI differs from 8.5% used in some examples. Using 8.25%. |\n\nTenure Adjustment Impact:\nYour estimated new loan tenure will be approximately 177 months. This represents a reduction compared to your current remaining tenure of 228 months.\n\nPlease contact the bank to confirm and arrange changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "What documents are required for Loan Foreclosure?",
+      "response": "Required documents for loan foreclosure include:\n\n*   Core Loan Documents:\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n*   Borrower Identity & Request (if borrower-initiated):\n    *   Formal foreclosure request letter\n    *   Identification proof (Government-Issued ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Additional documents may include loan account statement, NOC from guarantors, Form 35 (vehicle loans), lien release forms (secured loans)\n*   Involuntary Cases:\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n*   Specific Circumstances (if applicable):\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n*   Post-Foreclosure:\n    *   Certificate of Sale\n    *   Eviction Order",
+      "documents": [
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "These are the core documents that establish the relationship between borrower and lender, and\nthey form the legal basis for foreclosure actions.\nOriginal Mortgage Agreement:\n The signed mortgage contract (or deed of trust) outlines the principal, interest rate, tenure,\npayment terms, and lender rights. If unavailable, a certified copy is accepted.\nPromissory Note:\n The promissory note contains the borrower\u2019s unconditional promise to repay the loan. It\nserves as the primary evidence of the debt and is often required in judicial foreclosure cases.\nAmended Terms or Riders:\n If the borrower has ever modified the loan (e.g., adjusted interest rate, payment holiday, loan\nextension), the corresponding amendments or riders must be included to demonstrate the\nupdated terms.\n5",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1. Identify the policy information requested (documents for loan foreclosure).\n2. Match relevant documents (Documents 1, 2, 3, 4) to the query.\n3. Extract required documents mentioned in the documents.\n4. Categorize the extracted documents based on the context (general, involuntary, core, specific circumstances, post-foreclosure).\n5. Format the response clearly, listing the documents under appropriate categories.\n6. Confirm this is not an eligibility query, so no JSON is required for eligibility criteria.\n\nRequired documents for loan foreclosure include:\n\n*   **Core Loan Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n*   **Borrower Identity & Request (if borrower-initiated):**\n    *   Formal foreclosure request letter\n    *   Identification proof (Government-Issued ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Additional documents may include loan account statement, NOC from guarantors, Form 35 (vehicle loans), lien release forms (secured loans)\n*   **Involuntary Cases:**\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n*   **Specific Circumstances (if applicable):**\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n*   **Post-Foreclosure:**\n    *   Certificate of Sale\n    *   Eviction Order",
+      "agent_type": "policy"
+    },
+    {
+      "query": "Give me my loan details",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\nPayments Made: 12\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "Calculate new emi if I add 2000 extra",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type | Value |\n|------|-------|\n| EMI | 4339.12 |\n\nCalculation Details:\n| Field | Value |\n|-------|-------|\n| Loan Amount | 500000.0 |\n| Interest Rate | 8.25 |\n| Loan Tenure Months | 240 |\n| Note | Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value. |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "EMI",
+        "value": 4339.12,
+        "details": {
+          "loan_amount": 500000.0,
+          "interest_rate": 8.5,
+          "loan_tenure_months": 240,
+          "note": "Calculated EMI (4339.12) differs from stored EMI (4174.29). Using calculated value."
+        }
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    },
+    {
+      "query": "give my loan details",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "give my loan details",
+      "response": "Here are your loan details:\n\nLoan ID: loan001\nLoan Type: Fixed\nLoan Start Date: 2023-04-15\nLoan Tenure: 240 months\n\n| Detail             | Value      |\n|--------------------|------------|\n| Loan Amount        | 500000.00  |\n| Outstanding Amount | 478542.35  |\n| Principal Paid     | 21457.65   |\n| Interest Paid      | 28750.00   |\n| EMI Amount         | 4174.29    |",
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "user_data"
+    },
+    {
+      "query": "what documents are needed for foreclosure",
+      "response": "Required documents for loan foreclosure include:\n\n*   Core Loan Documents:\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n*   Borrower Identity & Request (if borrower-initiated):\n    *   Formal foreclosure request letter\n    *   Identification proof (Government-Issued ID)\n    *   Updated repayment record\n    *   Pre-closure charges (if required)\n    *   Additional documents may include loan account statement, NOC from guarantors, Form 35 (vehicle loans), lien release forms (secured loans)\n*   Involuntary Cases:\n    *   Evidence of borrower default\n    *   Legal notices served\n    *   Auction-related documents\n    *   Valuation reports of secured assets\n*   Specific Circumstances (if applicable):\n    *   Military Affidavit (for U.S. servicemembers)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased)\n*   Post-Foreclosure:\n    *   Certificate of Sale\n    *   Eviction Order",
+      "documents": [
+        {
+          "page_content": "Required Documentation for\nForeclosure Process\nOverview:\n The foreclosure process necessitates a comprehensive and precise documentation trail to\nensure legal compliance, protect stakeholder rights, and streamline administrative procedures.\nAccurate documentation facilitates proper evaluation, helps avoid legal disputes, and ensures\nthat the lender\u2019s and borrower\u2019s interests are fairly represented. This section provides a detailed\nbreakdown of required documentation at various stages of the foreclosure process, categorized\nby type of foreclosure, borrower status, loan type, and jurisdictional mandates.\n9.1. Borrower Identity and Verification Documents\nTo initiate or defend against foreclosure actions, it is essential to confirm the borrower\u2019s identity.\nThis protects both parties and prevents fraudulent activity.\nGovernment-Issued Identification:\n Each borrower must provide a valid, non-expired government-issued photo ID such as a",
+          "metadata": {
+            "page": 31,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "Certain borrower types or foreclosure circumstances require additional supporting documents.\nMilitary Affidavit:\n For U.S. servicemembers, the Servicemembers Civil Relief Act (SCRA) may delay\nforeclosure. Lenders must check military status and attach an affidavit of compliance.\nBankruptcy Filings:\n If a borrower filed for bankruptcy during the mortgage term, related court orders, automatic\nstay relief documents, and trustee communications must be submitted.\nDeath of Borrower:\n If the borrower is deceased, probate court records, death certificate, and heirship affidavits\nare required to proceed with legal foreclosure or title transfer.\n9.11. Post-Foreclosure Documentation\nThis documentation completes the foreclosure cycle and initiates property disposal or eviction.\nCertificate of Sale:\n Issued after a successful foreclosure auction, it certifies the new buyer (often the lender or a\nthird party) has been awarded ownership pending title confirmation.\nEviction Order:",
+          "metadata": {
+            "page": 34,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "foreclosure rights until program closure or settlement.\nLenders must confirm that the borrower has not availed benefits such as interest subvention\nor government guarantees that require additional approvals before foreclosure.\n7.6 Documentation Requirements for Eligibility\nTo be considered eligible, the borrower must submit a formal foreclosure request letter,\nidentification proof, updated repayment record, and if required, pre-closure charges.\nAdditional documents may include loan account statement, NOC from guarantors, Form 35\nfor vehicle loans, and lien release request forms for secured loans.\nIn involuntary cases, lenders must maintain evidence of borrower default, legal notices\nserved, auction-related documents, and valuation reports of secured assets.\n7.7 Internal Approval Requirements\nFor certain loan sizes or types (e.g., large-value commercial loans), internal credit committee\nor risk officer approval may be necessary before allowing foreclosure.",
+          "metadata": {
+            "page": 21,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "9.12. Audit and Retention Requirements\nFor legal, regulatory, and internal governance purposes, all documentation must be retained for\na minimum duration.\nDocument Retention Timeline:\n Most jurisdictions require foreclosure documentation to be kept for 5\u20137 years. Electronic\nand physical copies must be stored securely.\nChain of Custody Records:\n Documents that are passed between departments or external agencies must have tracking\nto prove no tampering or loss occurred during the process.\nCompliance Certification:\n An annual internal or third-party audit certifying adherence to documentation standards\nshould be recorded and shared with regulators if requested.\nConclusion:\n Thorough documentation is the foundation of a legally sound foreclosure process. It ensures\ntransparency, compliance, and fairness for both lenders and borrowers. By maintaining accurate\nand complete records throughout every phase of the foreclosure lifecycle, institutions safeguard",
+          "metadata": {
+            "page": 35,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1. The user is asking for documents required for loan foreclosure.\n2. Documents 1, 2, and 3 provide details on required documentation at various stages and for different circumstances of the foreclosure process.\n3. Document 1 specifies borrower identity documents.\n4. Document 2 lists documents for specific borrower circumstances (military, bankruptcy, death) and post-foreclosure.\n5. Document 3 outlines documents for borrower-initiated foreclosure eligibility and involuntary cases.\n6. Consolidate information from retrieved documents and previous conversation history for a comprehensive list.\n7. The query is about required documents, not eligibility criteria based on loan status, so JSON output for eligibility criteria is not applicable.\n\nRequired documents for loan foreclosure include:\n\n*   **Core Loan Documents:**\n    *   Original Mortgage Agreement (or certified copy)\n    *   Promissory Note\n    *   Amended Terms or Riders (if applicable)\n*   **Borrower Identity & Request (if borrower-initiated):**\n    *   Formal foreclosure request letter (Doc 3)\n    *   Identification proof (Government-Issued ID) (Doc 1, Doc 3)\n    *   Updated repayment record (Doc 3)\n    *   Pre-closure charges (if required) (Doc 3)\n    *   Additional documents may include loan account statement, NOC from guarantors, Form 35 (vehicle loans), lien release forms (secured loans) (Doc 3)\n*   **Involuntary Cases:**\n    *   Evidence of borrower default (Doc 3)\n    *   Legal notices served (Doc 3)\n    *   Auction-related documents (Doc 3)\n    *   Valuation reports of secured assets (Doc 3)\n*   **Specific Circumstances (if applicable):**\n    *   Military Affidavit (for U.S. servicemembers) (Doc 2)\n    *   Bankruptcy court orders, automatic stay relief documents, trustee communications (if bankruptcy filed) (Doc 2)\n    *   Probate court records, death certificate, heirship affidavits (if borrower deceased) (Doc 2)\n*   **Post-Foreclosure:**\n    *   Certificate of Sale (Doc 2)\n    *   Eviction Order (Doc 2)\n\nEligibility Criteria (JSON):",
+      "agent_type": "policy"
+    },
+    {
+      "query": "give panalty amount",
+      "response": "Based on your query, here is the calculation result:\n\nCalculation Result:\n| Type                | Value  |\n|---------------------|--------|\n| Foreclosure Penalty | 429.15 |\n\nCalculation Details:\n| Field              | Value      |\n|--------------------|------------|\n| Principal          | 21457.65   |\n| Remaining Months   | 214        |\n| Penalty Rate       | 2.0        |\n| Delinquency Period | 0          |\n| Foreclosure Status | Not Started|\n| Note               | Mismatch: Loan details indicate 228 remaining months |\n\nPlease contact the bank to confirm and proceed with any changes to your payment plan.",
+      "calculation_result": {
+        "type": "",
+        "value": 0,
+        "details": {}
+      },
+      "user_data": {
+        "loan_id": "loan001",
+        "loan_amount": 500000.0,
+        "interest_rate": 8.5,
+        "foreclosure_status": "Not Started",
+        "foreclosure_start_date": null,
+        "loan_type": "Fixed",
+        "delinquency_period": 0,
+        "outstanding_amount": 478542.35,
+        "principal": 21457.65,
+        "interest": 28750.0,
+        "type_of_loan": "Fixed",
+        "emi_amount": 4174.29,
+        "loan_start_date": "2023-04-15",
+        "loan_tenure_months": 240,
+        "payments_made": 12,
+        "next_due_date": "2024-05-15",
+        "total_paid_so_far": 50091.48
+      },
+      "agent_type": "calculation"
+    }
+  ],
+  "string": [
+    {
+      "query": "string",
+      "response": "Please provide a valid policy-related query. I cannot provide information based on an invalid input.",
+      "documents": [
+        {
+          "page_content": "Repossession: The act of taking back collateral (e.g., vehicle, property) by the lender due to\nnon-payment. It typically applies in cases of default, not voluntary foreclosure.\nGrievance Redressal: A structured mechanism through which borrowers can raise concerns\nor complaints regarding the foreclosure process and receive timely resolution.\n5",
+          "metadata": {
+            "page": 10,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "status, download documents, or raise service requests.\nThis ensures greater convenience, especially for NRIs or remote borrowers.\nDigital access also improves transparency and reduces processing timelines.\n9.14 Right to Language Support\nBorrowers have the right to request key foreclosure-related documents or communications\nin their preferred regional language.\nInstitutions must maintain bilingual or multilingual templates to accommodate diverse\nborrower segments.\nThis ensures inclusivity and reduces communication errors.\n9.15 Obligation to Comply with Legal Norms\nBorrowers must comply with all applicable laws and institutional policies while requesting\nforeclosure.\nThis includes avoiding coercive tactics, misusing legal provisions, or delaying rightful\npayments.\nResponsible behavior ensures a smoother relationship with the institution and improves legal\nprotection for the borrower.\nBy defining and respecting both rights and obligations, lenders and borrowers can build a strong",
+          "metadata": {
+            "page": 25,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "status, download documents, or raise service requests.\nThis ensures greater convenience, especially for NRIs or remote borrowers.\nDigital access also improves transparency and reduces processing timelines.\n9.14 Right to Language Support\nBorrowers have the right to request key foreclosure-related documents or communications\nin their preferred regional language.\nInstitutions must maintain bilingual or multilingual templates to accommodate diverse\nborrower segments.\nThis ensures inclusivity and reduces communication errors.\n9.15 Obligation to Comply with Legal Norms\nBorrowers must comply with all applicable laws and institutional policies while requesting\nforeclosure.\nThis includes avoiding coercive tactics, misusing legal provisions, or delaying rightful\npayments.\nResponsible behavior ensures a smoother relationship with the institution and improves legal\nprotection for the borrower.\nBy defining and respecting both rights and obligations, lenders and borrowers can build a strong",
+          "metadata": {
+            "page": 27,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        },
+        {
+          "page_content": "2.15 Customer Communication and Education\nBorrowers receive proactive updates through SMS, emails, and mobile notifications about\nkey foreclosure milestones and required actions.\nEducational material, including FAQs, step-by-step guides, and webinars, is made available\nin multiple languages to assist borrowers.\nCall center agents are trained to provide accurate and empathetic information to customers\nconsidering foreclosure options.\nTransparency is ensured through downloadable foreclosure statements, charge\nbreakdowns, and expected timelines.\n2.16 Review and Continuous Improvement\nThe policy is reviewed at least annually, or whenever there is a major regulatory or\noperational change. This ensures ongoing relevance.\nFeedback loops from staff and customers help identify pain points, inefficiencies, and areas\nfor enhancement in the foreclosure process.\nKey performance indicators (KPIs) such as processing time, dispute resolution rates, and",
+          "metadata": {
+            "page": 9,
+            "source": "public\\Employee Handbook.pdf"
+          }
+        }
+      ],
+      "reasoning": "Reasoning:\n1. The user query is invalid (\"string\").\n2. The provided documents discuss aspects of the foreclosure process, including borrower rights (digital access, language support), obligations (complying with legal norms), communication, education, and grievance redressal.\n3. The documents do not contain specific eligibility criteria for initiating or being subject to foreclosure (e.g., required delinquency period, loan status, property type).\n4. Therefore, eligibility criteria cannot be extracted in the requested JSON format based on the provided documents and the invalid query.\n\nEligibility Criteria (JSON):",
       "agent_type": "policy"
     }
   ]
